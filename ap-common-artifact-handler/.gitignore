@@ -1,0 +1,10 @@
+/.settings
+/.project
+/.classpath
+/target
+target
+/target/*
+*.orig
+*.versionsBackup
+/target
+*.iml

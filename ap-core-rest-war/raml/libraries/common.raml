@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+usage: |
+  Use to define common related constructs.
+
+types:
+  NameValuePairs:
+    properties:
+      name:
+        type: string
+        description: The attribute name.
+        required: true
+      value:
+        type: string
+        description: The attribute value.
+        required: true

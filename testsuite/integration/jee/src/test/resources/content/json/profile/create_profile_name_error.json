@@ -1,0 +1,38 @@
+{
+  "name": "pr",
+  "properties": "large json string (no example provided in IWD)",
+  "graphic": {
+    "name": "filename",
+    "content": "base64 encoded string string"
+  },
+  "ciq": {
+    "name": "filename.csv",
+    "content": "base64 encoded string"
+  },
+  "configurations": [
+    {
+      "name": "filename.zip",
+      "content": "base64 encoded string"
+    },
+    {
+      "name": "filename.zip",
+      "content": "base64 encoded string"
+    }
+  ],
+  "status": {
+    "isValid": false,
+    "details": [
+      "status detail 1",
+      "status detail 2 etc"
+    ]
+  },
+  "version": {
+    "productNumber": "",
+    "productRelease": ""
+  },
+  "dataType": "node-plugin-response-action",
+  "getConfigScript": {
+    "name": "filename.xml",
+    "content": "base64 encoded string string"
+  }
+}

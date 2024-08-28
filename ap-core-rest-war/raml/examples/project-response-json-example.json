@@ -1,0 +1,21 @@
+{
+    "id": "Batch_LTE_RadioNode_Project",
+    "label": "Batch_LTE_RadioNode_Project",
+    "creationDate": "2018-08-29 09:10:41",
+    "creator": "Ericsson",
+    "description": "Example batch project with LTE RadioNode nodes",
+    "parent": 0,
+    "children": 1,
+    "nodes": [
+        {
+            "id": "kienb3085",
+            "label": "kienb3085",
+            "nodeType": "RadioNode",
+            "nodeIdentifier": "19.Q1-R58A16",
+            "ipAddress": "2001:1b70:828a:7:0:0:0:95",
+            "hardwareSerialNumber": "SCB87654323",
+            "parent": "Batch_LTE_RadioNode_Project",
+            "workOrderId": null
+        }
+    ]
+}

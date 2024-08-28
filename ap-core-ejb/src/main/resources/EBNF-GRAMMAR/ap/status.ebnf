@@ -1,0 +1,6 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "status" (* slogan = "Display the current integration status of projects or nodes or deployments" *) [ STATUS_OPTIONS ]
+
+STATUS_OPTIONS ::= ( STATUS_PROJECT | STATUS_DEPLOYMENT | STATUS_NODE )
+STATUS_PROJECT ::= WS "-p" (* slogan = "Display the status of a project" *) WS <project_name> (* slogan = "Scope the Command using a Project name. E.g. MyProject1" *)
+STATUS_NODE ::= WS "-n" (* slogan = "Display the status of a node" *) WS <node_name> (* slogan = "Scope the Command using a Node name. E.g. MyNode1" *)
+STATUS_DEPLOYMENT ::= WS "-d" (* slogan = "Display the status of a deployment" *) WS <deployment_name> (* slogan = "Scope the Command using a Deployment name. E.g. MyDeployment1" *)

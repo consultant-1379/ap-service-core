@@ -1,0 +1,46 @@
+Parameter;Area;Description;<node name>
+tilt:RSU=RET-S1-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S1-1;
+tilt:RSU=RET-S2-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S2-1;
+tilt:RSU=RET-S3-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S3-1;
+tilt:RSU=RET-S4-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S4-1;
+username_maint_user;COMMON;Defines the name of the maintenance user.;
+password_maint_user;COMMON;"Sets the SSH-based login password.
+If the password is not set, SSH-based login is not available for the maintenance user.
+The password must contain at least three lower-case, three upper-case, two numeric, and one special character.";
+subjectName_maint_user;COMMON;"Set the subject name of the certificate that is used for log in.
+If subject name is not configured, certificate-based log in is not available for the user.";
+Time_of_day_NTP_server_address_1;COMMON;"Sets the IP address of the NTP server that is used for time-of-day synchronization.
+Must be set to a valid IP address or DNS domain name.";
+Time_of_day_NTP_server_address_2;COMMON;"Sets the IP address of the NTP server that is used for time-of-day synchronization.
+Must be set to a valid IP address or DNS domain name.";
+node_logical_name;COMMON;Specifies the logical name of the node, as identified by the management system.;
+vlan_id_if_1_router:OAM;TRANSPORT;"The VLAN identity that shall be used for router:OAM.
+Valid value is an integer in the range 1-4094.";
+address_router:OAM;TRANSPORT;"The local IP address on router:OAM
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45)";
+network_prefix_length:OAM;TRANSPORT;"The network prefix length of router OAM
+Valid value is a number in the range 1-31";
+default_route_router:OAM;TRANSPORT;"The default route for router:OAM.
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45).";
+vlan_id_if_1_router:LTE;TRANSPORT;"The VLAN identity that shall be used for router:LTE.
+Valid value is an integer in the range 1-4094.";
+address_router:LTE;TRANSPORT;"The local IP address on router:LTE
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45)";
+network_prefix_length:LTE;TRANSPORT;"The network prefix length of router LTE
+Valid value is a number in the range 1-31";
+default_route_router:LTE;TRANSPORT;"The default route for router:LTE.
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45).";
+eNBId;LTE;"The ENodeB ID that forms part of the Cell Global Identity, and is also used to identify the node over the S1 interface.
+Valid value is an integer between -1 and 1048575.";
+configuredMaxTxPower_C:C1_S:1;LTE;"Sets the maximum output power(in mW) of carrier:C1_S:1.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C2_S:2;LTE;"Sets the maximum output power(in mW) of carrier:C2_S:2.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C3_S:3;LTE;"Sets the maximum output power(in mW) of carrier:C3_S:3.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C4_S:4;LTE;"Sets the maximum output power(in mW) of carrier:C4_S:4.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C5_S:5;LTE;"Sets the maximum output power(in mW) of carrier:C5_S:5.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C6_S:5;LTE;"Sets the maximum output power(in mW) of carrier:C6_S:5.
+Valid value is 0-10000000.";

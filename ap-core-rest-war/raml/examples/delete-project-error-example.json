@@ -1,0 +1,10 @@
+[
+    {
+        "id": "Project01",
+        "errorMessage": "Project does not exist."
+    },
+    {
+        "id": "Project02",
+        "errorMessage": "Internal server error."
+    }
+]

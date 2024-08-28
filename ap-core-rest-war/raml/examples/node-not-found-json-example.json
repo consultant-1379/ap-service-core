@@ -1,0 +1,5 @@
+{
+    "errorTitle": "Node does not exist.",
+    "errorBody": "Provide a valid node name.",
+    "errorDetails": null
+}

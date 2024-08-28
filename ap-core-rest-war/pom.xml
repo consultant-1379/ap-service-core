@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ericsson.oss.autoprovisioning.core</groupId>
+        <artifactId>ap-service-core</artifactId>
+        <version>1.184.9-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+    <artifactId>ap-core-rest-war</artifactId>
+    <name>[${project.parent.artifactId}] Rest WAR module</name>
+    <packaging>war</packaging>
+
+    <properties>
+        <sonar.coverage.exclusions>**/src/test/java/**</sonar.coverage.exclusions>
+    </properties>
+
+    <dependencies>
+        <!-- JEE Dependencies -->
+        <!-- This dependency must be listed before javax.javaee-api or else the unit tests throw a ClassFormatError -->
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <version>${version.jboss.javaee}</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${version.javax.javaee}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>${version.javax.javaee}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- ENM Dependencies -->
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.modeling</groupId>
+            <artifactId>model-service-jar</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-core-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-recording-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-instrumentation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-security-accesscontrol-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- AP Dependencies -->
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>aps-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-status-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-core-rest-jar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-core-status</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-usecase</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-cm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-workflow</artifactId>
+        </dependency>
+
+        <!-- 3PP Dependencies -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-multipart-provider</artifactId>
+            <version>${version.resteasy}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.cds</groupId>
+            <artifactId>cdi-test-support</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>${version.hibernate-validator-annotation-processor}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--Needed for Mocking non interface types in Spock-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>3.2.5</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JAX RS dependencies so we can unit test the endpoint class -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webappDirectory>target/${project.parent.artifactId}-${project.version}</webappDirectory>
+                    <resource>
+                        <directory>${basedir}/src/main/webapp/WEB-INF</directory>
+                        <filtering>true</filtering>
+                        <targetPath>WEB-INF</targetPath>
+                        <includes>
+                            <include>*.xml</include>
+                        </includes>
+                    </resource>
+                    <archive>
+                        <manifestEntries>
+                            <Dependencies>
+                                org.slf4j,
+                                com.ericsson.oss.services.autoprovisioning.api,
+                                com.ericsson.oss.itpf.modeling.modelservice.api meta-inf,
+                                com.ericsson.oss.itpf.datalayer.dps.api,
+                                com.ericsson.oss.itpf.sdk.service-framework:4.x meta-inf export
+                            </Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>2.0.1.Final</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

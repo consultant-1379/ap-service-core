@@ -1,0 +1,4 @@
+{
+    "ignoreNetworkElement": false,
+    "nodeIds": ["Node01", "Node02"]
+}

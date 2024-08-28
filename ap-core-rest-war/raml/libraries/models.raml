@@ -1,0 +1,12 @@
+#%RAML 1.0 Library
+usage: |
+  Use to define common related constructs.
+
+types:
+  OssModel:
+    properties:
+      ossModelIds:
+        type: array
+        description: The OSS model IDs.
+        items: string
+        required: true

@@ -1,0 +1,16 @@
+{
+  "name": "pr",
+  "properties": "large json string (no example provided in IWD)",
+  "status": {
+    "isValid": false,
+    "details": [
+      "status detail 1",
+      "status detail 2 etc"
+    ]
+  },
+  "version": {
+    "productNumber": "",
+    "productRelease": ""
+  },
+  "dataType": "node-plugin-response-action"
+}

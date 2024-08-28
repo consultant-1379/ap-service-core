@@ -1,0 +1,43 @@
+<virtual-network-mappings>
+	<network>
+		<network-id>provider_network</network-id>
+		<connections>
+			<connection>
+				<port-name>tenant_port</port-name>
+				<!--<addresses>
+					<address>10.56.0.216</address>
+	        	</addresses>-->
+		    </connection>
+		    <connection>
+				<port-name>oam_port</port-name>
+	            <!--<addresses>
+				<address>10.56.0.215</address>
+	        	</addresses> -->
+		    </connection>
+		</connections>
+	</network>
+
+	<network>
+	    <network-id>provider_network</network-id>
+		<connections>
+		    <connection>
+				<port-name>backhaul_port</port-name>
+        		 <!-- <addresses>
+				<address>10.56.9.9</address>
+        		</addresses>-->
+		    </connection>
+		</connections>
+	</network>
+
+	<network>
+		<network-id>provider_network</network-id>
+		<connections>
+		    <connection>
+				<port-name>fronthaul_port</port-name>
+        		<!--<addresses>
+					<address>10.56.8.253</address>
+        		</addresses>-->
+		    </connection>
+		</connections>
+	</network>
+</virtual-network-mappings>

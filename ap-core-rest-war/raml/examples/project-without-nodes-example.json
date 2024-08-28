@@ -1,0 +1,10 @@
+{
+    "id": "Batch_LTE_RadioNode_Project",
+    "label": "Batch_LTE_RadioNode_Project",
+    "creationDate": "2018-08-29 09:10:41",
+    "creator": "Ericsson",
+    "description": "Example batch project with LTE RadioNode nodes",
+    "parent": 0,
+    "children": 0,
+    "nodes": []
+}

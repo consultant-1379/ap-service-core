@@ -1,0 +1,16 @@
+{
+    "APPLY_AMOS_SCRIPT": [
+        {
+            "resource": "flowautomation_m2m",
+            "operations": ["read","execute"]
+        },
+        {
+            "resource": "scripting_cli_access_m2m",
+            "operations": ["execute"]
+        },
+        {
+            "resource": "amos_em_m2m",
+            "operations": ["read"]
+        }
+    ]
+}

@@ -1,0 +1,112 @@
+{
+    "attributes": [
+        {
+            "name": "nodeName",
+            "value": "Node01"
+        },
+        {
+            "name": "projectName",
+            "value": "TestProject"
+        },
+        {
+            "name": "deployment",
+            "value": ""
+        },
+        {
+            "name": "ipAddress",
+            "value": "243.110.37.251"
+        },
+        {
+            "name": "nodeIdentifier",
+            "value": "6607-651-025"
+        },
+        {
+            "name": "nodeType",
+            "value": "RadioNode"
+        },
+        {
+            "name": "hardwareSerialNumber",
+            "value": "HW74526252502668"
+        },
+        {
+            "name": "ossPrefix",
+            "value": "SubNetwork=EnmSn,SubNetwork=AP_1"
+        },
+        {
+            "name": "timeZone",
+            "value": ""
+        }
+    ],
+    "attributeGroups": [
+        {
+            "type": "AutoIntegrationOptions",
+            "properties": [
+                {
+                    "name": "upgradePackageName",
+                    "value": "dummy_upgrade_package"
+                }
+            ]
+        },
+        {
+            "type": "LicenseOptions",
+            "properties": [
+                {
+                    "name": "licenseFile",
+                    "value": ""
+                },
+                {
+                    "name": "installLicense",
+                    "value": false
+                },
+                {
+                    "name": "mandatoryLicenseKeys",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "type": "IntegrationArtifacts",
+            "properties": [
+                {
+                    "name": "siteBasic",
+                    "value": "SiteBasic.xml"
+                },
+                {
+                    "name": "siteEquipment",
+                    "value": "SiteEquipment.xml"
+                },
+                {
+                    "name": "siteInstallation",
+                    "value": "SiteInstall.xml"
+                }
+            ]
+        },
+        {
+            "type": "Configurations",
+            "properties": [
+                {
+                    "value": "transport.xml"
+                },
+                {
+                    "value": "radio.xml"
+                }
+            ]
+        },
+        {
+            "type": "OptionalFeatures",
+            "properties": [
+                {
+                    "value": "optionalFeature.xml"
+                }
+            ]
+        },
+        {
+            "type": "UnlockCells",
+            "properties": [
+                {
+                    "value": "unlockCell.xml"
+                }
+            ]
+        }
+    ]
+}

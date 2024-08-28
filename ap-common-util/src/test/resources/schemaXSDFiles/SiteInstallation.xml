@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RbsSiteInstallationFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="SiteInstallation.xsd">
+    <Format revision="H" />
+    <InstallationData logicalName="ERBS1" vlanId="3100" rbsIntegrationCode="">
+        <OamIpConfigurationData ipAddress="1.2.3.4" subnetMask="255.255.240.0" defaultRouter0="10.200.0.1">
+            <DnsServer ipAddress="10.212.100.10" />
+        </OamIpConfigurationData>
+        <SmrsData address="" summaryFilePath="" />
+    </InstallationData>
+</RbsSiteInstallationFile>

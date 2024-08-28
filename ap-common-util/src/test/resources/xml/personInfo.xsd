@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="addressInfo.xsd" />
+
+
+    <xs:element name="root">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="firstname" type="xs:string" />
+                            <xs:element name="surname" type="xs:string" />
+                            <xs:element name="addressInfo" type="addressInfo" />
+                            <xs:element name="phoneInfo" type="phoneInfo" />
+                        </xs:sequence>
+                    </xs:complexType>
+
+    </xs:element>
+    
+    
+    <xs:complexType name="phoneInfo">
+        <xs:sequence>
+            <xs:element name="mobileNumber" type="mobileNumber" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="mobileNumber">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string" minOccurs="1" />
+            <xs:element name="countryCode" type="xs:string" minOccurs="1" />
+            <xs:element name="networkCode" type="xs:string" minOccurs="1" />
+            <xs:element name="number" type="xs:string" minOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="suspend" type="xs:boolean" default="true"/>
+    </xs:complexType>
+
+</xs:schema>

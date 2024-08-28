@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <capabilities>
+  <capability>urn:ietf:params:netconf:base:1.0</capability>
+ </capabilities>
+</hello>
+]]>]]>
+
+
+<rpc message-id="TN" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <config>
+      <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>1</managedElementId>
+        <!-- TN configuration, site-->
+        <Transport>
+          <transportId>1</transportId>
+          <VirtualEthernetPort xmlns="urn:com:ericsson:ecim:RtnL2EthernetPort">
+            <index>1</index>
+            <virtualEthernetPortId>TN_A</virtualEthernetPortId>
+            <userLabel>TNAport</userLabel>
+          </VirtualEthernetPort>
+          <VirtualEthernetPort xmlns="urn:com:ericsson:ecim:RtnL2EthernetPort">
+            <index>2</index>
+            <virtualEthernetPortId>TN_B</virtualEthernetPortId>
+            <userLabel>TNBport</userLabel>
+          </VirtualEthernetPort>
+          <VirtualEthernetPort xmlns="urn:com:ericsson:ecim:RtnL2EthernetPort">
+            <index>3</index>
+            <virtualEthernetPortId>TN_C</virtualEthernetPortId>
+            <userLabel>TNCport</userLabel>
+          </VirtualEthernetPort>
+
+         <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+          <routerId>OM</routerId>
+           <InterfaceIPv4 xmlns="urn:com:ericsson:ecim:RtnL3InterfaceIPv4">
+           <interfaceIPv4Id>OM</interfaceIPv4Id>
+             <encapsulation>ManagedElement=1,Transport=1,VirtualEthernetPort=TN_A</encapsulation>
+             <AddressIPv4 xmlns="urn:com:ericsson:ecim:RtnL3AddressIPv4">
+               <addressIPv4Id>1</addressIPv4Id>
+               <configurationMode>DHCP</configurationMode>
+             </AddressIPv4>
+           </InterfaceIPv4>
+           <DnsClient>
+	     <dnsClientId>1</dnsClientId>
+	     <configurationMode>AUTOMATIC</configurationMode>
+	    </DnsClient>
+         </Router>
+        	    
+         <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+           <routerId>Backhaul</routerId>
+            <InterfaceIPv4 xmlns="urn:com:ericsson:ecim:RtnL3InterfaceIPv4">
+            <interfaceIPv4Id>Backhaul</interfaceIPv4Id>
+              <encapsulation>ManagedElement=1,Transport=1,VirtualEthernetPort=TN_B</encapsulation>
+              <AddressIPv4 xmlns="urn:com:ericsson:ecim:RtnL3AddressIPv4">
+                <addressIPv4Id>1</addressIPv4Id>
+               <configurationMode>DHCP</configurationMode>
+             </AddressIPv4>
+           </InterfaceIPv4>
+           <DnsClient>
+	     <dnsClientId>1</dnsClientId>
+	     <configurationMode>AUTOMATIC</configurationMode>
+	    </DnsClient>
+           </Router>
+
+          <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+           <routerId>Fronthaul</routerId>
+            <InterfaceIPv4 xmlns="urn:com:ericsson:ecim:RtnL3InterfaceIPv4">
+            <interfaceIPv4Id>Fronthaul</interfaceIPv4Id>
+              <encapsulation>ManagedElement=1,Transport=1,VirtualEthernetPort=TN_C</encapsulation>
+              <AddressIPv4 xmlns="urn:com:ericsson:ecim:RtnL3AddressIPv4">
+                <addressIPv4Id>1</addressIPv4Id>
+               <configurationMode>DHCP</configurationMode>
+             </AddressIPv4>
+           </InterfaceIPv4>
+           <DnsClient>
+	     <dnsClientId>1</dnsClientId>
+	     <configurationMode>AUTOMATIC</configurationMode>
+	    </DnsClient>
+           </Router>
+          </Transport>
+
+        <SystemFunctions>
+          <systemFunctionsId>1</systemFunctionsId>
+          <SysM xmlns="urn:com:ericsson:ecim:ComSysM">
+            <sysMId>1</sysMId>
+            <OamAccessPoint xmlns="urn:com:ericsson:ecim:RcsOamAccessPoint">
+              <oamAccessPointId>1</oamAccessPointId>
+              <accessPoint>ManagedElement=1,Transport=1,Router=OM,InterfaceIPv4=OM,AddressIPv4=1</accessPoint>
+            </OamAccessPoint>
+          </SysM>
+        </SystemFunctions>      
+         
+      </ManagedElement>
+    </config>
+  </edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="Finish" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <close-session></close-session>
+</rpc>
+]]>]]>

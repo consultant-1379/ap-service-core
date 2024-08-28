@@ -1,0 +1,7 @@
+#----------------------------------------------------
+# AP external dependencies to be taken from
+# the latest KGB ISO.
+#
+# Dependencies here are specific to ap-service-core
+#----------------------------------------------------
+ERICimportexportproxyservice_CXP9043043

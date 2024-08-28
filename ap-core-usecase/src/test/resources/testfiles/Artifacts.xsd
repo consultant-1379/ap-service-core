@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ 
+    <xs:complexType name="Artifacts">
+        <xs:all>
+            <xs:element name="siteBasic" type="NonEmptyString" minOccurs="1" />
+            <xs:element name="siteEquipment" type="NonEmptyString" minOccurs="1" />
+            <xs:element name="siteInstallation" type="NonEmptyString" minOccurs="1" />
+            <xs:element name="configurations" type="configurations" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+    
+    <xs:complexType name="configurations">
+        <xs:annotation>
+            <xs:documentation>
+                All the configuration files to be imported during integration. The config files will be imported in the order in which they are declared.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice  minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="nodeConfiguration" type="NonEmptyString"  />
+            <xs:element name="optionalFeature" type="NonEmptyString" />
+            <xs:element name="unlockCell" type="NonEmptyString"   />
+            <xs:element name="remoteNodeConfiguration" type="RemoteNodeConfiguration" />
+         </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="RemoteNodeConfiguration">
+        <xs:simpleContent>
+            <xs:extension base="NonEmptyString">
+                <xs:attribute name="nodename" type="NodeName" use="optional" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:schema>

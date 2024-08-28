@@ -1,0 +1,56 @@
+{
+    "projects": [
+        {
+            "id": "Batch_LTE_RadioNode_Project",
+            "label": "Batch_LTE_RadioNode_Project",
+            "creationDate": "2018-08-29 09:10:41",
+            "creator": "Ericsson",
+            "description": "Example batch project with LTE RadioNode nodes",
+            "parent": 0,
+            "children": 2,
+            "nodes": [
+                {
+                    "id": "kienb3085",
+                    "label": "kienb3085",
+                    "nodeType": "RadioNode",
+                    "nodeIdentifier": "19.Q1-R58A16",
+                    "ipAddress": "2001:1b70:828a:7:0:0:0:95",
+                    "hardwareSerialNumber": "SCB87654323",
+                    "parent": "Batch_LTE_RadioNode_Project",
+                    "workOrderId": null
+                },
+                {
+                    "id": "kienb3087",
+                    "label": "kienb3087",
+                    "nodeType": "RadioNode",
+                    "nodeIdentifier": "19.Q1-R58A16",
+                    "ipAddress": "2001:1b70:828a:7:0:0:0:95",
+                    "hardwareSerialNumber": null,
+                    "parent": "Batch_LTE_RadioNode_Project",
+                    "workOrderId": null
+                }
+            ]
+        },
+        {
+            "id": "Standard_WCDMA_RadioNode_Project",
+            "label": "Standard_WCDMA_RadioNode_Project",
+            "creationDate": "2018-08-29 09:10:51",
+            "creator": "Ericsson",
+            "description": "Example standard project with WCDMA RadioNode nodes",
+            "parent": 0,
+            "children": 1,
+            "nodes": [
+                {
+                    "id": "kienb3086",
+                    "label": "kienb3086",
+                    "nodeType": "RadioNode",
+                    "nodeIdentifier": "19.Q1-R58A16",
+                    "ipAddress": "2001:1b70:828a:7:0:0:0:95",
+                    "hardwareSerialNumber": null,
+                    "parent": "Standard_WCDMA_RadioNode_Project",
+                    "workOrderId": "SC-3481747362"
+                }
+            ]
+        }
+    ]
+}

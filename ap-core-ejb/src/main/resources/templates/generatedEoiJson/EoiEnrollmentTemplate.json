@@ -1,0 +1,27 @@
+{
+
+  "enrollmentAuthorityId": "%ENROLLMENT_AUTHORITY_ID%",
+
+  "enrollmentAuthorityName": "%ENROLLMENT_AUTHORITY_NAME%",
+
+  "enrollmentAuthorityType": "%ENROLLMENT_AUTHORITY_TYPE%",
+
+  "enrollmentServerGroupId": "%ENROLLMENT_SERVER_GROUP_ID%",
+
+  "enrollmentServerId": "%ENROLLMENT_SERVER_ID%",
+
+  "cmpTrustCategoryId": "%CMP_TRUST_CATEGORY_ID%",
+
+  "url": "%ENROLLMENT_CMP_URL%",
+
+  "certificateId": "%CERTIFICATE_ID%",
+
+  "algorithm": "%ENROLLMENT_CMP_ALGORITHM%",
+
+  "subjectName": "%ENROLLMENT_CMP_SUBJECTNAME%",
+
+  "challengePassword": "%ENROLLMENT_CMP_CHALLANGE_PASSWORD%",
+
+  "trustCategoryId": "%ENROLLMENT_CMP_TRUST_CATEGORY_ID%"
+
+}

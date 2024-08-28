@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns="http://jboss.org/schema/arquillian"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+    <defaultProtocol type="CucumberServlet 3.0" />
+
+    <engine>
+        <property name="deploymentExportPath">target/arquillian</property>
+    </engine>
+
+    <container qualifier="jbossas-remote" default="true">
+        <configuration>
+            <property name="username">arquser</property>
+            <property name="password">arqp@ssw0rd</property>
+            <property name="host">127.0.0.1</property>
+            <property name="port">8080</property>
+            <property name="managementAddress">127.0.0.1</property>
+            <property name="managementPort">9990</property>
+            <property name="connectionTimeout">3660000</property>
+            <property name="outputToConsole">true</property>
+            <property name="allowConnectingToRunningServer">true</property>
+        </configuration>
+    </container>
+
+    <extension qualifier="allure">
+        <property name="hostAddress">${localIp}</property>
+        <property name="hostPort">5555</property>
+    </extension>
+
+    <extension qualifier="files">
+        <property name="raw.artifacts.locations">/ericsson/autoprovisioning/artifacts/raw</property>
+        <property name="generated.artifacts.locations">/ericsson/autoprovisioning/artifacts/generated</property>
+        <property name="download.artifacts.locations">/ericsson/autoprovisioning/artifacts/download</property>
+        <property name="smrs.artifacts.locations">/ericsson/tor/smrs/lran/ai/erbs</property>
+        <property name="schemas.locations">/ericsson/autoprovisioning/artifacts/schemadata/schemas</property>
+    </extension>
+
+    <extension qualifier="cucumber">
+        <property name="featureHome">features</property>
+        <property name="report">true</property>
+    </extension>
+</arquillian>

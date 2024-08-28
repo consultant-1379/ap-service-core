@@ -1,0 +1,60 @@
+version: "2.0"
+
+services:
+
+  #Image containing models
+  model-deployment:
+    container_name: model_deployment_ap
+    image: armdocker.rnd.ericsson.se/proj_oss/autoprovisioning/model_deployment
+    volumes:
+      - /etc/opt/ericsson/ERICmodeldeployment
+      - /etc/opt/ericsson/ERICmodeldeployment/data
+      - /etc/opt/ericsson/ERICmodeldeployment/models
+
+  #Image containing neo4j
+  neo4j:
+    container_name: neo4j_ap
+    image: armdocker.rnd.ericsson.se/proj_oss_releases/enm/neo4j4
+    ports:
+      - '7474:7474'
+      - '7473:7473'
+      - '7687:7687'
+    hostname: neo4j1
+
+  postgres:
+    container_name: postgresql_service_ap
+    image: armdocker.rnd.ericsson.se/proj_oss/autoprovisioning/postgresql_service:latest
+    ports:
+      - "5432:5432"
+    hostname: postgresql-server
+
+  access_control:
+    container_name: access_control_service_ap
+    image: armdocker.rnd.ericsson.se/proj_oss_releases/enm/access-control:latest
+    volumes:
+      - /opt/opendj/
+      - /opt/policy-tool/
+      - ./src/test/docker/access_control:/docker-entrypoint-init.d:ro
+
+  jboss:
+    container_name: service_core_jboss_service
+    build: ./src/test/docker/jboss
+    links:
+      - neo4j:neo4j1
+      - postgres:postgresql-server
+      - access_control:ldap-remote
+      - access_control:ldap-local
+    depends_on:
+      - model-deployment
+      - neo4j
+    volumes_from:
+      - neo4j
+      - access_control
+      - model-deployment
+    ports:
+      - "9999:9999"
+      - "9990:9990"
+      - "8080:8080"
+      - "8787:8787"
+    environment:
+      - JAVA_OPTS=-Xms3g -Xmx3g -Djboss.bind.address.remoting=127.0.0.1 -Djboss.bind.address.management=127.0.0.1 -Djboss.as.management.blocking.timeout=900 -verbose:class -Ddps_ignore_mediation=true -DbaseDn=dc=vts,dc=com -Dcm_VIP=127.0.0.1 -Dmsap_IPv6_IPs=0:0:0:0:0:0:0:1 -Djboss.modules.system.pkgs=com.sun.crypto.provider -Djackson.deserialization.whitelist.packages=com.ericsson.oss,com.ericsson.nms -Ddps.persistence.provider=neo4j -Dneo4j.server.hostname=neo4j1 -Dneo4j.serverTransport=bolt -Djava.net.preferIPv4Stack=true

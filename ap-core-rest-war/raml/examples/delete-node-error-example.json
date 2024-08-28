@@ -1,0 +1,10 @@
+[
+    {
+        "id": "Node01",
+        "errorMessage": "Node does not exist."
+    },
+    {
+        "id": "Node02",
+        "errorMessage": "Internal server error."
+    }
+]

@@ -1,0 +1,4 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "bind" (* slogan = "Binds a logical node in ENM to a hardware serial number" *) ( BIND_FILE | BIND_NODE )
+
+BIND_FILE ::= WS "file:" (* slogan = "Bind multiple nodes in a file" *) <file_name> (* inputType = "fileName" slogan = "Enter the file name. E.g. NodeValues.csv" *)
+BIND_NODE ::= WS "-n" (* slogan = "Bind a node to a hardware serial number" *) WS <node_name> (* slogan = "Scope the Command using a Node name" *) WS "-s" (* slogan = "Request a hardware serial number" *) WS <hardware_serial_number> (* slogan = "The Ericsson Hardware Serial Number frame consists of 13 alphanumeric characters. Character set is the letters A-Z with the exception of O and I, and digits 0-9. Space for 13 characters shall always be available." *)

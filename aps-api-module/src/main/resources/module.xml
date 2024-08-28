@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.0" name="com.ericsson.oss.services.autoprovisioning.api">
+    <resources>
+        <resource-root path="aps-api-${project.version}.jar" />
+        <resource-root path="ap-workflow-api-${project.version}.jar" />
+        <resource-root path="ap-schema-api-${project.version}.jar" />
+        <resource-root path="ap-resource-api-${project.version}.jar" />
+        <resource-root path="ap-restore-api-${project.version}.jar" />
+        <resource-root path="ap-validation-api-${project.version}.jar" />
+        <resource-root path="ap-status-api-${project.version}.jar" />
+        <resource-root path="ap-upload-api-${project.version}.jar" />
+        <resource-root path="ap-cluster-api-${project.version}.jar" />
+    </resources>
+    <dependencies>
+        <module name="com.ericsson.oss.itpf.sdk.service-framework" slot="4.x" services="export" export="true" />
+    </dependencies>
+
+</module>

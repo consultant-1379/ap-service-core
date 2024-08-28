@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nodeInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="NodeInfo.xsd">
+    <name>MSRBS_V1_NODE_Test1</name>
+    <nodeIdentifier>11.1.0</nodeIdentifier>
+    <ipAddress>10.20.112.151</ipAddress>
+    <nodeType>MSRBS_V1</nodeType>
+    <artifacts>
+        <icf>ICF.xml</icf>
+    </artifacts>
+</nodeInfo>

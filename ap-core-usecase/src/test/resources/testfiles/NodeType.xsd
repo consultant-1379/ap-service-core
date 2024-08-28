@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="NodeType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="ERBS"/>
+            <xs:pattern value="MSRBS_V1"/>
+            <xs:pattern value="RadioNode"/>
+            <xs:pattern value="RBS"/>
+            <xs:pattern value="vPP"/>
+            <xs:pattern value="vSD"/>
+            <xs:pattern value="vRM"/> <!--  Currently not supported -->
+            <xs:pattern value="vRSM"/> <!--  Currently not supported -->
+            <xs:pattern value="Router6672"/>
+            <xs:pattern value="Router6675"/>
+            <xs:pattern value="Router6x71"/>
+            <xs:pattern value="Router6673"/>
+            <xs:pattern value="FRONTHAUL6000"/>
+            <xs:pattern value="Router60002"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

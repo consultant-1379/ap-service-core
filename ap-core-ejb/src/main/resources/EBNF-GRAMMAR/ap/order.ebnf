@@ -1,0 +1,7 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "order" (* slogan = "Order integration for a project file, or a node" *) ORDER_OPTIONS
+
+ORDER_OPTIONS ::= ( ORDER_PROJECT | ORDER_FILE | ORDER_FILE_NO_VALIDATION | ORDER_NODE )
+ORDER_PROJECT ::= WS "-p" (* slogan = "Order an individual project" *) WS <project_name> (* slogan = "Scope the Command using a Project name. E.g. MyProject1" *)
+ORDER_FILE ::= WS "file:" (* slogan = "Order multiple nodes in a file" *) <file_name> (* inputType = "fileName" slogan = "Enter the file name. E.g. NorthWest.zip" *)
+ORDER_FILE_NO_VALIDATION ::= WS "-nv" (* slogan = "Order a project file with no validation" *) WS "file:" (* slogan = "Order multiple nodes in a file" *) <file_name> (* inputType = "fileName" slogan = "Enter the file name. E.g. NorthWest.zip" *)
+ORDER_NODE ::= WS "-n" (* slogan = "Order a node name" *) WS <node_name> (* slogan = "Scope the Command using a node name. E.g. MyNode1" *)

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="AP Service Core Docs">
+    <bannerLeft>
+        <name>AP Service Core</name>
+    </bannerLeft>
+    <publishDate position="right"/>
+    <bannerRight>
+        <src>ericsson_logo.png</src>
+    </bannerRight>
+    <body>
+        <head>
+            <![CDATA[<script type="text/javascript">$(document).ready(function(){$("div.source pre").addClass("prettyprint");prettyPrint()});</script>]]>
+        </head>
+        <links>
+            <!-- header links specific to the documentation -->
+            <item name="Ericsson" href="http://www.ericsson.com/"/>
+        </links>
+        <menu name="API Documentation">
+            <item name="AP Service Core REST API" href="ap-core-rest-war.html"/>
+        </menu>
+        <menu name="FAQ">
+            <item name="System Info" href="system-info-faq.html"/>
+        </menu>
+    </body>
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.6</version>
+    </skin>
+</project>

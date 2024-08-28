@@ -1,0 +1,61 @@
+{
+    "id": "Node01",
+    "projectId": "Project01",
+    "state": "Order Completed",
+    "statusEntries": [
+        {
+            "task": "Import License Key File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:14.803",
+            "additionalInfo": "License Key File already exists"
+        },
+        {
+            "task": "Validate Configuration",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:16.043",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Add Node",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:16.452",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Generate Security",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:19.422",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Site Basic File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:19.808",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Site Equipment File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:20.148",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create RbsSummary File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:20.809",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Site Installation File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:21.323",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Security Credentials",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:11.549",
+            "additionalInfo": ""
+        }
+    ]
+}

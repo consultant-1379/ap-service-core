@@ -1,0 +1,24 @@
+{
+    "nodes": [
+        {
+            "id": "LTE_RadioNode",
+            "label": "LTE_RadioNode",
+            "nodeType": "RadioNode",
+            "nodeIdentifier": "R18A-GA",
+            "ipAddress": "10.10.10.10",
+            "hardwareSerialNumber": "ABC1234567",
+            "parent": "Standard_LTE_RadioNode_Project",
+            "workOrderId": null
+        },
+        {
+            "id": "WCDMA_RadioNode",
+            "label": "WCDMA_RadioNode",
+            "nodeType": "RadioNode",
+            "nodeIdentifier": "R18A-GA",
+            "ipAddress": "10.10.10.11",
+            "hardwareSerialNumber": "ABC1234568",
+            "parent": "Standard_WCDMA_RadioNode_Project",
+            "workOrderId": "SC-3481747362"
+        }
+    ]
+}

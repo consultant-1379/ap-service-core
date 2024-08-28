@@ -1,0 +1,5 @@
+#----------------------------------------------------
+# AP external dependencies to be taken from nexus
+#
+# Dependencies here are specific to ap-service-core
+#----------------------------------------------------

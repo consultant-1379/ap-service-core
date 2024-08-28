@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<nodeInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="NodeInfo.xsd">
+    <name>LTE53vPP00002</name>
+    <nodeIdentifier>18A-R3A131</nodeIdentifier>
+    <ipAddress>0.0.0.0</ipAddress>
+    <nodeType>vPP</nodeType>
+
+	<autoIntegration>
+		<upgradePackageName>CXP2010078_1A-R2A924</upgradePackageName>  
+	</autoIntegration>
+
+    <users>
+        <secureUser>
+            <name>expert</name>
+            <password>expert</password>
+        </secureUser>
+    </users> 
+	
+    <artifacts>
+        <siteBasic>sitebasic.xml</siteBasic>    
+		<virtualNetworkDescriptor>VirtualNetworkMappings.xml</virtualNetworkDescriptor>
+		<configurations>
+			<nodeConfiguration>transport.xml</nodeConfiguration>
+			<nodeConfiguration>radio.xml</nodeConfiguration>
+        </configurations>  
+    </artifacts>
+</nodeInfo>

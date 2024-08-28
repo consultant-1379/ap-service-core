@@ -1,0 +1,5 @@
+{
+    "errorTitle": "Invalid arguments.",
+    "errorBody": "Invalid query parameter status123 specified. Check if your query parameters are correct.",
+    "errorDetails": null
+}

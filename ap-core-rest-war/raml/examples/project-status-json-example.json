@@ -1,0 +1,25 @@
+{
+    "id": "Batch_LTE_RadioNode",
+    "nodeSummary": [
+        {
+            "id": "SELIITRBS01462",
+            "status": "Failed",
+            "state": "Order Failed"
+        },
+        {
+            "id": "SELIITRBS01463",
+            "status": "Failed",
+            "state": "Order Failed"
+        },
+        {
+            "id": "SELIITRBS01464",
+            "status": "Failed",
+            "state": "Order Failed"
+        },
+        {
+            "id": "SELIITRBS01465",
+            "status": "Failed",
+            "state": "Order Failed"
+        }
+    ]
+}

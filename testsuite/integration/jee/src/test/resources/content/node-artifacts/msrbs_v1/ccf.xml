@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<combinedConfigurationFileType>
+
+    <RbsSiteInstallationFile xsi:noNamespaceSchemaLocation="MSRBS_V1_SiteInstallation.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+        <!-- Reference CPI Library (EN/LZN 793 1020) for applicable example files -->
+
+    </RbsSiteInstallationFile>
+
+    <rpc message-id="1" xsi:schemaLocation="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+        <!-- Reference CPI Library (EN/LZN 793 1020) for applicable ENM example configuration files -->
+
+    </rpc>
+</combinedConfigurationFileType>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="NodeContent">
+       <xs:all>
+            <xs:element name="name" type="NodeName" minOccurs="1"/>
+            <xs:element name="workOrderId" type="NonEmptyString" minOccurs="0"/>
+            <xs:element name="notifications" type="Notifications" minOccurs="0"/>
+            <xs:element name="artifacts" type="MigrationArtifacts" minOccurs="1"/>
+       </xs:all>
+    </xs:complexType>
+    <xs:complexType name="MigrationArtifacts">
+        <xs:all>
+            <xs:element name="siteBasic" type="NonEmptyString" minOccurs="1"/>
+            <xs:element name="siteEquipment" type="NonEmptyString" minOccurs="1"/>
+            <xs:element name="siteInstallation" type="NonEmptyString" minOccurs="1"/>
+            <xs:element name="configurations" type="configurations" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:complexType name="configurations">
+        <xs:annotation>
+           <xs:documentation>
+                 All the configuration files to be imported during integration. The config files will be imported in the order in which they are declared.
+        </xs:documentation>
+        </xs:annotation>
+         <xs:choice  minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="nodeConfiguration" type="NonEmptyString"  />
+            <xs:element name="optionalFeature" type="NonEmptyString" />
+            <xs:element name="unlockCell" type="NonEmptyString" />
+         </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="AutoIntegration">
+        <xs:all>
+            <xs:element name="upgradePackageName" type="NonEmptyString" minOccurs="1" />
+        </xs:all>
+    </xs:complexType>
+    <xs:simpleType name="NodeName">
+       <xs:restriction base="xs:string">
+            <xs:minLength value="3"/>
+            <xs:maxLength value="64"/>
+            <xs:pattern value="([a-zA-Z0-9._-])*"/>
+            <!-- Only alphanumeric characters and special characters dot(.), dash(-) and underscore(_) are allowed. -->
+       </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="StringWithoutWhiteSpace">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:pattern value="\S*"/>
+            <!-- No whitespace permitted -->
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:pattern value="\S.*"/>
+            <!-- Start with character, then anything -->
+       </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Boolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="true"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Ipv4orIpv6">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="((((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9]))\.){3}((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9])))|(s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*)"/>
+    </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="Notifications">
+        <xs:all>
+            <xs:element name="email" type="EmailAddress" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="EmailAddress">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9a-zA-Z]([-_.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-_\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}[,;]*)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Elements of NodeInfo  -->
+    <xs:element name="nodeInfo" type="NodeContent"/>
+</xs:schema>

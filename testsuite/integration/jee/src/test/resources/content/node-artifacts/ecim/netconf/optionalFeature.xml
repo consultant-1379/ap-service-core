@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+   <capabilities>
+      <capability>urn:ietf:params:netconf:base:1.0</capability>
+      <capability>urn:com:ericsson:ebase:1.1.0</capability>
+   </capabilities>
+</hello>
+]]>]]>
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"
+     message-id="Feature activation">
+   <edit-config>
+      <target>
+         <running/>
+      </target>
+      <config>
+         <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+            <managedElementId>1</managedElementId>
+            <SystemFunctions>
+               <systemFunctionsId>1</systemFunctionsId>
+               <Lm xmlns="urn:com:ericsson:ecim:RcsLM">
+                  <lmId>1</lmId>
+                  <FeatureState><!--Activation of feature:256 QAM Downlink-->
+                     <featureStateId>CXC4011969</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:3CC DL Carrier Aggregation Extension-->
+                     <featureStateId>CXC4011714</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:4CC DL Carrier Aggregation-->
+                     <featureStateId>CXC4011980</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:4x2 Quad Antenna Downlink Performance Package-->
+                     <featureStateId>CXC4011427</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:4x4 Quad Antenna Downlink Performance Package-->
+                     <featureStateId>CXC4011667</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:5CC DL Carrier Aggregation Extension-->
+                     <featureStateId>CXC4011981</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:64-QAM Uplink-->
+                     <featureStateId>CXC4011946</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Adaptive RLC Poll-Retransmission-->
+                     <featureStateId>CXC4012018</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Advanced Differentiation for Resource Fair Scheduling-->
+                     <featureStateId>CXC4011967</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Antenna System Monitoring-->
+                     <featureStateId>CXC4011422</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Automated Cell Capacity Estimation-->
+                     <featureStateId>CXC4011373</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Automated Mobility Optimization-->
+                     <featureStateId>CXC4011376</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Automated Neighbor Relations-->
+                     <featureStateId>CXC4010620</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Automated RACH Root Sequence Allocation-->
+                     <featureStateId>CXC4011246</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Best Neighbor Relations for Intra-LTE Load Management-->
+                     <featureStateId>CXC4011370</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Carrier Aggregation-->
+                     <featureStateId>CXC4011476</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Carrier Aggregation-Aware IFLB-->
+                     <featureStateId>CXC4011666</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Configurable SCell Priority-->
+                     <featureStateId>CXC4012097</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Coverage-Adapted Load Management-->
+                     <featureStateId>CXC4011698</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Coverage-Triggered GERAN Session Continuity-->
+                     <featureStateId>CXC4010618</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Coverage-Triggered Inter-Frequency Session Continuity-->
+                     <featureStateId>CXC4010770</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Coverage-Triggered WCDMA Session Continuity-->
+                     <featureStateId>CXC4010616</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Data-Aware Uplink Scheduling-->
+                     <featureStateId>CXC4012129</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Differentiated Admission Control-->
+                     <featureStateId>CXC4011062</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Downlink Coordinated Multi-Point-->
+                     <featureStateId>CXC4011913</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Dynamic GBR Admission Control-->
+                     <featureStateId>CXC4011060</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Dynamic PUCCH-->
+                     <featureStateId>CXC4011955</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Dynamic Random Access Backoff-->
+                     <featureStateId>CXC4011937</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Dynamic SCell Selection for Carrier Aggregation-->
+                     <featureStateId>CXC4011559</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Dynamic UE Admission Control-->
+                     <featureStateId>CXC4011940</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Dynamic Uplink Resorce Allocation-->
+                     <featureStateId>CXC4012036</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Enhanced PDCCH Link Adaptation-->
+                     <featureStateId>CXC4011482</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Ericsson Lean Carrier-->
+                     <featureStateId>CXC4011984</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:FDD-TDD Carrier Aggregation-->
+                     <featureStateId>CXC4011922</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:IFLB Activation Threshold-->
+                     <featureStateId>CXC4011554</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Inter-Frequency Load Balancing-->
+                     <featureStateId>CXC4011319</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Inter-eNodeB Carrier Aggregation-->
+                     <featureStateId>CXC4011983</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Interference Rejection Combining-->
+                     <featureStateId>CXC4010319</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Limited Uplink-Aware IFLB-->
+                     <featureStateId>CXC4011966</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Load Based Access Barring-->
+                     <featureStateId>CXC4011807</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Load-based distribution at release-->
+                     <featureStateId>CXC4011944</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Mobility Control at Poor Coverage-->
+                     <featureStateId>CXC4011345</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Multi-Target RRC Connection Re-establishment-->
+                     <featureStateId>CXC4011366</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:PCI Conflict Reporting-->
+                     <featureStateId>CXC4011183</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:PDCCH Power Boost-->
+                     <featureStateId>CXC4011515</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Prioritization of VoLTE in Access Barring-->
+                     <featureStateId>CXC4011942</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Prioritized SR Scheduling-->
+                     <featureStateId>CXC4011938</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Priority Paging-->
+                     <featureStateId>CXC4011711</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Progressive Access Barring-->
+                     <featureStateId>CXC4012120</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Quad Antenna Uplink Performance Package-->
+                     <featureStateId>CXC4011056</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Relative Priority Scheduling-->
+                     <featureStateId>CXC4011251</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Release Inactive UE at High Load Handover-->
+                     <featureStateId>CXC4011939</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Service Specific HARQ-->
+                     <featureStateId>CXC4012070</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Service Specific Load Management-->
+                     <featureStateId>CXC4011477</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Supplemental Downlink for Carrier Aggregation-->
+                     <featureStateId>CXC4011567</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:UE Level Oscillating Handover Minimization-->
+                     <featureStateId>CXC4011157</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:UE Throughput Aware IFLB-->
+                     <featureStateId>CXC4011911</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Uplink Carrier Aggregation-->
+                     <featureStateId>CXC4011973</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Uplink Coordinated Multi-Point Reception-->
+                     <featureStateId>CXC4011444</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Uplink Scheduling Control for Out-of-Coverage UEs-->
+                     <featureStateId>CXC4012003</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Uplink-Triggered Inter-Frequency Mobility-->
+                     <featureStateId>CXC4011072</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+                  <FeatureState><!--Activation of feature:Variable SR and CQI Periodicity-->
+                     <featureStateId>CXC4011258</featureStateId>
+                     <featureState>ACTIVATED</featureState>
+                  </FeatureState>
+               </Lm>
+            </SystemFunctions>
+         </ManagedElement>
+      </config>
+   </edit-config>
+</rpc>
+]]>]]>
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="Close Session">
+   <close-session/>
+</rpc>
+]]>]]>
+

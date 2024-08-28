@@ -1,0 +1,5 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "download" (* slogan = "Download node-related sample, schema artifacts, imported artifacts, artifacts generated during the ordering of a node, generated CIQ file" *) DOWNLOAD_OPTIONS
+
+DOWNLOAD_OPTIONS ::= ( DOWNLOAD_NODE_NAME | DOWNLOAD_NODE_TYPE)
+DOWNLOAD_NODE_NAME ::= WS ( "-i" (* slogan = "Request all imported artifacts of the node" *) | "-o" (* slogan = "Download an ordered artifact for a node" *) ) WS "-n" (* slogan = "Request an individual node" *) WS <node_name> (* slogan = "Scope the Command using a Node name. E.g. MyNode1" *)
+DOWNLOAD_NODE_TYPE ::= WS "-x" (* slogan = "Request all sample artifacts (schemas and project files) of a specified node type" *) [ WS <node_type> ] (* slogan = "Scope the Command using a Node type. E.g. ERBS" *)

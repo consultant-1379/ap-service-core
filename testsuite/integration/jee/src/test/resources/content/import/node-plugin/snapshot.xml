@@ -1,0 +1,241 @@
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+        <Transport>
+            <transportId>1</transportId>
+        </Transport>
+        <Transport>
+            <transportId>1</transportId>
+            <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+                <hopLimit>64</hopLimit>
+                <pathMtuExpiresIPv6>86400</pathMtuExpiresIPv6>
+                <reservedBy></reservedBy>
+                <routerId>OAM</routerId>
+                <ttl>64</ttl>
+            </Router>
+            <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+                <hopLimit>64</hopLimit>
+                <pathMtuExpiresIPv6>86400</pathMtuExpiresIPv6>
+                <reservedBy></reservedBy>
+                <routerId>1</routerId>
+                <ttl>64</ttl>
+            </Router>
+            <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+                <routerId>OAM</routerId>
+                <InterfaceIPv4 xmlns="urn:com:ericsson:ecim:RtnL3InterfaceIPv4">
+                    <encapsulation></encapsulation>
+                </InterfaceIPv4>
+                <InterfaceIPv4 xmlns="urn:com:ericsson:ecim:RtnL3InterfaceIPv4">
+                    <interfaceIPv4Id>1</interfaceIPv4Id>
+                    <AddressIPv4>
+                        <address>192.168.103.145/32</address>
+                        <usedAddress></usedAddress>
+                        <reservedBy>ManagedElement=LTE01dg2ERBS00004,SystemFunctions=1,SysM=1,OamAccessPoint=1</reservedBy>
+                    </AddressIPv4>
+                </InterfaceIPv4>
+            </Router>
+            <Router xmlns="urn:com:ericsson:ecim:RtnL3Router">
+                <routerId>1</routerId>
+            </Router>
+            <QosProfiles xmlns="urn:com:ericsson:ecim:RtnQosProfiles">
+                <qosProfilesId>1</qosProfilesId>
+            </QosProfiles>
+            <QosProfiles xmlns="urn:com:ericsson:ecim:RtnQosProfiles">
+                <qosProfilesId>1</qosProfilesId>
+            </QosProfiles>
+        </Transport>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+        <Equipment xmlns="urn:com:ericsson:ecim:ReqEquipment">
+            <equipmentId>1</equipmentId>
+        </Equipment>
+        <Equipment xmlns="urn:com:ericsson:ecim:ReqEquipment">
+            <equipmentId>1</equipmentId>
+            <FieldReplaceableUnit xmlns="urn:com:ericsson:ecim:ReqFieldReplaceableUnit">
+                <productData struct="ProductData">
+                    <productionDate>2017-11-29T09:32:56</productionDate>
+                    <productName>CXP9024418/15_R48A35</productName>
+                    <productNumber>CXP9024418/15</productNumber>
+                    <productRevision>R48A35</productRevision>
+                    <serialNumber></serialNumber>
+                </productData>
+            </FieldReplaceableUnit>
+            <FieldReplaceableUnit xmlns="urn:com:ericsson:ecim:ReqFieldReplaceableUnit">
+                <fieldReplaceableUnitId>1</fieldReplaceableUnitId>
+            </FieldReplaceableUnit>
+        </Equipment>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+        <NodeSupport xmlns="urn:com:ericsson:ecim:RmeSupport">
+            <nodeSupportId>1</nodeSupportId>
+            <supportFunction>true</supportFunction>
+            <userLabel>Sector configured by Netconf</userLabel>
+            <release></release>
+        </NodeSupport>
+        <NodeSupport xmlns="urn:com:ericsson:ecim:RmeSupport">
+            <nodeSupportId>1</nodeSupportId>
+            <SectorEquipmentFunction xmlns="urn:com:ericsson:ecim:RmeSectorEquipmentFunction">
+                <sectorEquipmentFunctionId>1</sectorEquipmentFunctionId>
+                <administrativeState>LOCKED</administrativeState>
+                <availabilityStatus></availabilityStatus>
+                <configuredOutputPower>0</configuredOutputPower>
+                <mixedModeRadio>false</mixedModeRadio>
+                <reservedBy></reservedBy>
+                <rfBranchRef>ManagedElement=LTE01dg2ERBS00004,Equipment=1,AntennaUnitGroup=1,RfBranch=1</rfBranchRef>
+                <rfBranchRef>ManagedElement=LTE01dg2ERBS00004,Equipment=1,AntennaUnitGroup=1,RfBranch=2</rfBranchRef>
+                <userLabel>Sector configured by Netconf</userLabel>
+                <eUtranFqBands></eUtranFqBands>
+                <utranFddFqBands></utranFddFqBands>
+                <availableHwOutputPower>0</availableHwOutputPower>
+                <geranFqBands></geranFqBands>
+                <nRFqBands></nRFqBands>
+            </SectorEquipmentFunction>
+        </NodeSupport>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+        <SystemFunctions>
+            <systemFunctionsId>1</systemFunctionsId>
+            <SwInventory xmlns="urn:com:ericsson:ecim:RcsSwIM">
+                <swInventoryId>1</swInventoryId>
+                <SwItem>
+                    <administrativeData struct="ProductData">
+                        <productName>CXP9024418/15_R48A35</productName>
+                        <productNumber>CXP9024418/15</productNumber>
+                        <productRevision>R48A35</productRevision>
+                        <productionDate>2017-11-29T09:32:56</productionDate>
+                        <description>RadioNode</description>
+                        <type>RadioNode</type>
+                    </administrativeData>
+                </SwItem>
+                <SwVersion>
+                    <administrativeData struct="ProductData">
+                        <productName>CXP9024418/15-R29A89</productName>
+                        <productNumber>CXP9024418/15</productNumber>
+                        <productRevision>R29A89</productRevision>
+                        <productionDate>2021-03-29T08:42:42</productionDate>
+                        <description>RadioNode</description>
+                        <type>RadioNode</type>
+                    </administrativeData>
+                    <consistsOf>ManagedElement=LTE01dg2ERBS00004,SystemFunctions=1,SwInventory=1,SwItem=1</consistsOf>
+                </SwVersion>
+            </SwInventory>
+            <SecM xmlns="urn:com:ericsson:ecim:RcsSecM">
+                <secMId>1</secMId>
+                <CertM xmlns="urn:com:ericsson:ecim:RcsCertM">
+                    <certMId>1</certMId>
+                    <reportProgress struct="AsyncActionProgress">
+                        <actionName></actionName>
+                        <additionalInfo></additionalInfo>
+                        <progressInfo></progressInfo>
+                        <progressPercentage>0</progressPercentage>
+                        <result>SUCCESS</result>
+                        <resultInfo></resultInfo>
+                        <state>CANCELLING</state>
+                        <actionId>0</actionId>
+                        <timeActionStarted></timeActionStarted>
+                        <timeActionCompleted></timeActionCompleted>
+                        <timeOfLastStatusUpdate></timeOfLastStatusUpdate>
+                    </reportProgress>
+                </CertM>
+                <CertM xmlns="urn:com:ericsson:ecim:RcsCertM">
+                    <certMId>1</certMId>
+                </CertM>
+            </SecM>
+        </SystemFunctions>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+        <ENodeBFunction xmlns="urn:com:ericsson:ecim:Lrat">
+            <eNBId>4</eNBId>
+        </ENodeBFunction>
+        <ENodeBFunction xmlns="urn:com:ericsson:ecim:Lrat">
+            <eNodeBPlmnId struct="PlmnIdentity">
+                <mcc>353</mcc>
+                <mnc>57</mnc>
+                <mncLength>2</mncLength>
+            </eNodeBPlmnId>
+        </ENodeBFunction>
+        <ENodeBFunction xmlns="urn:com:ericsson:ecim:Lrat">
+            <eNodeBFunctionId>1</eNodeBFunctionId>
+            <EUtranCellFDD>
+                <cellId>1</cellId>
+                <earfcndl>4</earfcndl>
+                <earfcnul>18004</earfcnul>
+                <physicalLayerCellIdGroup>59</physicalLayerCellIdGroup>
+                <physicalLayerSubCellId>0</physicalLayerSubCellId>
+            </EUtranCellFDD>
+            <EUtranCellFDD>
+                <dlChannelBandwidth>10000</dlChannelBandwidth>
+            </EUtranCellFDD>
+            <EUtranCellFDD>
+                <sectorCarrierRef></sectorCarrierRef>
+            </EUtranCellFDD>
+            <EUtranCellFDD>
+                <ulChannelBandwidth>10000</ulChannelBandwidth>
+            </EUtranCellFDD>
+            <EUtranCellFDD>
+                <eUtranCellFDDId>LTE01dg2ERBS00004-1</eUtranCellFDDId>
+            </EUtranCellFDD>
+            <SectorCarrier>
+                <noOfRxAntennas>0</noOfRxAntennas>
+            </SectorCarrier>
+            <SectorCarrier>
+                <noOfTxAntennas>0</noOfTxAntennas>
+            </SectorCarrier>
+            <SectorCarrier>
+                <rfBranchRxRef></rfBranchRxRef>
+            </SectorCarrier>
+            <SectorCarrier>
+                <rfBranchTxRef></rfBranchTxRef>
+            </SectorCarrier>
+            <SectorCarrier>
+                <sectorCarrierId>1</sectorCarrierId>
+                <sectorFunctionRef></sectorFunctionRef>
+            </SectorCarrier>
+            <EUtraNetwork>
+                <eUtraNetworkId>1</eUtraNetworkId>
+            </EUtraNetwork>
+            <EUtraNetwork>
+                <eUtraNetworkId>1</eUtraNetworkId>
+                <EUtranFrequency>
+                    <arfcnValueEUtranDl>2</arfcnValueEUtranDl>
+                </EUtranFrequency>
+                <EUtranFrequency>
+                    <arfcnValueEUtranDl>3</arfcnValueEUtranDl>
+                </EUtranFrequency>
+                <EUtranFrequency>
+                    <arfcnValueEUtranDl>4</arfcnValueEUtranDl>
+                </EUtranFrequency>
+                <EUtranFrequency>
+                    <arfcnValueEUtranDl>1</arfcnValueEUtranDl>
+                </EUtranFrequency>
+            </EUtraNetwork>
+        </ENodeBFunction>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+    </ManagedElement>
+
+    <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+        <managedElementId>LTE01dg2ERBS00004</managedElementId>
+    </ManagedElement>

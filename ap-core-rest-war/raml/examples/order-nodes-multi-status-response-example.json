@@ -1,0 +1,10 @@
+[
+    {
+        "nodeId": "Node01",
+        "errorMessage": "Node does not exist."
+    },
+    {
+        "nodeId": "Node02",
+        "errorMessage": "Node is not in the correct state to perform the operation [Order Completed]."
+    }
+]

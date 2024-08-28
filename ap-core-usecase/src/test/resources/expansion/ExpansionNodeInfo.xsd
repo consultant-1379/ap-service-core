@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:complexType name="NodeContent">
+        <xs:all>
+            <xs:element name="name" type="NodeName" minOccurs="1"/>
+            <xs:element name="autoRestoreOnFail" type="Boolean" default="false" minOccurs="0"/>
+            <xs:element name="workOrderId" type="NonEmptyString" minOccurs="0"/>
+            <xs:element name="notifications" type="Notifications" minOccurs="0"/>
+            <xs:element name="artifacts" type="Artifacts" minOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="Artifacts">
+        <xs:all>
+            <xs:element name="configurations" type="configurations" minOccurs="0" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="configurations">
+        <xs:annotation>
+            <xs:documentation>
+                All the configuration files to be imported during expansion of an existing node. The config files will be imported in the order in which they are declared.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:choice  minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="nodeConfiguration" type="NonEmptyString"  />
+            <xs:element name="optionalFeature" type="NonEmptyString" />
+            <xs:element name="unlockCell" type="NonEmptyString"   />
+            <xs:element name="remoteNodeConfiguration" type="NonEmptyString" />
+         </xs:choice>
+    </xs:complexType>
+
+    <xs:simpleType name="Boolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="true"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NodeName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^=,%{}&lt;&gt;:&quot;/\\|?*\s]+"/> <!-- Blacklist Characters are = , % { } < > : " / \ | ? * ascii <=32 -->
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S.*"/> <!-- Start with character, then anything -->
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Notifications">
+        <xs:all>
+            <xs:element name="email" type="EmailAddress" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="EmailAddress">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9a-zA-Z]([-_.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-_\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}[,;]*)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+<!-- Elements of NodeInfo  -->
+    <xs:element name="nodeInfo" type="NodeContent"/>
+</xs:schema>

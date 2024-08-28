@@ -1,0 +1,924 @@
+#%RAML 1.0
+title: AP Core REST WAR
+version: v1
+baseUri: http://{customerProvided}/auto-provisioning/{version}/
+baseUriParameters:
+  customerProvided:
+    description: Customer provided host.
+protocols: [ HTTPS ]
+mediaType: application/json
+uses:
+  common: libraries/common.raml
+  errors: libraries/errors.raml
+  models: libraries/models.raml
+  nodes: libraries/nodes.raml
+  profiles: libraries/profiles.raml
+  projects: libraries/projects.raml
+
+/auto-provisioning/v1/projects:
+  get:
+    description: Get data for all projects.
+    queryParameters:
+      filter:
+        description: Optional filter to get the status or properties for all projects. The status will be returned by default if no query parameter is provided.
+        type: string
+        enum: [status, properties]
+        default: status
+        example: |
+          ?filter=properties
+          ?filter=status
+        required: false
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+          application/json - Response for Projects status:
+            type: projects.ProjectsAllStatusResponse
+            example: !include examples/projects-all-status-json-example.json
+          application/json - Response for Projects properties:
+            type: projects.ProjectObjectResponse
+            example: !include examples/projects-json-example.json
+      400:
+        desciption: Invalid query parameter provided.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/invalid-query-parameters-example.json
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  post:
+    description: |
+      Create an empty Project or Import a prepared zipped Project depending on the provided media type.
+      Use "multipart/form-data" to import a zipped Project.
+      Use "application/json" to create an empty Project.
+    body:
+      multipart/form-data - Request to import a prepared Project:
+        type: file
+        required: true
+      application/json - Request to create an empty Project:
+        type: projects.ProjectRequest
+        example:
+          name: Project01
+          creator: user1
+          description: Project description.
+    responses:
+      201:
+        description: Empty Project created successfully or prepared Project imported successfully.
+        body:
+          application/json - Response for imported Project:
+            type: projects.ProjectsResponse
+            example: !include examples/project-without-nodes-example.json
+          application/json - Response for empty Project created:
+            type: projects.ProjectIdResponse
+            example: {"id": "Project01"}
+      400:
+        description: Bad request. Validation error(s) occurred while creating an empty Project.
+        body:
+           application/json:
+             type: errors.NodeValidation
+             example:
+               errorTitle: Validation error(s) occurred.
+               errorBody: "Suggested solution:  Fix error(s) and try again."
+               errorDetails: ["field: creator, value: a, message: Creator is mandatory and must be a meaningful username greater than 1 character"]
+      409:
+        description: A conflict error occurred for creating an empty project. The project name already exists on system.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Project {projectName} already exists
+              errorBody: Please choose a different project name
+              errorDetails: null
+      417:
+        description: Expectation failed. Validation error(s) occurred while importing project.
+        body:
+           application/json:
+             type: errors.Error
+             example:
+                 errorTitle: Error(s) found validating project.
+                 errorBody: "Suggested Solution: Fix error(s) and try again."
+                 errorDetails: ["N1 - Name must be between 3 and 100 characters inclusive"]
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  delete:
+    description: Delete one or more projects created in AP.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    body:
+      type: projects.DeleteProjectRequest
+      example: !include examples/delete-project-example.json
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      400:
+        description: Bad request. Client must provide at least one project ID to delete.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/no-project-id-provided-json-example.json
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: projects.DeleteProjectErrorResponse
+            example: !include examples/delete-project-error-example.json
+
+/auto-provisioning/v1/projects/{projectId}:
+  get:
+    description: Get data for a Project
+    queryParameters:
+      filter:
+        description: Optional filter to get the Project status or properties. The status will be returned by default if no query parameter is provided.
+        type: string
+        enum: [status, properties]
+        default: status
+        example: |
+          ?filter=properties
+          ?filter=status
+        required: false
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+          application/json - Response for Project status:
+            type: projects.ProjectStatusSuccessResponse
+            example: !include examples/project-status-json-example.json
+          application/json - Response for Project properties:
+            type: projects.ProjectResponse
+            example: !include examples/project-properties-json-example.json
+      400:
+        desciption: Invalid query parameter provided.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/invalid-query-parameters-example.json
+      404:
+        description: Project not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/project-not-found-json-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  delete:
+    description: Delete a project created in AP.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      404:
+        description: Project not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/project-not-found-json-example.json
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/actions/order:
+  post:
+    description: Order the configurations received from the node plugin.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    body:
+      application/json:
+        type: nodes.NodesConfigurationsRequest
+        example: !include examples/order-nodes-configurations-request.raml
+    responses:
+      201:
+        description: Configurations ordered successfully.
+        body:
+          application/json:
+            type: projects.ProjectIdResponse
+            example: {"id": "Project01"}
+      417:
+        description: Expectation failed. Validation error(s) occurred while ordering configurations.
+        body:
+           application/json:
+             type: errors.Error
+             example:
+                 errorTitle: Error(s) found validating project.
+                 errorBody: "Suggested Solution: Fix error(s) and try again."
+                 errorDetails: ["N1 - Name must be between 3 and 100 characters inclusive"]
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/nodes:
+  get:
+    description: Get node data for a specific Project by a project ID.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+          application/json:
+            type: nodes.NodesObjectResponse
+            example: !include examples/nodes-json-example.json
+      404:
+        description: Project not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/project-not-found-json-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  delete:
+    description: Delete one or more nodes in a project.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    body:
+      type: nodes.DeleteNodesRequest
+      example: !include examples/delete-node-example.json
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      400:
+        description: Bad request. Client must provide at least one node ID to delete.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/no-node-id-provided-json-example.json
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: nodes.DeleteNodesErrorResponse
+            example: !include examples/delete-node-error-example.json
+
+/auto-provisioning/v1/projects/{projectId}/nodes/actions/order:
+  post:
+    description: Order one or more nodes for a project.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    body:
+      application/json:
+        type: nodes.OrderNodesRequest
+        example: !include examples/order-nodes-request.json
+    responses:
+      202:
+        description: The request has been accepted and the order has initiated for the requested node(s).
+      207:
+        description: A multi-status response indicating an error occurred for some or all the nodes.
+        body:
+           application/json:
+             type: nodes.OrderNodesMultiStatusResponse
+             example: !include examples/order-nodes-multi-status-response-example.json
+      400:
+        description: Bad request. Client must provide at least one node ID to order.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/no-node-id-provided-json-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}:
+  get:
+    description: Get data for node in AP.
+    queryParameters:
+      filter:
+        description: Optional filter to get node status or properties. The status will be returned by default if no query parameter is provided.
+        type: string
+        example: |
+          ?filter=properties
+          ?filter=status
+        required: false
+        default: status
+        enum: [status, properties]
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+          application/json - Response for Node status:
+            type: nodes.NodeStatusResponse
+            example: !include examples/node-status-json-example.json
+          application/json - Response for Node properties:
+            type: nodes.NodePropertiesResponse
+            example: !include examples/node-properties-json-example.json
+      400:
+        desciption: Invalid query parameter provided.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/invalid-query-parameters-example.json
+      404:
+        description: Project or node not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/node-not-found-json-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  delete:
+    description: Delete a node in a project.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      404:
+        description: Project or node not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/node-not-found-json-example.json
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  
+
+/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/bind:
+  put:
+    displayName: Bind Single Node
+    description: Initiates the bind action on a single node by providing hardware serial number.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    body:
+      application/json:
+        type: object
+        properties:
+          hardwareId:
+            type: string
+            required: true
+        example:
+          hardwareId: 123456789x
+    responses:
+      204:
+        description: The request has succeeded by the server.
+      400:
+        description: Bad request. Validation error(s) occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Invalid Serial Number
+              errorBody: The hardware serial number {serialNumber} is not valid
+              errorDetails: null
+      404:
+        description: Project or node not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/project-not-found-json-example.json
+      406:
+        description: The request was not accepted by the server.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Unsupported action for this node type
+              errorBody: The bind operation is not supported for this node type
+              errorDetails: null
+      409:
+        description: A conflict error occurred. The serial number is already bound.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Serial number already bound
+              errorBody: The hardware serial number {serialNumber} is already bound
+              errorDetails: null
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations:
+  put:
+    displayName: Upload artifact
+    description: Uploads artifact replacing existing artifact content with new artifact content.
+    headers:
+      Content-Type:
+        default: multipart/form-data
+      Accept:
+        default: multipart/form-data
+    body:
+      multipart/form-data:
+        type: file
+        required: true
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      400:
+        description: Bad request. Validation error(s) occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: The file type for file {fileName} is not supported by the upload command
+              errorBody: Rename the configuration file to match the name of an existing configuration that is supported by the upload command
+              errorDetails: null
+      404:
+        description: Project or node not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/node-not-found-json-example.json
+      406:
+        description: The request was not accepted by the server.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Node is not in the correct state to perform the upload
+              errorBody: Ensure node is in correct state before performing the upload
+              errorDetails: null
+      417:
+        description: Expectation failed. Validation error(s) occurred while uploading artifacts.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Error(s) found validating file
+              errorBody: Fix error(s) and try again
+              errorDetails: null
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/cancel:
+  post:
+    displayName: Cancel AP Workflow
+    description: Cancels the AP Workflow from its failure point.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      400:
+        description: Bad request. Validation error(s) occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/no-project-id-provided-json-example.json
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-example.json
+      404:
+        description: Project or node not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/node-not-found-json-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations/siteinstall:
+  get:
+    description: Get the generated artifact for the node and download it.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: multipart/form-data
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+          multipart/form-data:
+            type: nodes.NodeDownloadGeneratedArtifactResponse
+            example: !include examples/node-download-generated-artifact-xml-example.xml
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-server-error-json-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/resume:
+  post:
+    displayName: Resume AP Workflow
+    description: Resumes the AP Workflow from its failure point.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      400:
+        description: Bad request. Validation error(s) occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/no-project-id-provided-json-example.json
+      403:
+        description: Forbidden request. Client does not have sufficient privileges to access the resource.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/forbidden-server-error-json-example.json
+      404:
+        description: Project or node not found.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/node-not-found-json-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/profiles:
+  get:
+    displayName: Retrieve Profile data for a Project
+    description: Retrieves AP Profile MO data for a Project.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+          application/json:
+            type: profiles.ProfileDataResponse
+            example:
+              profiles: [!include examples/profile-response.raml]
+      404:
+        description: Project not found.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Project does not exist.
+              errorBody: "Suggested solution:  Fix error(s) and try again."
+              errorDetails: null
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  post:
+    displayName: Create AP Profile
+    description: Creates AP profile MO and stores profile related files on the file system.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    body:
+      application/json:
+        type: profiles.ProfileRequest
+        example: !include examples/profile-request.raml
+    responses:
+      201:
+        description: Profile created successfully.
+        body:
+          application/json:
+            type: profiles.ProfileResponse
+            example: !include examples/profile-response.raml
+      400:
+        description: Bad request. Validation error(s) occurred.
+        body:
+           application/json:
+             type: errors.Error
+             example:
+               errorTitle: Error(s) found validating profile.
+               errorBody: "Suggested solution:  Fix error(s) and try again."
+               errorDetails: ["Name must be between 3 and 100 characters inclusive"]
+      404:
+        description: Project not found.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Project does not exist.
+              errorBody: "Suggested solution:  Fix error(s) and try again."
+              errorDetails: null
+      409:
+        description: A conflict error occurred. The profile name already exists on system.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Profile Profile01 already exists
+              errorBody: Please choose a different profile name
+              errorDetails: null
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+  put:
+    displayName: Modify AP Profile
+    description: Modifies AP profile MO and stores profile related files on the file system.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    body:
+      application/json:
+        type: profiles.ProfileRequest
+        example: !include examples/profile-request.raml
+    responses:
+      201:
+        description: Profile modified successfully.
+        body:
+          application/json:
+            type: profiles.ProfileResponse
+            example: !include examples/profile-response.raml
+      404:
+        description: Project or profile does not exist.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Profile does not exist
+              errorBody: Perform action with a valid profile.
+              errorDetails: null
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/ciq:
+  get:
+    displayName: Export CIQ file for a Profile
+    description: Exports CIQ from file system for a given Profile.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: multipart/form-data
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+         application/octet-stream:
+             type: multipart/form-data
+             example: !include examples/export-ciq-csv-example.csv
+      404:
+        description: Project or profile does not exist.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Profile does not exist
+              errorBody: Perform action with a valid profile.
+              errorDetails: null
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/nodeDumpSnapshot:
+  post:
+    displayName: Trigger node configuration snapshot
+    description: Trigger node configuration snapshot for a given node.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: multipart/form-data
+    body:
+      application/json:
+        type: profiles.nodeConfigurationRequest
+        example: !include examples/node-dump-trigger-snapshot-example.json
+    responses:
+      200:
+        description: The request has succeeded by the server.
+      400:
+        description: Bad request. AP application error(s) occurred.
+        body:
+           application/json:
+             type: errors.Error
+             example:
+               errorTitle: Error fetching netconf configuration snapshot for profile.
+               errorBody: Suggested Solution - Use Log Viewer for more information.
+               errorDetails: null
+      404:
+        description: Project or profile does not exist.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Profile does not exist
+              errorBody: Perform action with a valid profile.
+              errorDetails: null
+
+/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/node/{nodeId}/nodeDumpSnapshot:
+  get:
+    displayName: Get node configuration snapshot
+    description: Get node configuration snapshot for a given node.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: multipart/form-data
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+         application/octet-stream:
+             type: multipart/form-data
+             example: !include examples/node-dump-get-snapshot-example.json
+      202:
+        description: Snapshot dumping is ongoing.
+      400:
+        description: Bad request. AP application error(s) occurred.
+        body:
+           application/json:
+             type: errors.Error
+             example:
+               errorTitle: Fail to get snapshot under unexpected snapshot status.
+               errorBody: Suggested Solution - Use Log Viewer for more information.
+               errorDetails: null
+      404:
+        description: Project or profile does not exist.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Profile does not exist
+              errorBody: Perform action with a valid profile.
+              errorDetails: null
+
+/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}:
+  delete:
+    displayName: Delete AP Profile
+    description: Deletes AP ConfigurationProfile MO and stored profile related files on the file system.
+    headers:
+      Content-Type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      204:
+        description: The server has successfully fulfilled the request and there is no content available to return.
+      404:
+        description: Project or profile does not exist.
+        body:
+          application/json:
+            type: errors.Error
+            example:
+              errorTitle: Profile does not exist
+              errorBody: Perform action with a valid profile.
+              errorDetails: null
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json
+
+/auto-provisioning/v1/models/{nodeType}?ossModelIdentities={retrieveOssModelIdentities}:
+  get:
+    displayName:
+    description: Provides a list of valid node identifiers for a given Node type.
+    headers:
+      Content-type:
+        default: application/json
+      Accept:
+        default: application/json
+    responses:
+      200:
+        description: The request has succeeded by the server.
+        body:
+          application/json:
+            type: models.OssModel
+            example: !include examples/models-oss-model-identities-example.json
+      500:
+        description: An internal server error occurred.
+        body:
+          application/json:
+            type: errors.Error
+            example: !include examples/internal-server-error-json-example.json

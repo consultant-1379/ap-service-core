@@ -1,0 +1,16 @@
+<jboss xmlns="http://www.jboss.com/xml/ns/javaee" xmlns:jee="http://java.sun.com/xml/ns/javaee" xmlns:c="urn:clustering:1.0">
+    <jee:assembly-descriptor>
+        <c:clustering>
+            <jee:ejb-name>AutoProvisioningServiceCoreBean</jee:ejb-name>
+            <c:clustered>true</c:clustered>
+        </c:clustering>
+        <c:clustering>
+            <jee:ejb-name>AutoProvisioningCli</jee:ejb-name>
+            <c:clustered>true</c:clustered>
+        </c:clustering>
+        <c:clustering>
+            <jee:ejb-name>AutoProvisioningFileDownloadExecutor</jee:ejb-name>
+            <c:clustered>true</c:clustered>
+        </c:clustering>
+    </jee:assembly-descriptor>
+</jboss>

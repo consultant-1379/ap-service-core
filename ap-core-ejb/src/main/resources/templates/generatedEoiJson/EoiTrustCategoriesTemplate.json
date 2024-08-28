@@ -1,0 +1,8 @@
+{
+    "id": "%EOI_TRUST_CATEGORY_ID%",
+
+    "certificates": [
+
+      "%TRUST_CATEGORY_CERTIFICATES%"
+    ]
+}

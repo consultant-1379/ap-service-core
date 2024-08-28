@@ -1,0 +1,3 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "cancel" (* slogan = "Cancel the integration for a node" *) CANCEL_NODE
+
+CANCEL_NODE ::= WS "-n" (* slogan = "Cancel a node integration" *) WS <node_name> (* slogan = "Scope the Command using a Node name. E.g. MyNode1" *)

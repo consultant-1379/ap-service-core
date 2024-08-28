@@ -1,0 +1,5 @@
+{
+    "errorTitle": "Validation error(s) occurred.",
+    "errorBody": "Suggested Solution : Fix error(s) and try again.",
+    "errorDetails": ["field: projectIds, value: [], message: You need to provide at least one project ID."]
+}

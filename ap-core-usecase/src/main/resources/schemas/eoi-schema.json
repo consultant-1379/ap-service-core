@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/EOI",
+  "definitions": {
+    "EOI": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "networkUsecaseType": {
+          "type": "string",
+          "enum": [
+            "ADD_TO_ENM"
+          ]
+        },
+        "networkElements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetworkElement"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "creator",
+        "name",
+        "networkElements",
+        "networkUsecaseType"
+      ],
+      "title": "EOI"
+    },
+    "NetworkElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nodeName": {
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9._-])*$",
+          "minLength": 3,
+          "maxLength": 64
+        },
+        "neType": {
+          "type": "string",
+          "enum": [
+            "Shared-CNF"
+          ]
+        },
+        "cnfType": {
+          "type": "string",
+          "oneOf": [
+            {
+              "enum": [
+                "VCU-CP",
+                "VCU-UP",
+                "VDU"
+              ]
+            },
+            {
+              "pattern": "^(?=\\s*$)"
+            }
+          ]
+        },
+        "ipAddress": {
+          "type": "string",
+          "oneOf": [
+            {
+              "format": "ipv4"
+            },
+            {
+              "format": "ipv6"
+            }
+          ]
+        },
+        "userName": {
+          "type": "string",
+          "pattern": "^[\\S].+[\\S]$",
+          "minLength": 3
+        },
+        "password": {
+          "type": "string",
+          "pattern": "^\\S*$",
+          "minLength": 3
+        },
+        "supervision": {
+          "$ref": "#/definitions/Supervision"
+        },
+        "ossPrefix": {
+          "type": "string"
+        },
+        "modelVersion": {
+          "type": "string",
+          "pattern": "^[\\S].*[\\S]$",
+          "minLength": 1
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "subjectAltName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ipAddress",
+        "neType",
+        "nodeName",
+        "supervision",
+        "userName",
+        "password",
+        "modelVersion"
+      ],
+      "title": "NetworkElement"
+    },
+    "Supervision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pm": {
+          "type": "boolean"
+        },
+        "fm": {
+          "type": "boolean"
+        },
+        "cm": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cm",
+        "fm",
+        "pm"
+      ],
+      "title": "Supervision"
+    }
+  }
+}

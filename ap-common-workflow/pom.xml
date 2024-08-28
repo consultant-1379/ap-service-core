@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.autoprovisioning.core</groupId>
+        <artifactId>ap-service-core</artifactId>
+        <version>1.184.9-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <sonar.coverage.exclusions>**/src/test/java/**</sonar.coverage.exclusions>
+    </properties>
+
+    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+    <artifactId>ap-common-workflow</artifactId>
+    <name>[${project.parent.artifactId}] Workflow JAR module</name>
+
+    <dependencies>
+        <!-- AP Dependencies -->
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-status-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>aps-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-cluster-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-cm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-usecase</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-util</artifactId>
+        </dependency>
+
+        <!-- ENM Dependencies -->
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-context-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-context-core-non-cdi</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-licensing-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-recording-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.shm.models</groupId>
+            <artifactId>shm-models-jar</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.shm</groupId>
+            <artifactId>shm-license-mgmt-api-jar</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.wfs</groupId>
+            <artifactId>wfs-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.wfs</groupId>
+            <artifactId>wfs-task-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 3PP Dependencies -->
+        <dependency>
+            <groupId>org.camunda.bpm</groupId>
+            <artifactId>camunda-engine</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-recording-non-cdi</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.wfs</groupId>
+            <artifactId>wfs-jse</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.cds</groupId>
+            <artifactId>cdi-test-support</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.picketbox</groupId>
+            <artifactId>jboss-security-spi</artifactId>
+            <version>5.0.2.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <!--Needed for Mocking non interface types in Spock-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>3.2.5</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

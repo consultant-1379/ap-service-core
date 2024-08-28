@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.ericsson.oss.autoprovisioning.core</groupId>
+        <artifactId>ap-service-core</artifactId>
+        <version>1.184.9-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+    <artifactId>ap-common-artifact-handler</artifactId>
+    <name>[${project.parent.artifactId}] Artifact Handler JAR module</name>
+
+    <properties>
+        <sonar.coverage.exclusions>**/src/test/java/**</sonar.coverage.exclusions>
+        <sonar.coverage.inclusions>**/src/test/java/**/SmrsAccountOperations.java</sonar.coverage.inclusions>
+
+    </properties>
+
+    <dependencies>
+        <!-- JEE Dependencies -->
+        <!-- This dependency must be listed before javax.javaee-api or else the unit tests throw a ClassFormatError -->
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-8.0</artifactId>
+            <version>${version.jboss.javaee}</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${version.javax.javaee}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- AP Dependencies -->
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>aps-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-resource-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-cm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-configuration</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-util</artifactId>
+        </dependency>
+
+        <!-- ENM Dependencies -->
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.security.cryptography</groupId>
+            <artifactId>cryptography-service-api-jar</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.datalayer.dps</groupId>
+            <artifactId>dps-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-core-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.shm</groupId>
+            <artifactId>shm-license-mgmt-api-jar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.shm</groupId>
+            <artifactId>shm-softwarepackage-mgmt-api-jar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.nms.security</groupId>
+            <artifactId>smrs-service-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.shm</groupId>
+            <artifactId>shm-inventory-remote-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.shm</groupId>
+            <artifactId>shm-softwarepackagemanagement-swp-query-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.ericsson.nms.mediation</groupId>
+                    <artifactId>core-mediation-models-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>job-common-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>joda-time</groupId>
+                    <artifactId>joda-time</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-inventory-license-common</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-inventory-backup-common</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-common-enums</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-common-model-service</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-common-exception</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-common-utils</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-common-base-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.ericsson.oss.services.shm</groupId>
+                    <artifactId>shm-common-constants</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- 3PP Dependencies -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.autoprovisioning</groupId>
+            <artifactId>ap-common-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-cluster-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-resources-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

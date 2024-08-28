@@ -1,0 +1,7 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "delete" (* slogan = "Delete a project or node from AP" *) DELETE_OPTIONS
+
+DELETE_OPTIONS ::= ( DELETE_NODE | DELETE_PROJECT | DELETE_OPTIONAL_DELETE )
+
+DELETE_NODE ::= WS "-n" (* slogan = "Delete a node" *) WS <node_name> (* slogan = "Specify the Node to be deleted" *)
+DELETE_PROJECT ::= WS "-p" (* slogan = "Delete a project" *) WS <project_name> (* slogan = "Specify the project to be deleted" *)
+DELETE_OPTIONAL_DELETE ::= WS "-i" (* slogan = "Prevent the NetworkElement MO from being deleted" *) ( DELETE_NODE | DELETE_PROJECT )

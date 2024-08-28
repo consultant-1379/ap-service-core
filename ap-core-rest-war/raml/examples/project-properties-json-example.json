@@ -1,0 +1,38 @@
+{
+    "id": "Batch_LTE_RadioNode_Project_Sample",
+    "description": "Example batch project with LTE RadioNode nodes",
+    "creator": "Ericsson",
+    "creationDate": "2018-10-17 15:02:15",
+    "nodes": [
+        {
+            "id": "SELIITRBS01462",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.1"
+        },
+        {
+            "id": "SELIITRBS01463",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.2"
+        },
+        {
+            "id": "SELIITRBS01464",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.3"
+        },
+        {
+            "id": "SELIITRBS01465",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.4"
+        },
+        {
+            "id": "SELIITRBS01466",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.5"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bulkCmConfigDataFile xmlns:un="utranNrm.xsd" xmlns:xn="genericNrm.xsd" xmlns:gn="geranNrm.xsd" xmlns:es="EricssonSpecificAttributes.14.02.xsd" xmlns="configData.xsd">
+    <fileHeader fileFormatVersion="32.615 V4.5" vendorName="Ericsson"/>
+    <configData dnPrefix="Undefined">
+                    <xn:ManagedElement id="LTE53vPP00002">
+                        <!--<xn:VsDataContainer id="1">
+                            <xn:attributes>
+                                <xn:vsDataType>vsDataENodeBFunction</xn:vsDataType>
+                                <xn:vsDataFormatVersion>EricssonSpecificAttributes.14.02</xn:vsDataFormatVersion>
+                                <es:vsDataENodeBFunction/>
+                            </xn:attributes>
+                            <xn:VsDataContainer id="2" modifier="create">
+                                <xn:attributes>
+                                    <xn:vsDataType>vsDataEUtranCellFDD</xn:vsDataType>
+                                    <xn:vsDataFormatVersion>EricssonSpecificAttributes.14.02</xn:vsDataFormatVersion>
+                                    <es:vsDataEUtranCellFDD>
+                                        <es:eUtranCellFDDId>1</es:eUtranCellFDDId> 
+										<es:earfcnul>23095</es:earfcnul>	
+										<es:earfcndl>5095</es:earfcndl>										
+                                        <es:cellId>1</es:cellId>
+                                        <es:tac>6021</es:tac>
+							   <es:sectorCarrierRef>SubNetwork=5G,ManagedElement=vRC_demo_final,SectorFunction=1,SectorCarrier=1</es:sectorCarrierRef>
+                                        <es:sectorCarrierRemoteRef>ManagedElement=ki10enb7320,SectorFunction=1,SectorCarrier=1</es:sectorCarrierRemoteRef>
+                                        <es:physicalLayerCellIdGroup>16</es:physicalLayerCellIdGroup>
+                                        <es:physicalLayerSubCellId>0</es:physicalLayerSubCellId>
+                                    </es:vsDataEUtranCellFDD>
+                                </xn:attributes>
+                            </xn:VsDataContainer>
+
+   
+
+             <xn:VsDataContainer id="3" modifier="create">
+                <xn:attributes>
+                  <xn:vsDataType>vsDataTermPointToMme</xn:vsDataType>
+                  <xn:vsDataFormatVersion>EricssonSpecificAttributes.14.02</xn:vsDataFormatVersion>
+                  <es:vsDataTermPointToMme>
+	                  <es:ipAddress1>10.64.193.107</es:ipAddress1>
+  	                <es:ipAddress2>10.64.193.108</es:ipAddress2>
+                    <es:ipv6Address1>::</es:ipv6Address1>
+                    <es:ipv6Address2>::</es:ipv6Address2>
+                    <es:administrativeState>1</es:administrativeState>
+                  </es:vsDataTermPointToMme>
+                </xn:attributes>
+             </xn:VsDataContainer>
+                        
+                 </xn:VsDataContainer>-->
+                 
+               </xn:ManagedElement>
+    </configData>
+    <fileFooter dateTime="2008-09-11T15:27:07Z"/>
+</bulkCmConfigDataFile>

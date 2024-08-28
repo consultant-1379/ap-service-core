@@ -1,0 +1,16 @@
+{
+    "id": "%EOI_TRUST_CERT_ID%",
+
+    "caSubjectName": "%TRUST_CERT_CA_SUBJECT_NAME%",
+
+    "caFingerprint": "%TRUST_CERT_CA_FINGERPRINT%",
+
+    "tdpsUri": "%TRUST_CERT_TDPS_URI%",
+
+    "caPem": "%TRUST_CERT_CA_PEM%",
+
+    "crls": [
+
+      "%TRUST_CERT_CRLS%"
+    ]
+}

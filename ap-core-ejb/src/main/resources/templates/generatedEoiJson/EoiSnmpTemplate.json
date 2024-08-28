@@ -1,0 +1,15 @@
+{
+
+  "securitylevel": "%EOI_SNMP_SECURITY_LEVEL%",
+
+  "authprotocol": "%EOI_SNMP_AUTH_PROTOCOL%",
+
+  "authPassword": "%EOI_SNMP_AUTH_PASSWORD%",
+
+  "privProtocol": "%EOI_SNMP_PRIV_PROTOCOL%",
+
+  "privPassword": "%EOI_SNMP_PRIV_PASSWORD%",
+
+  "user": "%EOI_SNMP_USER%"
+
+}

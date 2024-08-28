@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="cliViewMetadata">
+    <xs:complexType>   
+      <xs:sequence>
+        <xs:element ref="view" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="namespace" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="view">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="viewitem" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="viewitem">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="group" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="line" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="table" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:choice>
+      <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="line" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="table" maxOccurs="unbounded"/>
+      </xs:choice>
+      <xs:attribute name="heading" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="line">
+    <xs:complexType>
+      <xs:sequence  minOccurs="0" maxOccurs="1">
+        <xs:element ref="attribute"/>
+      </xs:sequence>
+      <xs:attribute name="style" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attribute">
+    <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="1">
+        <xs:element name="label" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="table">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="attribute" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="style" type="xs:string"/>
+      <xs:attribute name="heading" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

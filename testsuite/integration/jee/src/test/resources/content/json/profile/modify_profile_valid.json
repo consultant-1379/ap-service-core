@@ -1,0 +1,36 @@
+{
+  "name": "PROFILEID_01",
+  "ossModelIdentity": "some_identity",
+  "upgradePackageName": "upgrade_name",
+  "properties": "large json string (no example provided in IWD)",
+  "graphic": {
+    "name": "filename",
+    "content": "YmFzZTY0ZW5jb2RlZHN0cmluZwo="
+  },
+  "ciq": {
+    "name": "filename.csv",
+    "content": "YmFzZTY0ZW5jb2RlZHN0cmluZwo="
+  },
+  "configurations": [
+    {
+      "name": "filename.zip",
+      "content": "YmFzZTY0ZW5jb2RlZHN0cmluZwo="
+    },
+    {
+      "name": "filename1.zip",
+      "content": "YmFzZTY0ZW5jb2RlZHN0cmluZwo="
+    }
+  ],
+  "status": {
+    "isValid": false,
+    "details": [
+      "status detail 1",
+      "status detail 2 etc"
+    ]
+  },
+  "version": {
+    "productNumber": "R3535",
+    "productRelease": "R5353"
+  },
+  "dataType": "node-plugin-response-action"
+}

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rpc message-id="1" xsi:schemaLocation="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <edit-config>
+        <target>
+            <running />
+        </target>
+        <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+            <ManagedElement xmlns="urn:com:ericsson:ecim:ComTop">
+                <managedElementId>1</managedElementId>
+                <dnPrefix>%INTERNAL_dnPrefix%</dnPrefix>
+                <networkManagedElementId>%INTERNAL_logicalName%</networkManagedElementId>
+                <ENodeBFunction xmlns="urn:com:ericsson:ecim:MSRBS_V1_eNodeBFunction">
+                    <eNodeBFunctionId>1</eNodeBFunctionId>
+                    <eNodeBPlmnId struct="PlmnIdentity"><!--Must be updated with operator values -->
+                        <mcc>0</mcc>
+                        <mnc>0</mnc>
+                        <mncLength>0</mncLength>
+                    </eNodeBPlmnId>
+                    <eNBId>7168</eNBId>
+                    <EUtranCellFDD xc:operation="merge">
+                        <eUtranCellFDDId>%INTERNAL_logicalName%_eUtranCellFDD_1</eUtranCellFDDId>
+                        <alpha>10</alpha>
+                        <administrativeState>UNLOCKED</administrativeState>
+                        <earfcndl>0</earfcndl><!--Must be updated with operator values -->
+                        <earfcnul>18000</earfcnul><!--Must be updated with operator values -->
+                        <cellId>1</cellId>
+                        <dlChannelBandwidth>10000</dlChannelBandwidth>
+                        <physicalLayerCellIdGroup>1</physicalLayerCellIdGroup>
+                        <physicalLayerSubCellId>0</physicalLayerSubCellId>
+                        <pMaxServingCell>1000</pMaxServingCell>
+                        <pZeroNominalPucch>-117</pZeroNominalPucch>
+                        <pZeroNominalPusch>-92</pZeroNominalPusch>
+                        <qQualMin>-34</qQualMin>
+                        <qQualMinOffset>0</qQualMinOffset>
+                        <qRxLevMin>-130</qRxLevMin>
+                        <qRxLevMinOffset>1000</qRxLevMinOffset>
+                        <tac>1</tac>
+                        <partOfSectorPower>100</partOfSectorPower>
+                        <qciTableRef>ManagedElement=1,ENodeBFunction=1,QciTable=default</qciTableRef>
+                        <systemInformationBlock3 struct="SIB3">
+                            <qHyst>4</qHyst>
+                        </systemInformationBlock3>
+                        <UeMeasControl>
+                            <ueMeasControlId>1</ueMeasControlId>
+                            <ReportConfigEUtraBestCell>
+                                <reportConfigEUtraBestCellId>1</reportConfigEUtraBestCellId>
+                                <a3offset>30</a3offset>
+                                <hysteresisA3>10</hysteresisA3>
+                            </ReportConfigEUtraBestCell>
+                        </UeMeasControl>
+                    </EUtranCellFDD>
+                    <TermPointToMme xc:operation="create">
+                        <termPointToMmeId>1</termPointToMmeId>
+                        <ipAddress1>10.0.6.64</ipAddress1>
+                        <ipAddress2>10.0.6.65</ipAddress2>
+                        <administrativeState>UNLOCKED</administrativeState>
+                    </TermPointToMme>
+                </ENodeBFunction>
+                <Transport xmlns="urn:com:ericsson:ecim:ComTop">
+                    <transportId>1</transportId>
+                    <VlanPort xc:operation="create" xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L2_VlanPort">
+                        <vlanPortId>2</vlanPortId>
+                        <vlanId>0</vlanId><!--Must be updated with operator values -->
+                        <userLabel>Traffic Vlan interface.</userLabel>
+                    </VlanPort>
+                    <VlanPort xc:operation="create" xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L2_VlanPort">
+                        <vlanPortId>3</vlanPortId>
+                        <vlanId>0</vlanId><!--Must be updated with operator values -->
+                        <userLabel>Wi-Fi VLAN interface.</userLabel>
+                    </VlanPort>
+                    <Synchronization xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_Synchronization">
+                        <synchronizationId>1</synchronizationId>
+                        <syncServerNetwork>PUBLIC</syncServerNetwork><!--Update to PRIVATE if Sync servers accessed through IPSEC -->
+                        <SyncServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_SyncServer">
+                            <administrativeState>UNLOCKED</administrativeState>
+                            <syncServerId>1</syncServerId>
+                            <serverAddress>10.44.77.100</serverAddress>
+                            <protocol>NTP</protocol>
+                        </SyncServer>
+                        <SyncServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_SyncServer">
+                            <administrativeState>UNLOCKED</administrativeState>
+                            <syncServerId>2</syncServerId>
+                            <serverAddress>10.44.77.100</serverAddress>
+                            <protocol>NTP</protocol>
+                        </SyncServer>
+                        <SyncServer xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_SyncServer">
+                            <administrativeState>UNLOCKED</administrativeState>
+                            <syncServerId>3</syncServerId>
+                            <protocol>PTP</protocol>
+                        </SyncServer>
+                    </Synchronization>
+                    <EthernetPort xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_L2_EthernetPort">
+                        <ethernetPortId>1</ethernetPortId>
+                        <TrafficScheduler xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_T_TrafficScheduler">
+                            <trafficSchedulerId>1</trafficSchedulerId>
+                            <trafficShapingProfile>PROFILE1</trafficShapingProfile>
+                        </TrafficScheduler>
+                    </EthernetPort>
+                </Transport>
+                <SystemFunctions xmlns="urn:com:ericsson:ecim:ComTop">
+                    <systemFunctionsId>1</systemFunctionsId>
+                    <SecM xmlns="urn:com:ericsson:ecim:ComSecM">
+                        <secMId>1</secMId>
+                        <UserManagement xmlns="urn:com:ericsson:ecim:ComSecM">
+                            <userManagementId>1</userManagementId>
+                            <LdapAuthenticationMethod xmlns="urn:com:ericsson:ecim:ComLdapAuthentication">
+                                <ldapAuthenticationMethodId>1</ldapAuthenticationMethodId>
+                                <administrativeState>UNLOCKED</administrativeState>
+%INTERNAL_Ldap%
+                            </LdapAuthenticationMethod>
+                        </UserManagement>
+%INTERNAL_CertM%
+                    </SecM>
+                    <SysM xmlns="urn:com:ericsson:ecim:ComSysM">
+                        <sysMId>1</sysMId>
+%INTERNAL_Snmp%
+                        <NtpServer xc:operation="merge" xmlns="urn:com:ericsson:ecim:ComSysM">
+                            <ntpServerId>1</ntpServerId>
+                            <administrativeState>UNLOCKED</administrativeState>
+                            <serverAddress>10.44.77.28</serverAddress>
+                        </NtpServer>
+                        <NtpServer xc:operation="merge" xmlns="urn:com:ericsson:ecim:ComSysM">
+                            <ntpServerId>2</ntpServerId>
+                            <administrativeState>UNLOCKED</administrativeState>
+                            <serverAddress>10.44.77.31</serverAddress>
+                        </NtpServer>
+                        <TimeM xmlns="urn:com:ericsson:ecim:TimeM" xc:operation="merge">
+                            <timeMId>1</timeMId>
+                            <DateAndTime xmlns="urn:com:ericsson:ecim:TimeM" xc:operation="merge">
+                                <dateAndTimeId>1</dateAndTimeId>
+                                <timeZone>Eire</timeZone>
+                            </DateAndTime>
+                        </TimeM>
+                    </SysM>
+%INTERNAL_SwM%
+                </SystemFunctions>
+                <NodeFunction xmlns="urn:com:ericsson:ecim:MSRBS_V1_NodeFunction">
+                    <nodeFunctionId>1</nodeFunctionId>
+                    <SectorEquipmentFunction>
+                        <sectorEquipmentFunctionId>1</sectorEquipmentFunctionId>
+                        <confOutputPower>330</confOutputPower>
+                    </SectorEquipmentFunction>
+                </NodeFunction>
+                <Equipment xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_Equipment">
+                    <equipmentId>1</equipmentId>
+                    <RbsUnit xc:operation="merge" xmlns="urn:com:ericsson:ecim:MSRBS_V1_Equipment_RbsUnit">
+                        <rbsUnitId>1</rbsUnitId>
+                    </RbsUnit>
+                </Equipment>
+            </ManagedElement>
+        </config>
+    </edit-config>
+</rpc>

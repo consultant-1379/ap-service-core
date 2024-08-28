@@ -1,0 +1,143 @@
+#%RAML 1.0 Library
+usage: |
+  Use to define some basic project-related constructs.
+
+types:
+  ProjectRequest:
+    properties:
+      name:
+        type: string
+        required: true
+      creator:
+        type: string
+        required: true
+      description:
+        type: string | nil
+        required: true
+  DeleteProjectRequest:
+    properties:
+      ignoreNetworkElement:
+        type: boolean
+        required: true
+      projectIds:
+        type: array
+        items: string
+        description: A list of project IDs to delete. The list must contain at least one project ID.
+        required: true
+  ProjectObjectResponse:
+    properties:
+      projects:
+        type: array
+        items: ProjectsResponse
+  ProjectsAllStatusResponse:
+    properties:
+      projectId:
+        type: string
+        description: The project ID.
+      integrationPhaseSummary:
+        type: object
+        description: The summary of the integration phases.
+        properties:
+          cancelled:
+            type: integer
+            required: true
+          failed:
+            type: integer
+            required: true
+          inProgress:
+            type: integer
+            required: true
+          successful:
+            type: integer
+            required: true
+          suspended:
+            type: integer
+            required: true
+      numberOfNodes:
+        type: integer
+        description: The total number of nodes in the project.
+        required: true
+  DeleteProjectErrorResponse:
+    type: array
+    items:
+      properties:
+        id:
+          type: string
+          description: The requested project ID to delete.
+          required: true
+        errorMessage:
+          type: string
+          description: The description of the error.
+          required: true
+  ProjectIdResponse:
+    properties:
+      id:
+        type: string
+        description: The ID of the project.
+        required: true
+  ProjectStatusSuccessResponse:
+    properties:
+      id:
+        type: string
+        description: The project ID.
+        required: true
+      nodeSummary:
+        type: array
+        items: nodes.NodeSummary
+  ProjectsResponse:
+    properties:
+      id:
+        type: string
+        required: true
+      label:
+        type: string
+        required: true
+      creationDate:
+        type: string
+        required: true
+      creator:
+        type: string
+        required: true
+      description:
+        type: string | nil
+        required: true
+      parent:
+        type: integer
+        required: true
+      children:
+        type: integer
+        required: true
+      nodes:
+        type: array
+        required: true
+        items: nodes.NodeResponse
+  ProjectResponse:
+    properties:
+      id:
+        type: string
+        required: true
+      description:
+        type: string | nil
+        required: true
+      creator:
+        type: string
+        required: true
+      creationDate:
+        type: string
+        required: true
+      nodes:
+        type: array
+        items:
+          properties:
+            id:
+              type: string
+              required: true
+            type:
+              type: string
+              required: true
+            identifier:
+              type: string
+              required: true
+            ipAddress:
+              type: string
+              required: true

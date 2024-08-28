@@ -1,0 +1,1163 @@
+<!DOCTYPE HTML><html><head><title>AP Core REST WAR API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 7.8.0"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+  $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  $('[data-toggle]').click(function() {
+    var selector = $(this).data('target') + ' pre code';
+    $(selector).each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+
+  // open modal on hashes like #_action_get
+  $(window).bind('hashchange', function(e) {
+    var anchor_id = document.location.hash.substr(1); //strip #
+    var element = $('#' + anchor_id);
+
+    // do we have such element + is it a modal?  --> show it
+    if (element.length && element.hasClass('modal')) {
+      element.modal('show');
+    }
+  });
+
+  // execute hashchange on first page load
+  $(window).trigger('hashchange');
+
+  // remove url fragment on modal hide
+  $('.modal').on('hidden.bs.modal', function() {
+    try {
+      if (history && history.replaceState) {
+          history.replaceState({}, '', '#');
+      }
+    } catch(e) {}
+  });
+});
+    </script><style>
+      .hljs {
+  background: transparent;
+}
+.parent {
+  color: #999;
+}
+.list-group-item > .badge {
+  float: none;
+  margin-right: 6px;
+}
+.panel-title > .methods {
+  float: right;
+}
+.badge {
+  border-radius: 0;
+  text-transform: uppercase;
+  width: 70px;
+  font-weight: normal;
+  color: #f3f3f6;
+  line-height: normal;
+}
+.badge_get {
+  background-color: #63a8e2;
+}
+.badge_post {
+  background-color: #6cbd7d;
+}
+.badge_put {
+  background-color: #22bac4;
+}
+.badge_delete {
+  background-color: #d26460;
+}
+.badge_patch {
+  background-color: #ccc444;
+}
+.list-group,
+.panel-group {
+  margin-bottom: 0;
+}
+.panel-group .panel+.panel-white {
+  margin-top: 0;
+}
+.panel-group .panel-white {
+  border-bottom: 1px solid #F5F5F5;
+  border-radius: 0;
+}
+.panel-white:last-child {
+  border-bottom-color: white;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.panel-white .panel-heading {
+  background: white;
+}
+.tab-pane ul {
+  padding-left: 2em;
+}
+.tab-pane h1 {
+  font-size: 1.3em;
+}
+.tab-pane h2 {
+  font-size: 1.2em;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ddd;
+}
+.tab-pane h3 {
+  font-size: 1.1em;
+}
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+#sidebar {
+  margin-top: 30px;
+  padding-right: 5px;
+  overflow: auto;
+  height: 90%;
+}
+.top-resource-description {
+  border-bottom: 1px solid #ddd;
+  background: #fcfcfc;
+  padding: 15px 15px 0 15px;
+  margin: -15px -15px 10px -15px;
+}
+.resource-description {
+  border-bottom: 1px solid #fcfcfc;
+  background: #fcfcfc;
+  padding: 15px 15px 0 15px;
+  margin: -15px -15px 10px -15px;
+}
+.resource-description p:last-child {
+  margin: 0;
+}
+.list-group .badge {
+  float: left;
+}
+.method_description {
+  margin-left: 85px;
+}
+.method_description p:last-child {
+  margin: 0;
+}
+.list-group-item {
+  cursor: pointer;
+}
+.list-group-item:hover {
+  background-color: #f5f5f5;
+}
+pre code {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+.items {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+}
+.examples {
+  margin-left: 0.5em;
+}
+.resource-modal li > ul {
+  margin-bottom: 1em;
+}
+.required {
+  color: #f00;
+}
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>AP Core REST WAR API documentation<small>version v1</small></h1><p>http://{customerProvided}/auto-provisioning/{version}/</p><ul><li><strong>customerProvided</strong>: <em><span class="required">required</span>(string)</em><p>Customer provided host.</p></li><li><strong>version</strong>: <em><span class="required">required</span>(v1)</em></li></ul></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects" class="panel-title">/auto-provisioning/v1/projects</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects"><span class="parent"></span>/auto-provisioning/v1/projects</a> <span class="methods"><a href="#auto_provisioning_v1_projects_get"><span class="badge badge_get">get</span></a> <a href="#auto_provisioning_v1_projects_post"><span class="badge badge_post">post</span></a> <a href="#auto_provisioning_v1_projects_delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get data for all projects.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#auto_provisioning_v1_projects_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create an empty Project or Import a prepared zipped Project depending on the provided media type. Use "multipart/form-data" to import a zipped Project. Use "application/json" to create an empty Project.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#auto_provisioning_v1_projects_delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete one or more projects created in AP.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get data for all projects.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects_get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects_get_request"><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>filter</strong>: <em>(one of status, properties - default: status)</em><p>Optional filter to get the status or properties for all projects. The status will be returned by default if no query parameter is provided.</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>?filter=properties
+?filter=status
+</code></pre></div></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json - Response for Projects status</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em><p>The project ID.</p></li><li><strong>integrationPhaseSummary</strong>: <em><span class="required">required</span>(object)</em><p>The summary of the integration phases.</p><ul><li><strong>cancelled</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>failed</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>inProgress</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>successful</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>suspended</strong>: <em><span class="required">required</span>(integer)</em></li></ul></li><li><strong>numberOfNodes</strong>: <em><span class="required">required</span>(integer)</em><p>The total number of nodes in the project.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+    {
+        "projectId": "LTE01dg2ERBS00017",
+        "integrationPhaseSummary": {
+            "cancelled": 0,
+            "failed": 250,
+            "inProgress": 200,
+            "successful": 50,
+            "suspended": 0
+        },
+        "numberOfNodes": 500
+    },
+    {
+        "projectId": "LTE01dg2ERBS00018",
+        "integrationPhaseSummary": {
+            "cancelled": 0,
+            "failed": 0,
+            "inProgress": 1,
+            "successful": 0,
+            "suspended": 0
+        },
+        "numberOfNodes": 1
+    },
+    {
+        "projectId": "LTE01dg2ERBS00019",
+        "integrationPhaseSummary": {
+            "cancelled": 0,
+            "failed": 1,
+            "inProgress": 0,
+            "successful": 0,
+            "suspended": 0
+        },
+        "numberOfNodes": 1
+    }
+]
+</code></pre></div><p><strong>Media type</strong>: application/json - Response for Projects properties</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>projects</strong>: <em><span class="required">required</span>(array of projects.ProjectsResponse)</em><p><strong>Items</strong>: ProjectsResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>label</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>creationDate</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>creator</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>description</strong>: <em><span class="required">required</span>(union of string or nil)</em></li><li><strong>parent</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>children</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>nodes</strong>: <em><span class="required">required</span>(array of nodes.NodeResponse)</em><p><strong>Items</strong>: NodeResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>label</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeType</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeIdentifier</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>ipAddress</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>hardwareSerialNumber</strong>: <em><span class="required">required</span>(union of string or nil)</em></li><li><strong>parent</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>workOrderId</strong>: <em><span class="required">required</span>(union of string or nil)</em></li></ul></div></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "projects": [
+        {
+            "id": "Batch_LTE_RadioNode_Project",
+            "label": "Batch_LTE_RadioNode_Project",
+            "creationDate": "2018-08-29 09:10:41",
+            "creator": "Ericsson",
+            "description": "Example batch project with LTE RadioNode nodes",
+            "parent": 0,
+            "children": 2,
+            "nodes": [
+                {
+                    "id": "kienb3085",
+                    "label": "kienb3085",
+                    "nodeType": "RadioNode",
+                    "nodeIdentifier": "19.Q1-R58A16",
+                    "ipAddress": "2001:1b70:828a:7:0:0:0:95",
+                    "hardwareSerialNumber": "SCB87654323",
+                    "parent": "Batch_LTE_RadioNode_Project",
+                    "workOrderId": null
+                },
+                {
+                    "id": "kienb3087",
+                    "label": "kienb3087",
+                    "nodeType": "RadioNode",
+                    "nodeIdentifier": "19.Q1-R58A16",
+                    "ipAddress": "2001:1b70:828a:7:0:0:0:95",
+                    "hardwareSerialNumber": null,
+                    "parent": "Batch_LTE_RadioNode_Project",
+                    "workOrderId": null
+                }
+            ]
+        },
+        {
+            "id": "Standard_WCDMA_RadioNode_Project",
+            "label": "Standard_WCDMA_RadioNode_Project",
+            "creationDate": "2018-08-29 09:10:51",
+            "creator": "Ericsson",
+            "description": "Example standard project with WCDMA RadioNode nodes",
+            "parent": 0,
+            "children": 1,
+            "nodes": [
+                {
+                    "id": "kienb3086",
+                    "label": "kienb3086",
+                    "nodeType": "RadioNode",
+                    "nodeIdentifier": "19.Q1-R58A16",
+                    "ipAddress": "2001:1b70:828a:7:0:0:0:95",
+                    "hardwareSerialNumber": null,
+                    "parent": "Standard_WCDMA_RadioNode_Project",
+                    "workOrderId": "SC-3481747362"
+                }
+            ]
+        }
+    ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Invalid arguments.",
+    "errorBody": "Invalid query parameter status123 specified. Check if your query parameters are correct.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Insufficient access rights to execute the action.",
+    "errorBody": "Contact the system administrator to update the user profile.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/auto-provisioning/v1/projects</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create an empty Project or Import a prepared zipped Project depending on the provided media type. Use "multipart/form-data" to import a zipped Project. Use "application/json" to create an empty Project.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects_post_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects_post_request"><h3>Body</h3><p><strong>Media type</strong>: multipart/form-data - Request to import a prepared Project</p><p><strong>Type</strong>: file</p><p><strong>Media type</strong>: application/json - Request to create an empty Project</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>creator</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>description</strong>: <em><span class="required">required</span>(union of string or nil)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "name": "Project01",
+  "creator": "user1",
+  "description": "Project description."
+}</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Empty Project created successfully or prepared Project imported successfully.</p><h3>Body</h3><p><strong>Media type</strong>: application/json - Response for imported Project</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>label</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>creationDate</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>creator</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>description</strong>: <em><span class="required">required</span>(union of string or nil)</em></li><li><strong>parent</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>children</strong>: <em><span class="required">required</span>(integer)</em></li><li><strong>nodes</strong>: <em><span class="required">required</span>(array of nodes.NodeResponse)</em><p><strong>Items</strong>: NodeResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>label</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeType</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeIdentifier</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>ipAddress</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>hardwareSerialNumber</strong>: <em><span class="required">required</span>(union of string or nil)</em></li><li><strong>parent</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>workOrderId</strong>: <em><span class="required">required</span>(union of string or nil)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "id": "Batch_LTE_RadioNode_Project",
+    "label": "Batch_LTE_RadioNode_Project",
+    "creationDate": "2018-08-29 09:10:41",
+    "creator": "Ericsson",
+    "description": "Example batch project with LTE RadioNode nodes",
+    "parent": 0,
+    "children": 0,
+    "nodes": []
+}
+</code></pre></div><p><strong>Media type</strong>: application/json - Response for empty Project created</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em><p>The ID of the project.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": "Project01"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Validation error(s) occurred while creating an empty Project.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>nodeValidationErrors</strong>: <em><span class="required">required</span>(array of string)</em><p>Provides additional information about the validation error.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Validation error(s) occurred.",
+  "errorBody": "Suggested solution:  Fix error(s) and try again.",
+  "errorDetails": [
+    "field: creator, value: a, message: Creator is mandatory and must be a meaningful username greater than 1 character"
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/409" target="_blank">409</a></h2><p>A conflict error occurred for creating an empty project. The project name already exists on system.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Project {projectName} already exists",
+  "errorBody": "Please choose a different project name",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/417" target="_blank">417</a></h2><p>Expectation failed. Validation error(s) occurred while importing project.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Error(s) found validating project.",
+  "errorBody": "Suggested Solution: Fix error(s) and try again.",
+  "errorDetails": [
+    "N1 - Name must be between 3 and 100 characters inclusive"
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects_delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent"></span>/auto-provisioning/v1/projects</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete one or more projects created in AP.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects_delete_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects_delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects_delete_request"><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>ignoreNetworkElement</strong>: <em><span class="required">required</span>(boolean)</em></li><li><strong>projectIds</strong>: <em><span class="required">required</span>(array of string)</em><p>A list of project IDs to delete. The list must contain at least one project ID.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "ignoreNetworkElement": false,
+  "projectIds": ["Project01", "Project02"]
+}
+</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects_delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Client must provide at least one project ID to delete.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Validation error(s) occurred.",
+    "errorBody": "Suggested Solution : Fix error(s) and try again.",
+    "errorDetails": ["field: projectIds, value: [], message: You need to provide at least one project ID."]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Insufficient access rights to execute the action.",
+    "errorBody": "Contact the system administrator to update the user profile.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: items</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em><p>The requested project ID to delete.</p></li><li><strong>errorMessage</strong>: <em><span class="required">required</span>(string)</em><p>The description of the error.</p></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+    {
+        "id": "Project01",
+        "errorMessage": "Project does not exist."
+    },
+    {
+        "id": "Project02",
+        "errorMessage": "Internal server error."
+    }
+]
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid_" class="panel-title">/auto-provisioning/v1/projects/{projectId}</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid_"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__get"><span class="badge badge_get">get</span></a> <a href="#auto_provisioning_v1_projects__projectid__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get data for a Project</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete a project created in AP.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get data for a Project</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__get_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>filter</strong>: <em>(one of status, properties - default: status)</em><p>Optional filter to get the Project status or properties. The status will be returned by default if no query parameter is provided.</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>?filter=properties
+?filter=status
+</code></pre></div></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json - Response for Project status</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em><p>The project ID.</p></li><li><strong>nodeSummary</strong>: <em><span class="required">required</span>(array of nodes.NodeSummary)</em><p><strong>Items</strong>: NodeSummary</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em><p>The Node ID.</p></li><li><strong>status</strong>: <em><span class="required">required</span>(string)</em><p>The node status.</p></li><li><strong>state</strong>: <em><span class="required">required</span>(string)</em><p>The node state.</p></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "id": "Batch_LTE_RadioNode",
+    "nodeSummary": [
+        {
+            "id": "SELIITRBS01462",
+            "status": "Failed",
+            "state": "Order Failed"
+        },
+        {
+            "id": "SELIITRBS01463",
+            "status": "Failed",
+            "state": "Order Failed"
+        },
+        {
+            "id": "SELIITRBS01464",
+            "status": "Failed",
+            "state": "Order Failed"
+        },
+        {
+            "id": "SELIITRBS01465",
+            "status": "Failed",
+            "state": "Order Failed"
+        }
+    ]
+}
+</code></pre></div><p><strong>Media type</strong>: application/json - Response for Project properties</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>description</strong>: <em><span class="required">required</span>(union of string or nil)</em></li><li><strong>creator</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>creationDate</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodes</strong>: <em><span class="required">required</span>(array of object)</em><p><strong>Items</strong>: items</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>type</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>identifier</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>ipAddress</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "id": "Batch_LTE_RadioNode_Project_Sample",
+    "description": "Example batch project with LTE RadioNode nodes",
+    "creator": "Ericsson",
+    "creationDate": "2018-10-17 15:02:15",
+    "nodes": [
+        {
+            "id": "SELIITRBS01462",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.1"
+        },
+        {
+            "id": "SELIITRBS01463",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.2"
+        },
+        {
+            "id": "SELIITRBS01464",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.3"
+        },
+        {
+            "id": "SELIITRBS01465",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.4"
+        },
+        {
+            "id": "SELIITRBS01466",
+            "type": "RadioNode",
+            "identifier": "18.Q1-R33A54",
+            "ipAddress": "110.138.2.5"
+        }
+    ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Invalid arguments.",
+    "errorBody": "Invalid query parameter status123 specified. Check if your query parameters are correct.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Project does not exist.",
+    "errorBody": "Try again with different name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete a project created in AP.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__delete_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__delete_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Insufficient access rights to execute the action.",
+    "errorBody": "Contact the system administrator to update the user profile.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Project does not exist.",
+    "errorBody": "Try again with different name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__actions_order" class="panel-title">/auto-provisioning/v1/projects/{projectId}/actions/order</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__actions_order"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/actions/order</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__actions_order_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__actions_order" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__actions_order_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Order the configurations received from the node plugin.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__actions_order_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/actions/order</h4></div><div class="modal-body"><div class="alert alert-info"><p>Order the configurations received from the node plugin.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__actions_order_post_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__actions_order_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__actions_order_post_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>configurations</strong>: <em><span class="required">required</span>(array of profiles.OrderConfigurationsRequest)</em><p><strong>Items</strong>: OrderConfigurationsRequest</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of node.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "configurations": [
+    {
+      "name": "Node1",
+      "content": "=gfgfgfgfg"
+    },
+    {
+      "name": "Node2",
+      "content": "d=jjdkkdk"
+    }
+  ]
+}</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__actions_order_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Configurations ordered successfully.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em><p>The ID of the project.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "id": "Project01"
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/417" target="_blank">417</a></h2><p>Expectation failed. Validation error(s) occurred while ordering configurations.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Error(s) found validating project.",
+  "errorBody": "Suggested Solution: Fix error(s) and try again.",
+  "errorDetails": [
+    "N1 - Name must be between 3 and 100 characters inclusive"
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes_get"><span class="badge badge_get">get</span></a> <a href="#auto_provisioning_v1_projects__projectid__nodes_delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get node data for a specific Project by a project ID.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes_delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete one or more nodes in a project.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get node data for a specific Project by a project ID.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes_get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes_get_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>nodes</strong>: <em><span class="required">required</span>(array of nodes.NodeResponse)</em><p><strong>Items</strong>: NodeResponse</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>label</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeType</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeIdentifier</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>ipAddress</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>hardwareSerialNumber</strong>: <em><span class="required">required</span>(union of string or nil)</em></li><li><strong>parent</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>workOrderId</strong>: <em><span class="required">required</span>(union of string or nil)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "nodes": [
+        {
+            "id": "LTE_RadioNode",
+            "label": "LTE_RadioNode",
+            "nodeType": "RadioNode",
+            "nodeIdentifier": "R18A-GA",
+            "ipAddress": "10.10.10.10",
+            "hardwareSerialNumber": "ABC1234567",
+            "parent": "Standard_LTE_RadioNode_Project",
+            "workOrderId": null
+        },
+        {
+            "id": "WCDMA_RadioNode",
+            "label": "WCDMA_RadioNode",
+            "nodeType": "RadioNode",
+            "nodeIdentifier": "R18A-GA",
+            "ipAddress": "10.10.10.11",
+            "hardwareSerialNumber": "ABC1234568",
+            "parent": "Standard_WCDMA_RadioNode_Project",
+            "workOrderId": "SC-3481747362"
+        }
+    ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Project does not exist.",
+    "errorBody": "Try again with different name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes_delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete one or more nodes in a project.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes_delete_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes_delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes_delete_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>ignoreNetworkElement</strong>: <em><span class="required">required</span>(boolean)</em></li><li><strong>nodeIds</strong>: <em><span class="required">required</span>(array of string)</em><p>A list of node IDs to delete. The list must contain at least one node ID.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "ignoreNetworkElement": false,
+    "nodeIds": ["Node01", "Node02"]
+}
+</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes_delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Client must provide at least one node ID to delete.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Validation error(s) occurred.",
+    "errorBody": "Suggested Solution : Fix error(s) and try again.",
+    "errorDetails": ["field: nodeIds, value: [], message: You need to provide at least one node ID."]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Insufficient access rights to execute the action.",
+    "errorBody": "Contact the system administrator to update the user profile.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: items</p><div class="items"><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em><p>The requested node ID to delete.</p></li><li><strong>errorMessage</strong>: <em><span class="required">required</span>(string)</em><p>The description of the error.</p></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+    {
+        "id": "Node01",
+        "errorMessage": "Node does not exist."
+    },
+    {
+        "id": "Node02",
+        "errorMessage": "Internal server error."
+    }
+]
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes_actions_order" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes/actions/order</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes_actions_order"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/actions/order</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes_actions_order_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes_actions_order" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes_actions_order_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Order one or more nodes for a project.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes_actions_order_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/actions/order</h4></div><div class="modal-body"><div class="alert alert-info"><p>Order one or more nodes for a project.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes_actions_order_post_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes_actions_order_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes_actions_order_post_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>nodeIds</strong>: <em><span class="required">required</span>(array of string)</em><p>A list of node IDs to order. The list must contain at least one node ID.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "nodeIds": ["Node01", "Node02", "Node03"]
+}
+</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes_actions_order_post_response"><h2>HTTP status code <a href="http://httpstatus.es/202" target="_blank">202</a></h2><p>The request has been accepted and the order has initiated for the requested node(s).</p><h2>HTTP status code <a href="http://httpstatus.es/207" target="_blank">207</a></h2><p>A multi-status response indicating an error occurred for some or all the nodes.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of object</p><p><strong>Items</strong>: items</p><div class="items"><ul><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em><p>The node ID.</p></li><li><strong>errorMessage</strong>: <em><span class="required">required</span>(string)</em><p>Description of the error.</p></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+    {
+        "nodeId": "Node01",
+        "errorMessage": "Node does not exist."
+    },
+    {
+        "nodeId": "Node02",
+        "errorMessage": "Node is not in the correct state to perform the operation [Order Completed]."
+    }
+]
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Client must provide at least one node ID to order.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Validation error(s) occurred.",
+    "errorBody": "Suggested Solution : Fix error(s) and try again.",
+    "errorDetails": ["field: nodeIds, value: [], message: You need to provide at least one node ID."]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes__nodeid_" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes__nodeid_"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__get"><span class="badge badge_get">get</span></a> <a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes__nodeid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes__nodeid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get data for node in AP.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes__nodeid__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete a node in a project.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get data for node in AP.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__get_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>filter</strong>: <em>(one of status, properties - default: status)</em><p>Optional filter to get node status or properties. The status will be returned by default if no query parameter is provided.</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>?filter=properties
+?filter=status
+</code></pre></div></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json - Response for Node status</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>id</strong>: <em><span class="required">required</span>(string)</em><p>The Node ID.</p></li><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em><p>The project ID.</p></li><li><strong>state</strong>: <em><span class="required">required</span>(string)</em><p>The Node state.</p></li><li><strong>statusEntries</strong>: <em><span class="required">required</span>(array of nodes.NodeStatusEntries)</em><p><strong>Items</strong>: NodeStatusEntries</p><div class="items"><ul><li><strong>task</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>progress</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>timestamp</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>additionalInformation</strong>: <em><span class="required">required</span>(string)</em></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "id": "Node01",
+    "projectId": "Project01",
+    "state": "Order Completed",
+    "statusEntries": [
+        {
+            "task": "Import License Key File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:14.803",
+            "additionalInfo": "License Key File already exists"
+        },
+        {
+            "task": "Validate Configuration",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:16.043",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Add Node",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:16.452",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Generate Security",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:19.422",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Site Basic File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:19.808",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Site Equipment File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:20.148",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create RbsSummary File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:20.809",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Site Installation File",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:21.323",
+            "additionalInfo": ""
+        },
+        {
+            "task": "Create Security Credentials",
+            "progress": "Completed",
+            "timestamp": "2018-09-30 15:03:11.549",
+            "additionalInfo": ""
+        }
+    ]
+}
+</code></pre></div><p><strong>Media type</strong>: application/json - Response for Node properties</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>attributes</strong>: <em><span class="required">required</span>(array of common.NameValuePairs)</em><p><strong>Items</strong>: NameValuePairs</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>The attribute name.</p></li><li><strong>value</strong>: <em><span class="required">required</span>(string)</em><p>The attribute value.</p></li></ul></div></li><li><strong>attributeGroups</strong>: <em><span class="required">required</span>(array of object)</em><p><strong>Items</strong>: items</p><div class="items"><ul><li><strong>type</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>properties</strong>: <em><span class="required">required</span>(array of common.NameValuePairs)</em><p><strong>Items</strong>: NameValuePairs</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>The attribute name.</p></li><li><strong>value</strong>: <em><span class="required">required</span>(string)</em><p>The attribute value.</p></li></ul></div></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "attributes": [
+        {
+            "name": "nodeName",
+            "value": "Node01"
+        },
+        {
+            "name": "projectName",
+            "value": "TestProject"
+        },
+        {
+            "name": "deployment",
+            "value": ""
+        },
+        {
+            "name": "ipAddress",
+            "value": "243.110.37.251"
+        },
+        {
+            "name": "nodeIdentifier",
+            "value": "6607-651-025"
+        },
+        {
+            "name": "nodeType",
+            "value": "RadioNode"
+        },
+        {
+            "name": "hardwareSerialNumber",
+            "value": "HW74526252502668"
+        },
+        {
+            "name": "ossPrefix",
+            "value": "SubNetwork=EnmSn,SubNetwork=AP_1"
+        },
+        {
+            "name": "timeZone",
+            "value": ""
+        }
+    ],
+    "attributeGroups": [
+        {
+            "type": "AutoIntegrationOptions",
+            "properties": [
+                {
+                    "name": "upgradePackageName",
+                    "value": "dummy_upgrade_package"
+                }
+            ]
+        },
+        {
+            "type": "LicenseOptions",
+            "properties": [
+                {
+                    "name": "licenseFile",
+                    "value": ""
+                },
+                {
+                    "name": "installLicense",
+                    "value": false
+                },
+                {
+                    "name": "mandatoryLicenseKeys",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "type": "IntegrationArtifacts",
+            "properties": [
+                {
+                    "name": "siteBasic",
+                    "value": "SiteBasic.xml"
+                },
+                {
+                    "name": "siteEquipment",
+                    "value": "SiteEquipment.xml"
+                },
+                {
+                    "name": "siteInstallation",
+                    "value": "SiteInstall.xml"
+                }
+            ]
+        },
+        {
+            "type": "Configurations",
+            "properties": [
+                {
+                    "value": "transport.xml"
+                },
+                {
+                    "value": "radio.xml"
+                }
+            ]
+        },
+        {
+            "type": "OptionalFeatures",
+            "properties": [
+                {
+                    "value": "optionalFeature.xml"
+                }
+            ]
+        },
+        {
+            "type": "UnlockCells",
+            "properties": [
+                {
+                    "value": "unlockCell.xml"
+                }
+            ]
+        }
+    ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Invalid arguments.",
+    "errorBody": "Invalid query parameter status123 specified. Check if your query parameters are correct.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or node not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Node does not exist.",
+    "errorBody": "Provide a valid node name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete a node in a project.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__delete_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__delete_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Insufficient access rights to execute the action.",
+    "errorBody": "Contact the system administrator to update the user profile.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or node not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Node does not exist.",
+    "errorBody": "Provide a valid node name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/bind</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/bind</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind_put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind_put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Initiates the bind action on a single node by providing hardware serial number.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind_put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/bind</h4></div><div class="modal-body"><div class="alert alert-info"><p>Initiates the bind action on a single node by providing hardware serial number.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind_put_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind_put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind_put_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>hardwareId</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "hardwareId": "123456789x"
+}</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind_put_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The request has succeeded by the server.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Validation error(s) occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Invalid Serial Number",
+  "errorBody": "The hardware serial number {serialNumber} is not valid",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or node not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Project does not exist.",
+    "errorBody": "Try again with different name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/406" target="_blank">406</a></h2><p>The request was not accepted by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Unsupported action for this node type",
+  "errorBody": "The bind operation is not supported for this node type",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/409" target="_blank">409</a></h2><p>A conflict error occurred. The serial number is already bound.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Serial number already bound",
+  "errorBody": "The hardware serial number {serialNumber} is already bound",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Uploads artifact replacing existing artifact content with new artifact content.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations</h4></div><div class="modal-body"><div class="alert alert-info"><p>Uploads artifact replacing existing artifact content with new artifact content.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_put_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_put_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: multipart/form-data)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: multipart/form-data)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: multipart/form-data</p><p><strong>Type</strong>: file</p></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_put_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Validation error(s) occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "The file type for file {fileName} is not supported by the upload command",
+  "errorBody": "Rename the configuration file to match the name of an existing configuration that is supported by the upload command",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or node not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Node does not exist.",
+    "errorBody": "Provide a valid node name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/406" target="_blank">406</a></h2><p>The request was not accepted by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Node is not in the correct state to perform the upload",
+  "errorBody": "Ensure node is in correct state before performing the upload",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/417" target="_blank">417</a></h2><p>Expectation failed. Validation error(s) occurred while uploading artifacts.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Error(s) found validating file",
+  "errorBody": "Fix error(s) and try again",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/cancel</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/cancel</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Cancels the AP Workflow from its failure point.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/cancel</h4></div><div class="modal-body"><div class="alert alert-info"><p>Cancels the AP Workflow from its failure point.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel_post_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel_post_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel_post_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Validation error(s) occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Validation error(s) occurred.",
+    "errorBody": "Suggested Solution : Fix error(s) and try again.",
+    "errorDetails": ["field: projectIds, value: [], message: You need to provide at least one project ID."]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Insufficient access rights to execute the action.",
+    "errorBody": "Contact the system administrator to update the user profile.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or node not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Node does not exist.",
+    "errorBody": "Provide a valid node name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations/siteinstall</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations/siteinstall</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the generated artifact for the node and download it.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations/siteinstall</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the generated artifact for the node and download it.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall_get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall_get_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: multipart/form-data)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: multipart/form-data</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>file</strong>: <em><span class="required">required</span>(file)</em><p>The node generated artifact file to be downloaded.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;combinedConfigurationFileType&gt;
+    &lt;RbsSiteInstallationFile xsi:noNamespaceSchemaLocation="MSRBS_V1_SiteInstallation.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+        &lt;!-- Reference CPI Library (EN/LZN 793 1020) for applicable example files --&gt;
+    &lt;/RbsSiteInstallationFile&gt;
+    &lt;rpc message-id="1" xsi:schemaLocation="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+        &lt;!-- Reference CPI Library (EN/LZN 793 1020) for applicable ENM example configuration files --&gt;
+    &lt;/rpc&gt;
+&lt;/combinedConfigurationFileType&gt;
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Unsupported action for this node type.",
+    "errorBody": "Suggested Solution : Not applicable.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume" class="panel-title">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/resume</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/resume</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Resumes the AP Workflow from its failure point.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/resume</h4></div><div class="modal-body"><div class="alert alert-info"><p>Resumes the AP Workflow from its failure point.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume_post_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume_post_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume_post_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Validation error(s) occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Validation error(s) occurred.",
+    "errorBody": "Suggested Solution : Fix error(s) and try again.",
+    "errorDetails": ["field: projectIds, value: [], message: You need to provide at least one project ID."]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Forbidden request. Client does not have sufficient privileges to access the resource.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Unsupported action for this node type.",
+    "errorBody": "Suggested Solution : Not applicable.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or node not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Node does not exist.",
+    "errorBody": "Provide a valid node name.",
+    "errorDetails": null
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__profiles" class="panel-title">/auto-provisioning/v1/projects/{projectId}/profiles</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__profiles"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__profiles_get"><span class="badge badge_get">get</span></a> <a href="#auto_provisioning_v1_projects__projectid__profiles_post"><span class="badge badge_post">post</span></a> <a href="#auto_provisioning_v1_projects__projectid__profiles_put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__profiles" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__profiles_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieves AP Profile MO data for a Project.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__profiles_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Creates AP profile MO and stores profile related files on the file system.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__profiles_put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Modifies AP profile MO and stores profile related files on the file system.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__profiles_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieves AP Profile MO data for a Project.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__profiles_get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__profiles_get_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__profiles_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>profiles</strong>: <em><span class="required">required</span>(array of profiles.ProfileResponse)</em><p><strong>Items</strong>: ProfileResponse</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>The profile name.</p></li><li><strong>version</strong>: <em><span class="required">required</span>(object)</em><p>The profile version properties.</p><ul><li><strong>productNumber</strong>: <em><span class="required">required</span>(string)</em><p>The product number.</p></li><li><strong>productRelease</strong>: <em><span class="required">required</span>(string)</em><p>The product release.</p></li></ul></li><li><strong>properties</strong>: <em>(string)</em><p>Profile properties in JSON.</p></li><li><strong>graphicLocation</strong>: <em><span class="required">required</span>(string)</em><p>The graphic location.</p></li><li><strong>graphic</strong>: <em>(object)</em><p>The profile graphic.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>profileContentLocation</strong>: <em><span class="required">required</span>(string)</em><p>The profile content location.</p></li><li><strong>configurations</strong>: <em>(array of profiles.Base64File)</em><p>The profile configurations.</p><p><strong>Items</strong>: Base64File</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></div></li><li><strong>ciq</strong>: <em><span class="required">required</span>(object)</em><p>The CIQ file.</p><ul><li><strong>ciqLocation</strong>: <em><span class="required">required</span>(string)</em><p>The CIQ location.</p></li></ul></li><li><strong>status</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>isValid</strong>: <em><span class="required">required</span>(boolean)</em><p>Determines if the profile is valid.</p></li><li><strong>details</strong>: <em><span class="required">required</span>(array of string)</em><p>The profile details.</p></li></ul></li><li><strong>filterLocation</strong>: <em><span class="required">required</span>(string)</em><p>The netConf filter location.</p></li><li><strong>getConfigScript</strong>: <em>(object)</em><p>The profile netConf filter file.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>ossModelIdentity</strong>: <em><span class="required">required</span>(string)</em><p>The OSS model identity.</p></li><li><strong>upgradePackageName</strong>: <em><span class="required">required</span>(string)</em><p>The upgrade package name.</p></li></ul></div></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "profiles": [
+    {
+      "name": "Profile1",
+      "version": {
+        "productNumber": "R3527",
+        "productRelease": "R387397"
+      },
+      "ossModelIdentity": "SOME_IDENTITY",
+      "upgradePackageName": "UPGRADE_PACKAGE",
+      "properties": "{prop1:someprop}",
+      "graphicLocation": "/some/graphic/file/location",
+      "graphic": {
+        "name": "profile1.png",
+        "content": "ddjkjdkjdjd"
+      },
+      "profileContentLocation": "/some/profile/content/file/location",
+      "configurations": [
+        {
+          "name": "profile.zip",
+          "content": "=gfgfgfgfg"
+        }
+      ],
+      "ciq": {
+        "ciqLocation": "/some/ciq/file/location"
+      },
+      "status": {
+        "isValid": true,
+        "details": [
+          "details1",
+          "details2"
+        ]
+      },
+      "filterLocation": "/some/getConfigScript/file/location",
+      "getConfigScript": {
+        "name": "profile1.xml",
+        "content": "hghgghghghghg"
+    }
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Project does not exist.",
+  "errorBody": "Suggested solution:  Fix error(s) and try again.",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__profiles_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates AP profile MO and stores profile related files on the file system.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__profiles_post_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__profiles_post_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>The profile name.</p></li><li><strong>graphic</strong>: <em>(object)</em><p>The profile graphic.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>properties</strong>: <em>(string)</em><p>Profile properties in JSON.</p></li><li><strong>ciq</strong>: <em>(object)</em><p>The CIQ file.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>configurations</strong>: <em>(array of profiles.Base64File)</em><p>The profile configurations.</p><p><strong>Items</strong>: Base64File</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></div></li><li><strong>status</strong>: <em>(object)</em><p>The profile status.</p><ul><li><strong>isValid</strong>: <em><span class="required">required</span>(boolean - default: false)</em><p>Determines if the profile is valid.</p></li><li><strong>details</strong>: <em><span class="required">required</span>(array of string)</em><p>The profile details.</p></li></ul></li><li><strong>version</strong>: <em><span class="required">required</span>(object)</em><p>The profile version properties.</p><ul><li><strong>productNumber</strong>: <em><span class="required">required</span>(string)</em><p>The product number.</p></li><li><strong>productRelease</strong>: <em><span class="required">required</span>(string)</em><p>The product release.</p></li></ul></li><li><strong>ossModelIdentity</strong>: <em><span class="required">required</span>(string)</em><p>The OSS model identity.</p></li><li><strong>getConfigScript</strong>: <em>(object)</em><p>The profile netConf filter file.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>upgradePackageName</strong>: <em><span class="required">required</span>(string)</em><p>The upgrade package name.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "name": "Profile1",
+  "graphic": {
+    "name": "profile1.png",
+    "content": "ddjkjdkjdjd"
+  },
+  "ciq": {
+    "name": "input.csv",
+    "content": "gfgfgfgfg"
+  },
+  "properties": "{prop1:someprop}",
+  "configurations": [
+    {
+      "name": "profile.zip",
+      "content": "=gfgfgfgfg"
+    }
+  ],
+  "status": {
+    "isValid": true,
+    "details": []
+  },
+  "version": {
+    "productNumber": "R23542",
+    "productRelease": "R35535"
+  },
+  "getConfigScript": {
+     "name": "profile1.xml",
+     "content": "hghgghghghghg"
+  },
+  "ossModelIdentity": "SOME_IDENTITY",
+  "upgradePackageName": "UPGRADE_PACKAGE"
+}</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__profiles_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Profile created successfully.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>The profile name.</p></li><li><strong>version</strong>: <em><span class="required">required</span>(object)</em><p>The profile version properties.</p><ul><li><strong>productNumber</strong>: <em><span class="required">required</span>(string)</em><p>The product number.</p></li><li><strong>productRelease</strong>: <em><span class="required">required</span>(string)</em><p>The product release.</p></li></ul></li><li><strong>properties</strong>: <em>(string)</em><p>Profile properties in JSON.</p></li><li><strong>graphicLocation</strong>: <em><span class="required">required</span>(string)</em><p>The graphic location.</p></li><li><strong>graphic</strong>: <em>(object)</em><p>The profile graphic.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>profileContentLocation</strong>: <em><span class="required">required</span>(string)</em><p>The profile content location.</p></li><li><strong>configurations</strong>: <em>(array of profiles.Base64File)</em><p>The profile configurations.</p><p><strong>Items</strong>: Base64File</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></div></li><li><strong>ciq</strong>: <em><span class="required">required</span>(object)</em><p>The CIQ file.</p><ul><li><strong>ciqLocation</strong>: <em><span class="required">required</span>(string)</em><p>The CIQ location.</p></li></ul></li><li><strong>status</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>isValid</strong>: <em><span class="required">required</span>(boolean)</em><p>Determines if the profile is valid.</p></li><li><strong>details</strong>: <em><span class="required">required</span>(array of string)</em><p>The profile details.</p></li></ul></li><li><strong>filterLocation</strong>: <em><span class="required">required</span>(string)</em><p>The netConf filter location.</p></li><li><strong>getConfigScript</strong>: <em>(object)</em><p>The profile netConf filter file.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>ossModelIdentity</strong>: <em><span class="required">required</span>(string)</em><p>The OSS model identity.</p></li><li><strong>upgradePackageName</strong>: <em><span class="required">required</span>(string)</em><p>The upgrade package name.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "name": "Profile1",
+  "version": {
+    "productNumber": "R3527",
+    "productRelease": "R387397"
+  },
+  "ossModelIdentity": "SOME_IDENTITY",
+  "upgradePackageName": "UPGRADE_PACKAGE",
+  "properties": "{prop1:someprop}",
+  "graphicLocation": "/some/graphic/file/location",
+  "graphic": {
+    "name": "profile1.png",
+    "content": "ddjkjdkjdjd"
+  },
+  "profileContentLocation": "/some/profile/content/file/location",
+  "configurations": [
+    {
+      "name": "profile.zip",
+      "content": "=gfgfgfgfg"
+    }
+  ],
+  "ciq": {
+    "ciqLocation": "/some/ciq/file/location"
+  },
+  "status": {
+    "isValid": true,
+    "details": [
+      "details1",
+      "details2"
+    ]
+  },
+  "filterLocation": "/some/getConfigScript/file/location",
+  "getConfigScript": {
+    "name": "profile1.xml",
+    "content": "hghgghghghghg"
+  }
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. Validation error(s) occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Error(s) found validating profile.",
+  "errorBody": "Suggested solution:  Fix error(s) and try again.",
+  "errorDetails": [
+    "Name must be between 3 and 100 characters inclusive"
+  ]
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project not found.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Project does not exist.",
+  "errorBody": "Suggested solution:  Fix error(s) and try again.",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/409" target="_blank">409</a></h2><p>A conflict error occurred. The profile name already exists on system.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Profile Profile01 already exists",
+  "errorBody": "Please choose a different profile name",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__profiles_put"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles</h4></div><div class="modal-body"><div class="alert alert-info"><p>Modifies AP profile MO and stores profile related files on the file system.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__profiles_put_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles_put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__profiles_put_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>The profile name.</p></li><li><strong>graphic</strong>: <em>(object)</em><p>The profile graphic.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>properties</strong></li><li><strong>ciq</strong>: <em>(object)</em><p>The CIQ file.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>configurations</strong>: <em>(array of profiles.Base64File)</em><p>The profile configurations.</p><p><strong>Items</strong>: Base64File</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></div></li><li><strong>status</strong>: <em>(object)</em><p>The profile status.</p><ul><li><strong>isValid</strong>: <em><span class="required">required</span>(boolean - default: false)</em><p>Determines if the profile is valid.</p></li><li><strong>details</strong>: <em><span class="required">required</span>(array of string)</em><p>The profile details.</p></li></ul></li><li><strong>version</strong>: <em><span class="required">required</span>(object)</em><p>The profile version properties.</p><ul><li><strong>productNumber</strong>: <em><span class="required">required</span>(string)</em><p>The product number.</p></li><li><strong>productRelease</strong>: <em><span class="required">required</span>(string)</em><p>The product release.</p></li></ul></li><li><strong>getConfigScript</strong>: <em>(object)</em><p>The profile netConf filter file.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>ossModelIdentity</strong>: <em><span class="required">required</span>(string)</em><p>The OSS model identity.</p></li><li><strong>upgradePackageName</strong>: <em><span class="required">required</span>(string)</em><p>The upgrade package name.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "name": "Profile1",
+  "graphic": {
+    "name": "profile1.png",
+    "content": "ddjkjdkjdjd"
+  },
+  "ciq": {
+    "name": "input.csv",
+    "content": "gfgfgfgfg"
+  },
+  "properties": "{prop1:someprop}",
+  "configurations": [
+    {
+      "name": "profile.zip",
+      "content": "=gfgfgfgfg"
+    }
+  ],
+  "status": {
+    "isValid": true,
+    "details": []
+  },
+  "version": {
+    "productNumber": "R23542",
+    "productRelease": "R35535"
+  },
+  "getConfigScript": {
+    "name": "profile1.xml",
+    "content": "hghgghghghghg"
+  },
+  "ossModelIdentity": "SOME_IDENTITY",
+  "upgradePackageName": "UPGRADE_PACKAGE"
+}</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__profiles_put_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Profile modified successfully.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>The profile name.</p></li><li><strong>version</strong>: <em><span class="required">required</span>(object)</em><p>The profile version properties.</p><ul><li><strong>productNumber</strong>: <em><span class="required">required</span>(string)</em><p>The product number.</p></li><li><strong>productRelease</strong>: <em><span class="required">required</span>(string)</em><p>The product release.</p></li></ul></li><li><strong>properties</strong></li><li><strong>graphicLocation</strong>: <em><span class="required">required</span>(string)</em><p>The graphic location.</p></li><li><strong>graphic</strong>: <em>(object)</em><p>The profile graphic.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>profileContentLocation</strong>: <em><span class="required">required</span>(string)</em><p>The profile content location.</p></li><li><strong>configurations</strong>: <em>(array of profiles.Base64File)</em><p>The profile configurations.</p><p><strong>Items</strong>: Base64File</p><div class="items"><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></div></li><li><strong>ciq</strong>: <em><span class="required">required</span>(object)</em><p>The CIQ file.</p><ul><li><strong>ciqLocation</strong>: <em><span class="required">required</span>(string)</em><p>The CIQ location.</p></li></ul></li><li><strong>status</strong>: <em><span class="required">required</span>(object)</em><ul><li><strong>isValid</strong>: <em><span class="required">required</span>(boolean)</em><p>Determines if the profile is valid.</p></li><li><strong>details</strong>: <em><span class="required">required</span>(array of string)</em><p>The profile details.</p></li></ul></li><li><strong>filterLocation</strong>: <em><span class="required">required</span>(string)</em><p>The netConf filter location.</p></li><li><strong>getConfigScript</strong>: <em>(object)</em><p>The profile netConf filter file.</p><ul><li><strong>name</strong>: <em><span class="required">required</span>(string)</em><p>Name of encoded file WITH file extention.</p></li><li><strong>content</strong>: <em><span class="required">required</span>(string)</em><p>Base 64 encoded file.</p></li></ul></li><li><strong>ossModelIdentity</strong>: <em><span class="required">required</span>(string)</em><p>The OSS model identity.</p></li><li><strong>upgradePackageName</strong>: <em><span class="required">required</span>(string)</em><p>The upgrade package name.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "name": "Profile1",
+  "version": {
+    "productNumber": "R3527",
+    "productRelease": "R387397"
+  },
+  "ossModelIdentity": "SOME_IDENTITY",
+  "upgradePackageName": "UPGRADE_PACKAGE",
+  "properties": "{prop1:someprop}",
+  "graphicLocation": "/some/graphic/file/location",
+  "graphic": {
+    "name": "profile1.png",
+    "content": "ddjkjdkjdjd"
+  },
+  "profileContentLocation": "/some/profile/content/file/location",
+  "configurations": [
+    {
+      "name": "profile.zip",
+      "content": "=gfgfgfgfg"
+    }
+  ],
+  "ciq": {
+    "ciqLocation": "/some/ciq/file/location"
+  },
+  "status": {
+    "isValid": true,
+    "details": [
+      "details1",
+      "details2"
+    ]
+  },
+  "filterLocation": "/some/getConfigScript/file/location",
+  "getConfigScript": {
+    "name": "profile1.xml",
+    "content": "hghgghghghghg"
+  }
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or profile does not exist.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Profile does not exist",
+  "errorBody": "Perform action with a valid profile.",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__profiles__profileid__ciq" class="panel-title">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/ciq</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__profiles__profileid__ciq"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/ciq</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__ciq_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__profiles__profileid__ciq" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__profiles__profileid__ciq_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Exports CIQ from file system for a given Profile.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__profiles__profileid__ciq_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/ciq</h4></div><div class="modal-body"><div class="alert alert-info"><p>Exports CIQ from file system for a given Profile.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__ciq_get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__ciq_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__profiles__profileid__ciq_get_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>profileId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: multipart/form-data)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__profiles__profileid__ciq_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/octet-stream</p><p><strong>Type</strong>: multipart/form-data</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Parameter;Area;Description;&lt;node name&gt;
+tilt:RSU=RET-S1-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S1-1;
+tilt:RSU=RET-S2-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S2-1;
+tilt:RSU=RET-S3-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S3-1;
+tilt:RSU=RET-S4-1;EQUIPMENT;Defines the tilt for RET SubUnit RET-S4-1;
+username_maint_user;COMMON;Defines the name of the maintenance user.;
+password_maint_user;COMMON;"Sets the SSH-based login password.
+If the password is not set, SSH-based login is not available for the maintenance user.
+The password must contain at least three lower-case, three upper-case, two numeric, and one special character.";
+subjectName_maint_user;COMMON;"Set the subject name of the certificate that is used for log in.
+If subject name is not configured, certificate-based log in is not available for the user.";
+Time_of_day_NTP_server_address_1;COMMON;"Sets the IP address of the NTP server that is used for time-of-day synchronization.
+Must be set to a valid IP address or DNS domain name.";
+Time_of_day_NTP_server_address_2;COMMON;"Sets the IP address of the NTP server that is used for time-of-day synchronization.
+Must be set to a valid IP address or DNS domain name.";
+node_logical_name;COMMON;Specifies the logical name of the node, as identified by the management system.;
+vlan_id_if_1_router:OAM;TRANSPORT;"The VLAN identity that shall be used for router:OAM.
+Valid value is an integer in the range 1-4094.";
+address_router:OAM;TRANSPORT;"The local IP address on router:OAM
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45)";
+network_prefix_length:OAM;TRANSPORT;"The network prefix length of router OAM
+Valid value is a number in the range 1-31";
+default_route_router:OAM;TRANSPORT;"The default route for router:OAM.
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45).";
+vlan_id_if_1_router:LTE;TRANSPORT;"The VLAN identity that shall be used for router:LTE.
+Valid value is an integer in the range 1-4094.";
+address_router:LTE;TRANSPORT;"The local IP address on router:LTE
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45)";
+network_prefix_length:LTE;TRANSPORT;"The network prefix length of router LTE
+Valid value is a number in the range 1-31";
+default_route_router:LTE;TRANSPORT;"The default route for router:LTE.
+Should be a valid IPv4 address in dotted decimal notation excluding the network prefix length(i.e. 134.45.34.45).";
+eNBId;LTE;"The ENodeB ID that forms part of the Cell Global Identity, and is also used to identify the node over the S1 interface.
+Valid value is an integer between -1 and 1048575.";
+configuredMaxTxPower_C:C1_S:1;LTE;"Sets the maximum output power(in mW) of carrier:C1_S:1.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C2_S:2;LTE;"Sets the maximum output power(in mW) of carrier:C2_S:2.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C3_S:3;LTE;"Sets the maximum output power(in mW) of carrier:C3_S:3.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C4_S:4;LTE;"Sets the maximum output power(in mW) of carrier:C4_S:4.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C5_S:5;LTE;"Sets the maximum output power(in mW) of carrier:C5_S:5.
+Valid value is 0-10000000.";
+configuredMaxTxPower_C:C6_S:5;LTE;"Sets the maximum output power(in mW) of carrier:C6_S:5.
+Valid value is 0-10000000.";
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or profile does not exist.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Profile does not exist",
+  "errorBody": "Perform action with a valid profile.",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot" class="panel-title">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/nodeDumpSnapshot</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/nodeDumpSnapshot</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Trigger node configuration snapshot for a given node.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/nodeDumpSnapshot</h4></div><div class="modal-body"><div class="alert alert-info"><p>Trigger node configuration snapshot for a given node.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot_post_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot_post_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>profileId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: multipart/form-data)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: profiles.nodeConfigurationRequest</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "nodeIds": ["node01"]
+}</code></pre></div></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. AP application error(s) occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Error fetching netconf configuration snapshot for profile.",
+  "errorBody": "Suggested Solution - Use Log Viewer for more information.",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or profile does not exist.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Profile does not exist",
+  "errorBody": "Perform action with a valid profile.",
+  "errorDetails": null
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot" class="panel-title">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/node/{nodeId}/nodeDumpSnapshot</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/node/{nodeId}/nodeDumpSnapshot</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get node configuration snapshot for a given node.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/node/{nodeId}/nodeDumpSnapshot</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get node configuration snapshot for a given node.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot_get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot_get_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>profileId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>nodeId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: multipart/form-data)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/octet-stream</p><p><strong>Type</strong>: multipart/form-data</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "name": "NodeConfigurationSnapshot.xml",
+    "content": "PE1hbmFnZWRFbGVtZW50IHhtbG5zPSJ1cm46Y29tOmVyaW..."
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/202" target="_blank">202</a></h2><p>Snapshot dumping is ongoing.</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request. AP application error(s) occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Fail to get snapshot under unexpected snapshot status.",
+  "errorBody": "Suggested Solution - Use Log Viewer for more information.",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or profile does not exist.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Profile does not exist",
+  "errorBody": "Perform action with a valid profile.",
+  "errorDetails": null
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_projects__projectid__profiles__profileid_" class="panel-title">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_projects__projectid__profiles__profileid_"><span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}</a> <span class="methods"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel_auto_provisioning_v1_projects__projectid__profiles__profileid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_projects__projectid__profiles__profileid__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Deletes AP ConfigurationProfile MO and stored profile related files on the file system.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_projects__projectid__profiles__profileid__delete"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent"></span>/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Deletes AP ConfigurationProfile MO and stored profile related files on the file system.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__delete_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_projects__projectid__profiles__profileid__delete_request"><h3>URI Parameters</h3><ul><li><strong>projectId</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>profileId</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-Type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_projects__projectid__profiles__profileid__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>The server has successfully fulfilled the request and there is no content available to return.</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Project or profile does not exist.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "errorTitle": "Profile does not exist",
+  "errorBody": "Perform action with a valid profile.",
+  "errorDetails": null
+}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities_" class="panel-title">/auto-provisioning/v1/models/{nodeType}?ossModelIdentities={retrieveOssModelIdentities}</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities_"><span class="parent"></span>/auto-provisioning/v1/models/{nodeType}?ossModelIdentities={retrieveOssModelIdentities}</a> <span class="methods"><a href="#auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Provides a list of valid node identifiers for a given Node type.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/auto-provisioning/v1/models/{nodeType}?ossModelIdentities={retrieveOssModelIdentities}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Provides a list of valid node identifiers for a given Node type.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities__get_request" data-toggle="tab">Request</a></li><li><a href="#auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities__get_request"><h3>URI Parameters</h3><ul><li><strong>nodeType</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>retrieveOssModelIdentities</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Headers</h3><ul><li><strong>Content-type</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li><li><strong>Accept</strong>: <em><span class="required">required</span>(string - default: application/json)</em></li></ul></div><div class="tab-pane" id="auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The request has succeeded by the server.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>ossModelIds</strong>: <em><span class="required">required</span>(array of string)</em><p>The OSS model IDs.</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "ossModelIds": [
+      "15B-R12EC",
+      "16A-R28CJ",
+      "17.Q2-R12G10",
+      "18.Q1-R36A20",
+      "19.Q1-R30A04",
+      "19.Q2-R34A11",
+      "19.Q3-R40A04"
+  ]
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>An internal server error occurred.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>errorTitle</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error title.</p></li><li><strong>errorBody</strong>: <em><span class="required">required</span>(string)</em><p>Provides the error description.</p></li><li><strong>errorDetails</strong>: <em><span class="required">required</span>(union of array or nil)</em><p>Provides additional information about the error (if applicable).</p></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "errorTitle": "Internal Server Error.",
+    "errorBody": "Suggested Solution : Use Log Viewer for more information.",
+    "errorDetails": null
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#auto_provisioning_v1_projects">/auto-provisioning/v1/projects</a></li><li><a href="#auto_provisioning_v1_projects__projectid_">/auto-provisioning/v1/projects/{projectId}</a></li><li><a href="#auto_provisioning_v1_projects__projectid__actions_order">/auto-provisioning/v1/projects/{projectId}/actions/order</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes">/auto-provisioning/v1/projects/{projectId}/nodes</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes_actions_order">/auto-provisioning/v1/projects/{projectId}/nodes/actions/order</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid_">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_bind">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/bind</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_cancel">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/cancel</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__configurations_siteinstall">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/configurations/siteinstall</a></li><li><a href="#auto_provisioning_v1_projects__projectid__nodes__nodeid__actions_resume">/auto-provisioning/v1/projects/{projectId}/nodes/{nodeId}/actions/resume</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles">/auto-provisioning/v1/projects/{projectId}/profiles</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__ciq">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/ciq</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__nodedumpsnapshot">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/nodeDumpSnapshot</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid__node__nodeid__nodedumpsnapshot">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}/node/{nodeId}/nodeDumpSnapshot</a></li><li><a href="#auto_provisioning_v1_projects__projectid__profiles__profileid_">/auto-provisioning/v1/projects/{projectId}/profiles/{profileId}</a></li><li><a href="#auto_provisioning_v1_models__nodetype__ossmodelidentities__retrieveossmodelidentities_">/auto-provisioning/v1/models/{nodeType}?ossModelIdentities={retrieveOssModelIdentities}</a></li></ul></div></div></div></div></body></html>

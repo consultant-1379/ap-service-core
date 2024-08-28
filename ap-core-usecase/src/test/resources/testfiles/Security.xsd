@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ 
+    <xs:complexType name="Security">
+        <xs:all>
+            <xs:element name="ipSecurity" type="IPSecurity" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="IPSecurity">
+        <xs:all>
+            <xs:element name="ipSecLevel" type="IPSecLevel" minOccurs="1"/>
+            <xs:element name="subjectAltNameType" type="SubjectAltNameType" minOccurs="1"/>
+            <xs:element name="subjectAltName" type="StringWithoutWhiteSpace" minOccurs="1"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="IPSecLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OAM"/>
+            <xs:enumeration value="CUSOAM"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="SubjectAltNameType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IPV4"/>
+            <xs:enumeration value="IPV6"/>
+            <xs:enumeration value="FQDN"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

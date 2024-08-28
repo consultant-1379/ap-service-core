@@ -1,0 +1,89 @@
+# Users
+# ------------------------------------------------------------------------------
+
+dn: uid=ap_admin,ou=People,dc=vts,dc=com
+uid: ap_admin
+cn: AP
+sn: Admin
+userType: enmUser
+userPassword: T3stP4ssw0rd
+ds-pwp-account-disabled: false
+objectClass: person
+objectClass: userTypeOC
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+
+dn: uid=ap_operator,ou=People,dc=vts,dc=com
+uid: ap_operator
+cn: AP
+sn: Operator
+userType: enmUser
+userPassword: T3stP4ssw0rd
+ds-pwp-account-disabled: false
+objectClass: person
+objectClass: userTypeOC
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+
+dn: uid=ap_sec_admin,ou=People,dc=vts,dc=com
+uid: ap_sec_admin
+cn: AP
+sn: Sec
+userType: enmUser
+userPassword: T3stP4ssw0rd
+ds-pwp-account-disabled: false
+objectClass: person
+objectClass: userTypeOC
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+
+dn: uid=ap_limited_remote_access_operator,ou=People,dc=vts,dc=com
+uid: ap_limited_remote_access_operator
+cn: AP
+sn: Limited_Remote_Access_Operator
+userType: enmUser
+userPassword: T3stP4ssw0rd
+ds-pwp-account-disabled: false
+objectClass: person
+objectClass: userTypeOC
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: top
+
+# Roles
+# ------------------------------------------------------------------------------
+
+dn: cn=Autoprovisioning_Administrator,ou=Roles,dc=vts,dc=com
+objectClass: groupOfUniqueNames
+
+dn: cn=Autoprovisioning_Operator,ou=Roles,dc=vts,dc=com
+objectClass: groupOfUniqueNames
+
+dn: cn=Autoprovisioning_Limited_Remote_Access_Operator,ou=Roles,dc=vts,dc=com
+objectClass: groupOfUniqueNames
+
+# Roles Assignment
+# ------------------------------------------------------------------------------
+
+dn: cn=Autoprovisioning_Administrator,ou=Roles,dc=vts,dc=com
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=ap_admin,ou=People,dc=vts,dc=com
+
+dn: cn=Autoprovisioning_Operator,ou=Roles,dc=vts,dc=com
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=ap_operator,ou=People,dc=vts,dc=com
+
+dn: cn=SECURITY_ADMIN,ou=Roles,dc=vts,dc=com
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=ap_sec_admin,ou=People,dc=vts,dc=com
+
+dn: cn=Autoprovisioning_Limited_Remote_Access_Operator,ou=Roles,dc=vts,dc=com
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=ap_limited_remote_access_operator,ou=People,dc=vts,dc=com

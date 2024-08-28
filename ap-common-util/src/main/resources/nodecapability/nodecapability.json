@@ -1,0 +1,188 @@
+{
+    "default": {
+        "BIND_WITH_NODE_NAME": {
+            "isSupported": false
+        },
+        "REPLACE_WITH_DHCP": {
+            "isSupported": false
+        },
+        "AUTO_POPULATE_AIWS_IPADDRESS": {
+            "isSupported": false
+        },
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": false
+        },
+        "APPLY_NETCONF_POST_SYNC": {
+            "isSupported": false
+        },
+        "NETCONF_NODE_PLUGIN_VALIDATION": {
+            "isSupported": false
+        },
+
+        "APPLY_BASELINES":{
+            "isSupported": false
+        },
+
+        "SNMP_SECURITY_NAME": {
+            "isSupported": false
+        },
+        "HARDWARE_REPLACE": {
+            "isSupported": false
+        },
+        "HARDWARE_REPLACE_WITHOUT_SERIAL_NUMBER": {
+            "isSupported": false
+        },
+        "HARDWARE_REPLACE_WITH_BACKUP_SELECTION": {
+            "isSupported": false
+        },
+        "HARDWARE_REPLACE_WITH_DEFAULT_ROUTER_SELECTION": {
+            "isSupported": false
+        }
+    },
+    "Router6672": {
+        "SNMP_SECURITY_NAME": {
+            "isSupported": true
+        }
+    },
+    "Router6673": {
+        "SNMP_SECURITY_NAME": {
+            "isSupported": true
+        }
+    },
+    "Router6675": {
+        "SNMP_SECURITY_NAME": {
+            "isSupported": true
+        }
+    },
+    "Router6x71": {
+        "SNMP_SECURITY_NAME": {
+            "isSupported": true
+        }
+    },
+    "Router6000-2": {
+        "SNMP_SECURITY_NAME": {
+            "isSupported": true
+        }
+    },
+    "FRONTHAUL-6000": {
+        "SNMP_SECURITY_NAME": {
+            "isSupported": true
+        }
+    },
+    "RadioNode": {
+        "BIND_WITH_NODE_NAME": {
+            "isSupported": true
+        },
+        "REPLACE_WITH_DHCP": {
+            "isSupported": true,
+            "OamAccessPointFdn": "%s,SystemFunctions=1,SysM=1,OamAccessPoint=1",
+            "OamAccessPointAtrribute": "accessPoint",
+            "OamAccessPointRouterFdn": "%s,Transport=1,Router=%s",
+            "addressIpAttribute": "address",
+            "sysMFdn": "%s,SystemFunctions=1,SysM=1",
+            "ntpFdn": "%s,SystemFunctions=1,SysM=1,TimeM=1,Ntp=1",
+            "RouteTableIPv4StaticFdn": "%s,RouteTableIPv4Static=1",
+            "RouteTableIPv6StaticFdn": "%s,RouteTableIPv6Static=1"
+        },
+        "HARDWARE_REPLACE": {
+            "isSupported": true
+        },
+        "HARDWARE_REPLACE_WITHOUT_SERIAL_NUMBER": {
+            "isSupported": true
+        },
+        "HARDWARE_REPLACE_WITH_BACKUP_SELECTION": {
+            "isSupported": true
+        },
+        "HARDWARE_REPLACE_WITH_DEFAULT_ROUTER_SELECTION": {
+            "isSupported": true
+        },
+        "AUTO_POPULATE_AIWS_IPADDRESS": {
+            "isSupported": true
+        },
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": true
+        },
+        "APPLY_NETCONF_POST_SYNC": {
+            "isSupported": true
+        },
+        "NETCONF_NODE_PLUGIN_VALIDATION": {
+            "isSupported": true
+        },
+        "APPLY_BASELINES":{
+            "isSupported": true
+        }
+    },
+    "MSRBS_V1": {
+        "HARDWARE_REPLACE": {
+            "isSupported": true
+        }
+    },
+    "vPP": {
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": true
+        }
+    },
+    "vSD": {
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": true
+        }
+    },
+    "vRM": {
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": true
+        }
+    },
+    "vRSM": {
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": true
+        }
+    },
+    "vTIF": {
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": true
+        }
+    },
+    "Controller6610": {
+        "BIND_WITH_NODE_NAME": {
+            "isSupported": true
+        },
+        "REPLACE_WITH_DHCP": {
+            "isSupported": true,
+            "OamAccessPointFdn": "%s,SystemFunctions=1,SysM=1,OamAccessPoint=1",
+            "OamAccessPointAtrribute": "accessPoint",
+            "OamAccessPointRouterFdn": "%s,Transport=1,Router=%s",
+            "addressIpAttribute": "address",
+            "sysMFdn": "%s,SystemFunctions=1,SysM=1",
+            "ntpFdn": "%s,SystemFunctions=1,SysM=1,TimeM=1,Ntp=1",
+            "RouteTableIPv4StaticFdn": "%s,RouteTableIPv4Static=1",
+            "RouteTableIPv6StaticFdn": "%s,RouteTableIPv6Static=1"
+        },
+        "HARDWARE_REPLACE": {
+            "isSupported": true
+        },
+        "HARDWARE_REPLACE_WITHOUT_SERIAL_NUMBER": {
+            "isSupported": true
+        },
+        "HARDWARE_REPLACE_WITH_BACKUP_SELECTION": {
+            "isSupported": true
+        },
+        "HARDWARE_REPLACE_WITH_DEFAULT_ROUTER_SELECTION": {
+            "isSupported": true
+        },
+        "AUTO_POPULATE_AIWS_IPADDRESS": {
+            "isSupported": true
+        },
+        "CONFIGURE_SNMP_SECURITY_WITH_NODE_NAME": {
+            "isSupported": true
+        },
+        "APPLY_NETCONF_POST_SYNC": {
+            "isSupported": true
+        },
+        "NETCONF_NODE_PLUGIN_VALIDATION": {
+            "isSupported": true
+        },
+        "APPLY_BASELINES":{
+            "isSupported": true
+        }
+    }
+}

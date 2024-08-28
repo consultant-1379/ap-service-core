@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bulkCmConfigDataFile xmlns:un="utranNrm.xsd" xmlns:xn="genericNrm.xsd" xmlns:gn="geranNrm.xsd" xmlns:es="EricssonSpecificAttributes.14.02.xsd" xmlns="configData.xsd">
+    <fileHeader fileFormatVersion="32.615 V4.5" vendorName="Ericsson"/>
+    <configData dnPrefix="Undefined">
+                    <xn:ManagedElement id="LTE53vPP00002">
+                        <!--<xn:VsDataContainer id="1" mimName="Wrat">
+                            <xn:attributes>
+                                <xn:vsDataType>vsDataTransport</xn:vsDataType>
+                                <xn:vsDataFormatVersion>EricssonSpecificAttributes.17.02</xn:vsDataFormatVersion>
+                                <es:vsDataTransport/>
+                            </xn:attributes>
+                            <xn:VsDataContainer id="1" mimName="RtnSctpProfile" modifier="create">
+                                <xn:attributes>
+									<xn:vsDataType>vsDataSctpProfile</xn:vsDataType>
+									<xn:vsDataFormatVersion>EricssonSpecificAttributes.14.02</xn:vsDataFormatVersion>
+									<es:vsDataSctpProfile>
+										<es:bundlingActivated>true</es:bundlingActivated>
+										<es:minActivateThr>1</es:minActivateThr>
+										<es:initARWnd>16384</es:initARWnd>
+										<es:initRto>200</es:initRto>
+										<es:incCookieLife>30</es:incCookieLife>
+										<es:maxSctpPduSize>1480</es:maxSctpPduSize>
+										<es:initialHeartbeatInterval>500</es:initialHeartbeatInterval>
+										<es:cookieLife>60</es:cookieLife>
+										<es:bundlingTimer>0</es:bundlingTimer>
+										<es:pathMaxRtx>10</es:pathMaxRtx>
+										<es:sackTimer>10</es:sackTimer>
+										<es:primaryPathAvoidance>true</es:primaryPathAvoidance>
+										<es:primaryPathMaxRtx>0</es:primaryPathMaxRtx>
+										<es:maxOutStreams>2</es:maxOutStreams>
+										<es:maxInStreams>2</es:maxInStreams>
+										<es:thrTransmitBufferCongCeased>85</es:thrTransmitBufferCongCeased>
+										<es:heartbeatInterval>2000</es:heartbeatInterval>
+										<es:thrTransmitBuffer>48</es:thrTransmitBuffer>
+										<es:dscp>40</es:dscp>
+										<es:maxShutdownRt>5</es:maxShutdownRt>
+										<es:hbMaxBurst>1</es:hbMaxBurst>
+										<es:maxActivateThr>65535</es:maxActivateThr>
+										<es:heartbeatActivated>true</es:heartbeatActivated>
+										<es:noSwitchback>true</es:noSwitchback>
+										<es:maxRto>400</es:maxRto>
+										<es:assocMaxRtx>20</es:assocMaxRtx>
+										<es:maxInitRt>8</es:maxInitRt>
+										<es:alphaIndex>3</es:alphaIndex>
+										<es:betaIndex>2</es:betaIndex>
+										<es:minRto>100</es:minRto>
+										<es:maxBurst>4</es:maxBurst>
+										<es:transmitBufferSize>64</es:transmitBufferSize>
+                 </es:vsDataSctpProfile>
+               </xn:attributes>
+              </xn:VsDataContainer>
+							
+              <xn:VsDataContainer id="1" modifier="create">
+                      <xn:attributes>
+                          <xn:vsDataType>vsDataSctpEndpoint</xn:vsDataType>
+                          <xn:vsDataFormatVersion>EricssonSpecificAttributes.17.02</xn:vsDataFormatVersion>
+                          <es:vsDataSctpEndpoint>
+                          <es:portNumber>36422</es:portNumber>
+                          <es:sctpProfile>ManagedElement=VRC11,Transport=1,SctpProfile=1</es:sctpProfile>
+                          <es:localIpAddress>ManagedElement=VRC11,Transport=1,Router=Backhaul,InterfaceIPv4=Backhaul,AddressIPv4=1</es:localIpAddress>
+                          <es:userLabel>1</es:userLabel>
+                          </es:vsDataSctpEndpoint>
+                      </xn:attributes>
+                  </xn:VsDataContainer>
+              </xn:VsDataContainer>-->
+          </xn:ManagedElement>
+    </configData>
+    <fileFooter dateTime="2015-04-02T10:51:58Z"/>
+</bulkCmConfigDataFile>

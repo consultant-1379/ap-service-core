@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Metadata generatedBy:ECT version:3.45  -->
+<!-- Sample xml -->
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="personInfo.xsd">
+  <firstname>joe</firstname>
+  <surname>bloggs</surname>
+  <addressInfo>
+    <city>Dublin</city>
+    <country>Ireland</country>
+  </addressInfo>
+  <phoneInfo suspend="true">
+    <mobileNumber>
+      <type>work</type>
+      <countryCode>353</countryCode>
+      <networkCode>87</networkCode>
+      <number>1111111</number>
+    </mobileNumber>
+    <mobileNumber>
+      <type>personal</type>
+      <countryCode>353</countryCode>
+      <networkCode>87</networkCode>
+      <number>2222222</number>
+    </mobileNumber>
+  </phoneInfo>
+</root>

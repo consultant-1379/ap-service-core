@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+    <xs:simpleType name="syncRefName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(DU-1-[1-2])|(PF-[1-8])|(PT-[1-8])|(IP-[1-2]-[1-2])|(GPS-1-1)|(GPSOUT-1-1)|(GE-1)|(HTPSI-1)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tuSyncRefIdName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([1-2])" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="packetFrequencySyncRefIdName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([1-8])" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="packetTimeSyncRefIdName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([1-8])" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ipSyncRefIdName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([1-2])" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="gpsSyncRefIdName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(1)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="gpsOutSyncLinkIdName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(1)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="transportLayerRefName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(1)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="hptsiSyncRefIdName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(1)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="YesOrNo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="YES" />
+            <xs:enumeration value="NO" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TrueOrFalse">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRUE" />
+            <xs:enumeration value="FALSE" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ipv4oIpv6Type">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="((((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9]))\.){3}((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9])))|(s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="routingSubnetMask">
+        <xs:restriction base="xs:string">
+            <xs:pattern
+                value="((((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9]))\.){3}((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9])))|(s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*)" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DU1orDU2">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DU-1" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="primaryOrSecondary">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="primary" />
+            <xs:enumeration value="secondary" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="activatedOrDeactivated">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACTIVATED" />
+            <xs:enumeration value="DEACTIVATED" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="enabledOrDisabled">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ENABLED" />
+            <xs:enumeration value="DISABLED" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="bypassOrDrop">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BYPASS" />
+            <xs:enumeration value="DROP" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="protocolType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ANY" />
+            <xs:enumeration value="ICMP" />
+            <xs:enumeration value="TCP" />
+            <xs:enumeration value="UDP" />
+            <xs:enumeration value="SCTP" />
+            <xs:enumeration value="RAWIP" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="diffieHellmanGroupType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GROUP_2" />
+            <xs:enumeration value="GROUP_14" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ikePeerEncryptionAlgorithm">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AES_CBC_128" />
+            <xs:enumeration value="AES_CBC_256" />
+            <xs:enumeration value="ALG_3DES_CBC" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ikePeerIntegrityAlgorithm">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AES_XCBC_MAC_96" />
+            <xs:enumeration value="HMAC_MD5_96" />
+            <xs:enumeration value="HMAC_SHA_1_96" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="pseudoRandomFunctionType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AES_XCBC_PRF128" />
+            <xs:enumeration value="HMAC_SHA1" />
+            <xs:enumeration value="HMAC_MD5" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="presharedKeyOrCertificate">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PRESHARED_KEY" />
+            <xs:enumeration value="CERTIFICATE" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="peerIdentityIdTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ANY" />
+            <xs:enumeration value="IP_V4_ADDRESS" />
+            <xs:enumeration value="FQDN" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ipSecTunnelEncryptionAlgorithm">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AES_CBC_128" />
+            <xs:enumeration value="AES_CBC_256" />
+            <xs:enumeration value="ALG_3DES_CBC" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ipSecTunnelIntegrityAlgorithm">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AES_XCBC_MAC_96" />
+            <xs:enumeration value="HMAC_SHA_1_96" />
+            <xs:enumeration value="HMAC_MD5_96" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ipAddressOrMask">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ipAddress" />
+            <xs:enumeration value="mask" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="preSharedKeyEncodingEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="HEX" />
+            <xs:enumeration value="ASCII" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OwnIdTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AUTOMATIC" />
+            <xs:enumeration value="IP_V4_ADDRESS" />
+            <xs:enumeration value="FQDN" />
+            <xs:enumeration value="AUTOMATIC_DN" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ConfigModeTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MANUAL" />
+            <xs:enumeration value="DHCP" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ConfModeTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MANUAL" />
+            <xs:enumeration value="IKE" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="IpVersionTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="IP_V4" />
+            <xs:enumeration value="IP_V6" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NodeIdTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="EMPTY" />
+            <xs:enumeration value="FDN" />
+            <xs:enumeration value="IP-Address" />
+            <xs:enumeration value="HWID" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="SiteBasic">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="Format">
+                    <xs:annotation>
+                        <xs:documentation>Contains information about the revision of the schema.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="revision" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="K" />
+                                    <xs:enumeration value="D" />
+                                    <xs:enumeration value="J" />
+                                    <xs:enumeration value="T" />
+                                    <xs:enumeration value="U" />
+                                    <xs:enumeration value="V" />
+                                    <xs:enumeration value="W" />
+                                    <xs:enumeration value="X" />
+                                    <xs:enumeration value="Y" />
+                                    <xs:enumeration value="Z" />
+                                    <xs:enumeration value="AA" />
+                                    <xs:enumeration value="AB" />
+                                    <xs:enumeration value="AC" />
+                                    <xs:enumeration value="AD" />
+                                    <xs:enumeration value="AE" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Ip">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="IpRoutingTable" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice>
+                                        <xs:element name="StaticRoutes" minOccurs="0" maxOccurs="200">
+                                            <xs:complexType>
+                                                <xs:attribute name="ipAddress" type="ipv4oIpv6Type" use="required" />
+                                                <xs:attribute name="networkMask" type="routingSubnetMask" use="required" />
+                                                <xs:attribute name="nextHopIpAddr" type="ipv4oIpv6Type" use="required" />
+                                                <xs:attribute name="redistribute" type="TrueOrFalse" use="required" />
+                                                <xs:attribute name="routeMetric" type="xs:int" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="IpHostLink" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="ipAddress" type="ipv4oIpv6Type" use="optional" />
+                                    <xs:attribute name="ipHostLinkId" type="xs:string" use="required" />
+                                    <xs:attribute name="ipInterfaceMoRef" type="xs:string" use="required" />
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="oaMAlternativeAccessSource" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="ipAddress" type="ipv4oIpv6Type" use="required" />
+                                    <xs:attribute name="networkMask" type="ipv4oIpv6Type" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="dscp" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="0" />
+                                    <xs:maxInclusive value="63" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="dnsServer1" type="ipv4oIpv6Type" use="optional" />
+                        <xs:attribute name="dnsServer2" type="ipv4oIpv6Type" use="optional" />
+                        <xs:attribute name="dnsServer3" type="ipv4oIpv6Type" use="optional" />
+                        <xs:attribute name="oaMAlternativeAccess" type="TrueOrFalse" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ENodeBFunction">
+                    <xs:annotation>
+                        <xs:documentation>UpIpAccessHostEtRef is mandatory if more than one IpAccessHostEt is configured on the node, i.e. if IpSec is
+                            used.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="RbsConfiguration">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="1">
+                                        <xs:element name="WantedPosition" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="latitude" type="xs:string" use="required" />
+                                                <xs:attribute name="longitude" type="xs:string" use="required" />
+                                                <xs:attribute name="altitude" type="xs:string" use="required" />
+                                                <xs:attribute name="tolerance" type="xs:string" use="optional" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="ossCorbaNameServer" type="xs:string" use="required" />
+                                    <xs:attribute name="nodeIdType" type="NodeIdTypeEnum" use="optional" default="FDN" />
+                                    <xs:attribute name="nodeIdValue" type="xs:string" use="optional" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="upIpAccessHostRef" type="xs:string" use="optional" />
+                        <xs:attribute name="timeAndPhaseSynchCritical" type="TrueOrFalse" use="optional" />
+                        <xs:attribute name="timePhaseMaxDeviation" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="9" />
+                                    <xs:maxInclusive value="100" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ManagedElementData" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="documentServerAddress" type="xs:string" default="" />
+                        <xs:attribute name="ntpServerAddressPrimary" type="ipv4oIpv6Type" use="optional" />
+                        <xs:attribute name="ntpServiceActivePrimary" type="TrueOrFalse" default="FALSE" />
+                        <xs:attribute name="ntpServerAddressSecondary" type="ipv4oIpv6Type" use="optional" />
+                        <xs:attribute name="ntpServiceActiveSecondary" type="TrueOrFalse" default="FALSE" />
+                        <xs:attribute name="ntpServerAddressThird" type="ipv4oIpv6Type" use="optional" />
+                        <xs:attribute name="ntpServiceActiveThird" type="TrueOrFalse" default="FALSE" />
+                        <xs:attribute name="nodeLocalTimeZone" type="xs:string" use="optional" />
+                        <xs:attribute name="daylightSavingTime" type="TrueOrFalse" default="FALSE" />
+                        <xs:attribute name="swServerUrlList" type="xs:string" use="optional" />
+                        <xs:attribute name="docLibUserDefined" type="xs:string" default="" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="IpSystem">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="IpAccessHostEt" maxOccurs="64">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="IpSyncRef" minOccurs="0" maxOccurs="8">
+                                            <xs:complexType>
+                                                <xs:attribute name="ipSyncRefId" type="ipSyncRefIdName" use="required" />
+                                                <xs:attribute name="ntpServerIpAddress" type="ipv4oIpv6Type" use="required" />
+                                                <xs:attribute name="userLabel" type="xs:string" default="" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="ipAccessHostEtId" type="xs:string" use="required" />
+                                    <xs:attribute name="ipAddress" type="ipv4oIpv6Type" use="optional" />
+                                    <xs:attribute name="ipInterfaceMoRef" type="xs:string" use="required" />
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                    <xs:attribute name="networkPrefixLength" default="64">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="1" />
+                                                <xs:maxInclusive value="128" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="VpnInterface" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="ipVersion" type="IpVersionTypeEnum" default="IP_V4" />
+                                    <xs:attribute name="vpnInterfaceId" type="xs:string" default="1" />
+                                    <xs:attribute name="configurationMode" type="ConfModeTypeEnum" default="MANUAL" />
+                                    <xs:attribute name="ipAccessHostEtRef" type="xs:string" use="required" />
+                                    <xs:attribute name="networkPrefixLength" use="optional">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="1" />
+                                                <xs:maxInclusive value="31" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="IpSec" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="IkePeer" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="AllowedTransforms" minOccurs="0" maxOccurs="5">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="diffieHellmanGroup" type="diffieHellmanGroupType" use="required" />
+                                                            <xs:attribute name="encryptionAlgorithm" type="ikePeerEncryptionAlgorithm"
+                                                                use="required" />
+                                                            <xs:attribute name="integrityAlgorithm" type="ikePeerIntegrityAlgorithm" use="required" />
+                                                            <xs:attribute name="pseudoRandomFunction" type="pseudoRandomFunctionType"
+                                                                use="required" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="authenticationMethod" type="presharedKeyOrCertificate" default="CERTIFICATE" />
+                                                <xs:attribute name="childSaLifeTimeDataLimit" default="50000">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="100" />
+                                                            <xs:maxInclusive value="500000" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="childSaLifeTime" default="1440">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="60" />
+                                                            <xs:maxInclusive value="5000" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="ikePeerId" type="xs:string" use="required" />
+                                                <xs:attribute name="ikeSaLifeTime" type="xs:int" default="1440" />
+                                                <xs:attribute name="logging" type="enabledOrDisabled" default="DISABLED" />
+                                                <xs:attribute name="peerIdentityIdFqdn" type="xs:string" use="required" />
+                                                <xs:attribute name="peerIdentityIdType" type="peerIdentityIdTypeEnum" use="required" />
+                                                <xs:attribute name="peerIdentityIpv4Address" type="ipv4oIpv6Type" use="optional" />
+                                                <xs:attribute name="ownIdentityIdFqdn" type="xs:string" use="optional" />
+                                                <xs:attribute name="ownIdentityIdType" type="OwnIdTypeEnum" use="optional" default="AUTOMATIC" />
+                                                <xs:attribute name="ownIdentityIpv4Address" type="ipv4oIpv6Type" use="optional" />
+                                                <xs:attribute name="peerIpAddress" type="ipv4oIpv6Type" use="required" />
+                                                <xs:attribute name="encoding" type="preSharedKeyEncodingEnum" use="optional" />
+                                                <xs:attribute name="preSharedKey" type="xs:string" use="optional" />
+                                                <xs:attribute name="userLabel" type="xs:string" default="" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="IpSecTunnel" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="AllowedTransforms" minOccurs="0" maxOccurs="10">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="encryptionAlgorithm" type="ipSecTunnelEncryptionAlgorithm"
+                                                                use="required" />
+                                                            <xs:attribute name="integrityAlgorithm" type="ipSecTunnelIntegrityAlgorithm"
+                                                                use="required" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="TsRemoteIpAddressRanges" maxOccurs="25">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="ipAddress" type="ipv4oIpv6Type" use="required" />
+                                                            <xs:attribute name="mask" type="xs:int" use="required" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="ikePeerRef" type="xs:string" use="required" />
+                                                <xs:attribute name="ipSecTunnelId" type="xs:string" use="required" />
+                                                <xs:attribute name="priority" type="xs:int" use="required" />
+                                                <xs:attribute name="tsLocalIpAddress" type="ipv4oIpv6Type" use="required" />
+                                                <xs:attribute name="tsLocalIpAddressMask" type="xs:int" use="required" />
+                                                <xs:attribute name="tsProtocols" type="xs:string" default="ANY" />
+                                                <xs:attribute name="userLabel" type="xs:string" default="" />
+                                                <xs:attribute name="vpnInterfaceRef" type="xs:string" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="certExpirWarnTime" default="90">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="2" />
+                                                <xs:maxInclusive value="365" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="featureState" type="activatedOrDeactivated" default="DEACTIVATED" />
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="AccessControlList" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="AclEntries" minOccurs="0" maxOccurs="20">
+                                            <xs:annotation>
+                                                <xs:documentation>0 is the highest priority, others will have lower priority under attribute
+                                                    aclPriority under element AclEntries
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="aclAction" type="bypassOrDrop" use="required" />
+                                                <xs:attribute name="icmpType" default="256">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="0" />
+                                                            <xs:maxInclusive value="256" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="aclPriority" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:int">
+                                                            <xs:minInclusive value="0" />
+                                                            <xs:maxInclusive value="19" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="localIpAddress" type="ipv4oIpv6Type" use="required" />
+                                                <xs:attribute name="localIpAddressMask" type="xs:int" use="required" />
+                                                <xs:attribute name="localPort" type="xs:int" use="required" />
+                                                <xs:attribute name="localPortFiltering" type="TrueOrFalse" default="FALSE" />
+                                                <xs:attribute name="protocol" type="protocolType" default="ANY" />
+                                                <xs:attribute name="remoteIpAddress" type="ipv4oIpv6Type" use="required" />
+                                                <xs:attribute name="remoteIpAddressMask" type="xs:int" use="required" />
+                                                <xs:attribute name="remotePort" type="xs:int" use="required" />
+                                                <xs:attribute name="remotePortFiltering" type="TrueOrFalse" default="FALSE" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="accessControlListId" type="xs:string" use="required" />
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Ipv6Interface" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="ethernetRef" type="DU1orDU2" use="optional" default="DU-1" />
+                                    <xs:attribute name="ipv6InterfaceId" type="xs:string" use="required" />
+                                    <xs:attribute name="mtu" use="optional">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="1280" />
+                                                <xs:maxInclusive value="1500" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="vid" default="1">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="0" />
+                                                <xs:maxInclusive value="4094" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="vLan" type="TrueOrFalse" default="FALSE" />
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Ipv6" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="featureState" type="activatedOrDeactivated" default="DEACTIVATED" />
+                                    <xs:attribute name="userLabel" type="xs:string" default="" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="IpInterface" minOccurs="0" maxOccurs="8">
+                    <xs:annotation>
+                        <xs:documentation>The attribute ipInterfaceSlot is not in the MOM. It can only be set to DU-1 (primary) and never to DU-2
+                            (secondary) and it is the identity of the unit to which the synchronization reference is connected.
+                            The attributes
+                            networkPrefixLength and defaultRouter0 are mandatory if configurationMode set to MANUAL.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="accessControlListRef" type="xs:string" use="optional" />
+                        <xs:attribute name="configurationMode" type="ConfigModeTypeEnum" default="MANUAL" />
+                        <xs:attribute name="ipInterfaceId" type="xs:string" use="required" />
+                        <xs:attribute name="networkPrefixLength" use="optional">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="20" />
+                                    <xs:maxInclusive value="30" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="defaultRouter0" type="ipv4oIpv6Type" use="optional" />
+                        <xs:attribute name="vid" default="1">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="0" />
+                                    <xs:maxInclusive value="4094" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="ipInterfaceSlot" type="DU1orDU2" use="optional" />
+                        <xs:attribute name="userLabel" type="xs:string" default="" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="TuSyncRef" minOccurs="0" maxOccurs="2">
+                    <xs:annotation>
+                        <xs:documentation>The attribute tuSyncRefSlot is not in the MOM. It can only be set to DU-1 (primary) and never to DU-2
+                            (secondary) and it is the identity of the DU to which the clock source is connected. The clock source is connected to the
+                            GPS-port of the DU. Examples of clock sources are stand-alone synchronization equipment. Used by MO Synchronization to
+                            assign value on Synchronization.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="tuSyncRefId" type="tuSyncRefIdName" use="required" />
+                        <xs:attribute name="tuSyncRefSlot" type="DU1orDU2" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="GpsSyncRef" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The attribute gpsSyncRefSlot is not in the MOM. It can only be set to DU-1 (primary) and never to DU-2
+                            (secondary) and it is the identity of the DU to which the clock source is connected. The clock source is connected to the
+                            GPS-port of the DU. Examples of clock sources are GPS receivers. Used by MO Synchronization to assign value on
+                            Synchronization.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="gpsSyncRefId" type="gpsSyncRefIdName" use="required" />
+                        <xs:attribute name="gpsSyncRefSlot" type="DU1orDU2" default="DU-1" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="GpsOutSyncLink" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="gpsOutSyncLinkId" type="gpsOutSyncLinkIdName" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HptsiSyncRef" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The clock source is connected to the GPS-port of the DU. Examples of clock sources are GPS receivers. Used
+                            by MO Synchronization to assign value on Synchronization.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="hptsiSyncRefId" type="hptsiSyncRefIdName" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="PacketFrequencySyncRef" minOccurs="0" maxOccurs="8">
+                    <xs:complexType>
+                        <xs:attribute name="packetFrequencySyncRefId" type="packetFrequencySyncRefIdName" use="required" />
+                        <xs:attribute name="ptpDomain" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="0" />
+                                    <xs:maxInclusive value="255" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="serverAddress" type="ipv4oIpv6Type" use="required" />
+                        <xs:attribute name="ipAccessHostEtRef" type="xs:string" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="PacketTimeSyncRef" minOccurs="0" maxOccurs="8">
+                    <xs:complexType>
+                        <xs:attribute name="packetTimeSyncRefId" type="packetTimeSyncRefIdName" use="required" />
+                        <xs:attribute name="ptpDomain" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="0" />
+                                    <xs:maxInclusive value="255" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="transportLayerRef" type="transportLayerRefName" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="TimingUnit" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Represents the TimingUnit MO </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="gpsOutEnabled" type="TrueOrFalse" use="optional" />
+                        <xs:attribute name="hptsiOutEnabled" type="TrueOrFalse" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Synchronization" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="syncPriorityRef1" type="syncRefName" use="optional" />
+                        <xs:attribute name="syncPriorityRef2" type="syncRefName" use="optional" />
+                        <xs:attribute name="syncPriorityRef3" type="syncRefName" use="optional" />
+                        <xs:attribute name="syncPriorityRef4" type="syncRefName" use="optional" />
+                        <xs:attribute name="syncPriorityRef5" type="syncRefName" use="optional" />
+                        <xs:attribute name="syncPriorityRef6" type="syncRefName" use="optional" />
+                        <xs:attribute name="syncPriorityRef7" type="syncRefName" use="optional" />
+                        <xs:attribute name="syncPriorityRef8" type="syncRefName" use="optional" />
+                        <xs:attribute name="userLabel" type="xs:string" default="" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

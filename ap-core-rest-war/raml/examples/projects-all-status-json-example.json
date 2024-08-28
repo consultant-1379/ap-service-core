@@ -1,0 +1,35 @@
+[
+    {
+        "projectId": "LTE01dg2ERBS00017",
+        "integrationPhaseSummary": {
+            "cancelled": 0,
+            "failed": 250,
+            "inProgress": 200,
+            "successful": 50,
+            "suspended": 0
+        },
+        "numberOfNodes": 500
+    },
+    {
+        "projectId": "LTE01dg2ERBS00018",
+        "integrationPhaseSummary": {
+            "cancelled": 0,
+            "failed": 0,
+            "inProgress": 1,
+            "successful": 0,
+            "suspended": 0
+        },
+        "numberOfNodes": 1
+    },
+    {
+        "projectId": "LTE01dg2ERBS00019",
+        "integrationPhaseSummary": {
+            "cancelled": 0,
+            "failed": 1,
+            "inProgress": 0,
+            "successful": 0,
+            "suspended": 0
+        },
+        "numberOfNodes": 1
+    }
+]

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--  Used by JUnit Tests to test reading in schema to verify xml parsing against schema.
+ -->
+
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+    <xs:element name='unitTest'>
+        <xs:complexType>
+           <xs:all>
+                <xs:element name='myString' type='xs:string' />
+                <xs:element name='myShort' minOccurs='0' type='xs:short' />
+                <xs:element name='myInt' type='xs:int' />
+                <xs:element name='myBoolean' type='xs:boolean' />
+                <xs:element name='nested'>
+			        <xs:complexType>
+			           <xs:all>
+			                <xs:element name='myDouble' type='xs:double' />
+			                <xs:element name='myLong' type='xs:long' />
+			                <xs:element name='myByte' type='xs:byte' />
+			            </xs:all>
+			        </xs:complexType>
+			    </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+    

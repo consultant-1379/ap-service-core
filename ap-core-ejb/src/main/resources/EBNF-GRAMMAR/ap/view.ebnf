@@ -1,0 +1,5 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "view" (* slogan = "View the properties of projects or nodes" *) [ VIEW_OPTIONS ]
+
+VIEW_OPTIONS ::= ( VIEW_PROJECT | VIEW_NODE )
+VIEW_PROJECT ::= WS "-p" (* slogan = "View properties for a project" *) WS <project_name> (* slogan = "Scope the Command using a Project name. E.g. MyProject1" *)
+VIEW_NODE ::= WS "-n" (* slogan = "View properties for a node" *) WS <node_name> (* slogan = "Scope the Command using a Node name. E.g. MyNode1" *)

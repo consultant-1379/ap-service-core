@@ -1,0 +1,5 @@
+"ap" (* slogan = "Auto Provisioning supports the automated roll out of nodes" *) WS "upload" (* slogan = "Replace an existing configuration file for a node" *) UPLOAD_OPTIONS
+
+UPLOAD_OPTIONS ::= UPLOAD_NODE UPLOAD_FILE
+UPLOAD_NODE ::= WS "-n" (* slogan = "Upload a node artifact" *) WS <node_name> (* slogan = "Scope the Command using a Node name. E.g. Enb612" *)
+UPLOAD_FILE ::= WS "file:" (* slogan = "Upload a new configuration file" *) <file_name> (* inputType = "fileName" slogan = "Enter the file name to upload" *)

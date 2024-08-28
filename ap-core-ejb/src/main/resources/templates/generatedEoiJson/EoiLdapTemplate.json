@@ -1,0 +1,16 @@
+{
+
+  "tlsPort": "%EOI_TLS_PORT%",
+
+  "ldapPort": "%EOI_LDAP_PORT%",
+
+  "ldapIpAddress": "%EOI_LDAP_IPADDRESS%",
+
+  "fallbackLdapIpAddress": "%EOI_FALLBACK_LDAP_IPADDRESS%",
+
+  "bindDn": "%EOI_BIND_DN%",
+
+  "bindPassword": "%EOI_BIND_PASSWORD%",
+
+  "baseDn": "%EOI_BASE_DN%"
+}

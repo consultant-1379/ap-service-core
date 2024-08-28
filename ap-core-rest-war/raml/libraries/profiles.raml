@@ -1,0 +1,172 @@
+#%RAML 1.0 Library
+usage: |
+  Use to define some basic profile-related constructs.
+
+types:
+  Base64File:
+      properties:
+        name:
+          type: string
+          required: true
+          description: Name of encoded file WITH file extention.
+        content:
+          type: string
+          required: true
+          description: Base 64 encoded file.
+  ProfileRequest:
+    properties:
+      name:
+        type: string
+        description: The profile name.
+        required: true
+      graphic:
+        type: Base64File
+        description: The profile graphic.
+        required: false
+      properties:
+        type: string
+        required: false
+        description: Profile properties in JSON.
+      ciq:
+        type: Base64File
+        description: The CIQ file.
+        required: false
+      configurations:
+        type: array
+        description: The profile configurations.
+        required: false
+        items: Base64File
+        uniqueItems: true
+      status:
+        type: object
+        description: The profile status.
+        required: false
+        properties:
+          isValid:
+            type: boolean
+            description: Determines if the profile is valid.
+            required: true
+            default: false
+          details:
+            type: array
+            description: The profile details.
+            required: true
+            items: string
+            uniqueItems: true
+      version:
+        type: object
+        description: The profile version properties.
+        required: true
+        properties:
+          productNumber:
+            type: string
+            description: The product number.
+            required: true
+          productRelease:
+            type: string
+            description: The product release.
+            required: true
+      ossModelIdentity:
+        type: string
+        description: The OSS model identity.
+        required: true
+      upgradePackageName:
+        type: string
+        description: The upgrade package name.
+        required: true
+      getConfigScript:
+        type: Base64File
+        description: The profile netconf filter file.
+        required:  false
+  ProfileResponse:
+    properties:
+      name:
+        type: string
+        description: The profile name.
+      version:
+        type: object
+        description: The profile version properties.
+        properties:
+          productNumber:
+            type: string
+            description: The product number.
+          productRelease:
+            type: string
+            description: The product release.
+      properties:
+        type: string
+        required: false
+        description: Profile properties in JSON.
+      graphicLocation:
+        type: string
+        description: The graphic location.
+      graphic:
+        type: Base64File
+        description: The profile graphic.
+        required: false
+      profileContentLocation:
+        type: string
+        description: The profile content location.
+      configurations:
+        type: array
+        description: The profile configurations.
+        required: false
+        items: Base64File
+        uniqueItems: true
+      ciq:
+        type: object
+        description: The CIQ file.
+        properties:
+          ciqLocation:
+            type: string
+            description: The CIQ location.
+      status:
+        type: object
+        properties:
+          isValid:
+            type: boolean
+            description: Determines if the profile is valid.
+          details:
+            type: array
+            description: The profile details.
+            items: string
+      ossModelIdentity:
+        type: string
+        description: The OSS model identity.
+        required: true
+      upgradePackageName:
+        type: string
+        description: The upgrade package name.
+        required: true
+      filterLocation:
+        type: string
+        description: The filter location.
+      getConfigScript:
+        type: Base64File
+        description: The profile netconf filter file.
+        required: false
+  ProfileDataResponse:
+    properties:
+        profiles:
+            type: array
+            items: ProfileResponse
+  Configurations:
+    properties:
+        content:
+          type: string
+          required: true
+          description: Base 64 encoded file.
+  OrderConfigurationsRequest:
+     properties:
+       name:
+         type: string
+         required: true
+         description: Name of node.
+       content:
+         type: Configurations
+  NodeRequest :
+     properties:
+       nodeIds:
+         type: List<String>
+         required: true
+         description: Node ids.

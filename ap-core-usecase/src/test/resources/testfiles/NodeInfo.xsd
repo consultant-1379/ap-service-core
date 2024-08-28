@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="AutoIntegration.xsd"/>
+    <xs:include schemaLocation="Artifacts.xsd"/>
+    <xs:include schemaLocation="Security.xsd"/>
+    <xs:include schemaLocation="Supervision.xsd"/>
+    <xs:include schemaLocation="UserCredentials.xsd"/>
+    <xs:include schemaLocation="NodeType.xsd"/>
+    <xs:include schemaLocation="License.xsd"/>
+    <xs:include schemaLocation="Location.xsd"/>
+
+    <xs:complexType name="NodeContent">
+        <xs:all>
+            <xs:element name="name" type="NodeName" minOccurs="1"/>
+            <xs:element name="workOrderId" type="NonEmptyString" minOccurs="0"/>
+            <xs:element name="nodeIdentifier" type="StringWithoutWhiteSpace" minOccurs="1"/>
+            <xs:element name="ipAddress" type="Ipv4orIpv6" minOccurs="1"/>
+            <xs:element name="nodeType" type="NodeType" minOccurs="1"/>
+            <xs:element name="hardwareSerialNumber" type="HardwareSerialNumber" minOccurs="0"/>
+            <xs:element name="ossPrefix" type="StringWithoutWhiteSpace" minOccurs="0"/>
+            <xs:element name="artifacts" type="Artifacts" minOccurs="1"/>
+            <xs:element name="autoIntegration" type="AutoIntegration" minOccurs="1"/>
+            <xs:element name="security" type="Security" minOccurs="0"/>
+            <xs:element name="location" type="Location" minOccurs="0"/>
+            <xs:element name="supervision" type="Supervision" minOccurs="0"/>
+            <xs:element name="users" type="Users" minOccurs="0"/>
+            <xs:element name="timeZone" type="StringWithoutWhiteSpace" minOccurs="0"/>
+            <xs:element name="license" type="License" minOccurs="0"/>
+            <xs:element name="notifications" type="Notifications" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="NodeName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^=,%{}&lt;&gt;:&quot;/\\|?*\s]+"/> <!-- Blacklist Characters are = , % { } < > : " / \ | ? * ascii <=32 -->
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="StringWithoutWhiteSpace">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S*"/> <!-- No whitespace permitted -->
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S.*"/> <!-- Start with character, then anything -->
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Boolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="true"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Ipv4orIpv6">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="((((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9]))\.){3}((25[0-5])|(2[0-4][0-9])|([01]?[0-9]?[0-9])))|(s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*)"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="HardwareSerialNumber">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-HJ-NP-Z0-9()]{10,13}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Notifications">
+        <xs:all>
+            <xs:element name="email" type="EmailAddress" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="EmailAddress">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9a-zA-Z]([-_.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-_\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}[,;]*)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Elements of NodeInfo  -->
+    <xs:element name="nodeInfo" type="NodeContent"/>
+</xs:schema>

@@ -1,0 +1,20 @@
+# InteliJ files #
+worskpace.xml
+.idea/
+*.iml
+*.class
+
+.settings
+.project
+.classpath
+target
+.pmd
+test-output
+tmp
+/test-output
+/tmp
+*.iml
+/bin
+
+# Mockserver
+mockserver*.log

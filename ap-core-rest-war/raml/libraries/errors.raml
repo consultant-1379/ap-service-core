@@ -1,0 +1,35 @@
+#%RAML 1.0 Library
+usage: |
+  Use to define some basic server error related constructs.
+
+types:
+  Error:
+    properties:
+      errorTitle:
+        type: string
+        required: true
+        description: Provides the error title.
+      errorBody:
+        type: string
+        required: true
+        description: Provides the error description.
+      errorDetails:
+        type: array | nil
+        required: true
+        items: string |
+        description: Provides additional information about the error (if applicable).
+  NodeValidation:
+      properties:
+        errorTitle:
+          type: string
+          required: true
+          description: Provides the error title.
+        errorBody:
+          type: string
+          required: true
+          description: Provides the error description.
+        nodeValidationErrors:
+          type: array
+          required: true
+          items: string
+          description: Provides additional information about the validation error.
